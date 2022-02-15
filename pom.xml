@@ -13,7 +13,7 @@
 	<!-- FIXME - set app name -->
 	<name>mvn-app</name>
 	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
+	<url>https://git.app.uib.no/relish-earshot/scuffed-mario</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
