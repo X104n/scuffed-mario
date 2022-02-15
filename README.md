@@ -1,4 +1,4 @@
-# INF112 libGDX + Maven template 
+# INF112 libGDX + Maven template (updated version)
 Simple skeleton with [libGDX](https://libgdx.com/). See the tutorial in [Filer / Tutorials](https://mitt.uib.no/courses/33532/files/folder/Tutorials) on Mitt UiB. 
 
 # Known problems
