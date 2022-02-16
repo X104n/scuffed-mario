@@ -12,6 +12,7 @@ public class GameScreen implements Screen {
 
     final ScuffedMario game;
 
+    Texture backGroundImage;
     Texture marioImage;
     OrthographicCamera camera;
     Rectangle mario;
@@ -21,6 +22,7 @@ public class GameScreen implements Screen {
 
         // load the test image
         marioImage = new Texture(Gdx.files.internal("assets/test.png"));
+        backGroundImage = new Texture(Gdx.files.internal("assets/testBackground.png"));
 
         // Creates a new camera for the game screen
         camera = new OrthographicCamera();
@@ -56,6 +58,7 @@ public class GameScreen implements Screen {
 
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
+        game.batch.draw(backGroundImage, 0, 0,Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         game.batch.draw(marioImage, mario.x, mario.y, mario.width, mario.height);
         game.batch.end();
 
