@@ -18,4 +18,11 @@ public class ScuffedMario extends Game {
 
         this.setScreen(new GameScreen(this));
     }
+
+    public void render(){super.render();}
+
+    public void dispose(){
+        batch.dispose();
+    }
 }
+
