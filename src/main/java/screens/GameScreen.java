@@ -50,6 +50,8 @@ public class GameScreen implements Screen {
     float playerX = 0;
     float playerY = 0;
     float Speed = 50.0f;
+    float height = 64;
+    float width = 64;
 
     @Override
     public void show() {
@@ -66,26 +68,25 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(1,1,1,0); // white, to avoid flickering
         batch.begin();
         stage.draw();
-        batch.draw(player, playerX, playerY);
+        batch.draw(player, playerX, playerY, width, height);
+        batch.draw(backGroundImage, 0, 0,Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.W)){
+        if (Gdx.input.isKeyPressed(Input.Keys.W)){
             System.out.println("w, was pressed"); // just for debugging
             playerY += Gdx.graphics.getDeltaTime()*Speed;
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.S)){
+        if (Gdx.input.isKeyPressed(Input.Keys.S)){
             System.out.println("s, was pressed");
             playerY -= Gdx.graphics.getDeltaTime()*Speed;
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.A)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             System.out.println("a, was pressed");
             playerX -= Gdx.graphics.getDeltaTime()*Speed;
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.D)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             System.out.println("d, was pressed");
             playerX += Gdx.graphics.getDeltaTime()*Speed;
         }
-        batch.end();
-
 
         //screen part:
         ScreenUtils.clear(0, 0, 0, 1);
@@ -98,10 +99,7 @@ public class GameScreen implements Screen {
 
 
         game.batch.setProjectionMatrix(camera.combined);
-        game.batch.begin();
-        game.batch.draw(backGroundImage, 0, 0,Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        // game.batch.draw(marioImage, mario.x, mario.y, mario.width, mario.height);
-        game.batch.end();
+        batch.end();
 
     }
 
