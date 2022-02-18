@@ -3,6 +3,7 @@ package screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import screens.GameScreen;
 
 public class ScuffedMario extends Game {
 
