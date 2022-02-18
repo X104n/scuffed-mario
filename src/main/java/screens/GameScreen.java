@@ -44,6 +44,7 @@ public class GameScreen implements Screen {
     public void show() {
         player = new Texture("assets/notFinalScuffedMario.png");
         backGroundImage = new Texture("assets/testBackground.png");
+
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         batch = new SpriteBatch();
@@ -51,9 +52,11 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float v) {
+        //screen part:
+        ScreenUtils.clear(0, 0, 0, 1);
+
         //Character part
         batch.begin();
-        stage.draw();
         batch.draw(backGroundImage, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.draw(player, playerX, playerY, 64, 64);
 
@@ -74,8 +77,6 @@ public class GameScreen implements Screen {
             playerX += Gdx.graphics.getDeltaTime() * Speed;
         }
 
-        //screen part:
-        ScreenUtils.clear(0, 0, 0, 1);
 
         camera.update();
 
