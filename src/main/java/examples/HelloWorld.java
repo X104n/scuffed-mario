@@ -1,4 +1,4 @@
-package hello.world;
+package examples;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
