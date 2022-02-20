@@ -131,7 +131,7 @@
 								</transformer>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
 							</transformers>
-							<artifactSet></artifactSet>
+							<artifactSet/>
 							<outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar</outputFile>
 						</configuration>
 					</execution>
@@ -166,7 +166,7 @@
 					<version>3.0.0-M5</version>
 					<configuration>
 						<useModulePath>false</useModulePath>
-						<argLine></argLine>
+						<argLine/>
 					</configuration>
 				</plugin>
 				<plugin>
