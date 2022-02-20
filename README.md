@@ -1,5 +1,5 @@
 # INF112 libGDX + Maven template (updated version)
-=======
+
 # How to run the game:
 Run the game my using "DesktopLauncher.java"
 
