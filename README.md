@@ -1,4 +1,9 @@
 # INF112 libGDX + Maven template (updated version)
+
+# How to run the game:
+Run the game my using "DesktopLauncher.java"
+
+# INF112 libGDX + Maven template 
 Simple skeleton with [libGDX](https://libgdx.com/). See the tutorial in [Filer / Tutorials](https://mitt.uib.no/courses/33532/files/folder/Tutorials) on Mitt UiB. 
 
 # Known problems
