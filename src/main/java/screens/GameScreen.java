@@ -45,7 +45,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        player = new Texture("assets/notFinalScuffedMario.png");
+        player = new Texture("assets/marioV2.1.png");
         backGroundImage = new Texture("assets/testBackground.png");
 
         stage = new Stage();
@@ -61,7 +61,7 @@ public class GameScreen implements Screen {
         //Character part
         batch.begin();
         batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
-        batch.draw(player, playerX, playerY, 64, 64);
+        batch.draw(player, playerX, playerY, 300, 64);
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             System.out.println("w, was pressed"); // just for debugging
