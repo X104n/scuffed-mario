@@ -69,7 +69,7 @@ public class GameScreen implements Screen {
         //Character part
         batch.begin();
         batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
-        batch.draw(player, playerX, playerY, 300, 64);
+        batch.draw(player, playerX, playerY, 900, 150);
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             System.out.println("w, was pressed"); // just for debugging
