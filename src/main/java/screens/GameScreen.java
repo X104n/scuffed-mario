@@ -3,6 +3,7 @@ package screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,6 +16,7 @@ public class GameScreen implements Screen {
 
     OrthographicCamera camera;
 
+    Music backgroundMusic;
     Stage stage;
     SpriteBatch batch;
 
@@ -36,15 +38,21 @@ public class GameScreen implements Screen {
         //marioImage = new Texture(Gdx.files.internal("assets/notFinalScuffedMario.png"));
         //backGroundImage = new Texture(Gdx.files.internal("assets/testBackground.png"));
 
+        //Loading backgroundMusic
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/widePutin.mp3"));
+        backgroundMusic.setLooping(true);
+
         // Creates a new camera for the game screen
         camera = new OrthographicCamera();
 
         // Note that we make the camera a fixed size here so if we want to show more at a time we need to upscale it here
         camera.setToOrtho(false, SCENE_WIDTH, SCENE_HEIGHT);
+
     }
 
     @Override
     public void show() {
+        backgroundMusic.play();
         player = new Texture("assets/marioV2.1.png");
         backGroundImage = new Texture("assets/testBackground.png");
 
@@ -117,5 +125,6 @@ public class GameScreen implements Screen {
     public void dispose() {
         backGroundImage.dispose();
         player.dispose();
+        backgroundMusic.dispose();
     }
 }
