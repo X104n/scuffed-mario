@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import java.awt.*;
+
 public class GameScreen implements Screen {
 
     final ScuffedMario game;
@@ -20,10 +22,16 @@ public class GameScreen implements Screen {
 
     Texture player;
     Texture backGroundImage;
+    Texture objectImage;
 
-    float playerX = 0;
+    float playerX = 0; // where mario is placed on the board
     float playerY = 0;
-    float Speed = 50.0f;
+    float Speed = 300.0f;
+
+    Rectangle player_rectangle;
+    Rectangle object_rectangle;
+    float prevX;
+    float prevY;
 
     int SCENE_HEIGHT = 480;
     int SCENE_WIDTH = 800;
@@ -47,8 +55,15 @@ public class GameScreen implements Screen {
     public void show() {
         player = new Texture("assets/notFinalScuffedMario.png");
         backGroundImage = new Texture("assets/testBackground.png");
+        objectImage = new Texture("assets/black_box.png");
 
         stage = new Stage();
+        player_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), player.getWidth(), player.getHeight()); // math.round to use to convert float to int
+        object_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), objectImage.getWidth(), objectImage.getHeight());
+
+        prevY = 0;
+        prevX = 0;
+
         Gdx.input.setInputProcessor(stage);
         batch = new SpriteBatch();
     }
@@ -61,25 +76,38 @@ public class GameScreen implements Screen {
         //Character part
         batch.begin();
         batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+        batch.draw(objectImage, 480, 160, 32, 32);
         batch.draw(player, playerX, playerY, 64, 64);
+
+        if (object_rectangle.intersects.overlaps(player_rectangle)) {
+            System.out.println("collided"); // just for debugging
+            playerY = prevY;
+            playerX = prevX;
+        }  
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             System.out.println("w, was pressed"); // just for debugging
+            prevY = playerY;
             playerY += Gdx.graphics.getDeltaTime() * Speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             System.out.println("s, was pressed");
+            prevY = playerY;
             playerY -= Gdx.graphics.getDeltaTime() * Speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             System.out.println("a, was pressed");
+            prevX = playerX;
             playerX -= Gdx.graphics.getDeltaTime() * Speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             System.out.println("d, was pressed");
+            prevX = playerX;
             playerX += Gdx.graphics.getDeltaTime() * Speed;
         }
 
+        player_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), player.getWidth(), player.getHeight()); // updates rectangle around the player
+        // object_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), objectImage.getWidth(), objectImage.getHeight()); // we use this if the player is going to move an object
 
         camera.update();
 
@@ -92,6 +120,7 @@ public class GameScreen implements Screen {
         batch.end();
 
     }
+
 
     @Override
     public void resize(int i, int i1) {
@@ -116,6 +145,7 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         backGroundImage.dispose();
+        objectImage.dispose();
         player.dispose();
     }
 }
