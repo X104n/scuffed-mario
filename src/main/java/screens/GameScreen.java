@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -28,8 +29,8 @@ public class GameScreen implements Screen {
     float playerY = 0;
     float Speed = 300.0f;
 
-    Rectangle player_rectangle; // creates a rectangle around the player
-    Rectangle object_rectangle;
+    com.badlogic.gdx.math.Rectangle player_rectangle; // creates a rectangle around the player
+    com.badlogic.gdx.math.Rectangle object_rectangle;
     float prevX; // last x pos
     float prevY; // last y pos
 
@@ -58,8 +59,11 @@ public class GameScreen implements Screen {
         objectImage = new Texture("assets/black_box.png");
 
         stage = new Stage();
-        player_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), player.getWidth(), player.getHeight()); // math.round to use to convert float to int
-        object_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), objectImage.getWidth(), objectImage.getHeight());
+        // player_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), player.getWidth(), player.getHeight()); // math.round to use to convert float to int
+        player_rectangle = new com.badlogic.gdx.math.Rectangle(playerX, playerY, player.getWidth(), player.getHeight());
+        object_rectangle = new com.badlogic.gdx.math.Rectangle(100, 100, objectImage.getWidth(), objectImage.getHeight());
+
+        //object_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), objectImage.getWidth(), objectImage.getHeight());
 
         prevY = 0;
         prevX = 0;
@@ -79,7 +83,7 @@ public class GameScreen implements Screen {
         batch.draw(objectImage, 480, 160, 32, 32);
         batch.draw(player, playerX, playerY, 64, 64);
 
-        if (object_rectangle.intersects(player_rectangle)) {
+        if (object_rectangle.overlaps(player_rectangle)) {
             System.out.println("collided"); // just for debugging
             playerY = prevY;
             playerX = prevX;
@@ -106,7 +110,7 @@ public class GameScreen implements Screen {
             playerX += Gdx.graphics.getDeltaTime() * Speed;
         }
 
-        player_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), player.getWidth(), player.getHeight()); // updates rectangle around the player
+        player_rectangle = new com.badlogic.gdx.math.Rectangle(playerX, playerY, player.getWidth(), player.getHeight()); // updates rectangle around the player
         // object_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), objectImage.getWidth(), objectImage.getHeight()); // we use this if the player is going to move an object
 
         camera.update();
