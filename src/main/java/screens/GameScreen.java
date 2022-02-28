@@ -28,10 +28,10 @@ public class GameScreen implements Screen {
     float playerY = 0;
     float Speed = 300.0f;
 
-    Rectangle player_rectangle;
+    Rectangle player_rectangle; // creates a rectangle around the player
     Rectangle object_rectangle;
-    float prevX;
-    float prevY;
+    float prevX; // last x pos
+    float prevY; // last y pos
 
     int SCENE_HEIGHT = 480;
     int SCENE_WIDTH = 800;
@@ -79,7 +79,7 @@ public class GameScreen implements Screen {
         batch.draw(objectImage, 480, 160, 32, 32);
         batch.draw(player, playerX, playerY, 64, 64);
 
-        if (object_rectangle.intersects.overlaps(player_rectangle)) {
+        if (object_rectangle.intersects(player_rectangle)) {
             System.out.println("collided"); // just for debugging
             playerY = prevY;
             playerX = prevX;
