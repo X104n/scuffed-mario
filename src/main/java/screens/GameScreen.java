@@ -82,7 +82,7 @@ public class GameScreen implements Screen {
 
         if (object_rectangle.overlaps(player_rectangle)) {
             System.out.println("collided"); // just for debugging
-            //playerY = prevY;
+            //playerY = prevY; # can't move player if line 85-86 is running
             //playerX = prevX;
         }  
 
