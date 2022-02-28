@@ -77,33 +77,33 @@ public class GameScreen implements Screen {
         //Character part
         batch.begin();
         batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
-        batch.draw(objectImage, 480, 160, 32, 32);
+        batch.draw(objectImage, 480, 160);
         batch.draw(player, playerX, playerY, 64, 64);
 
         if (object_rectangle.overlaps(player_rectangle)) {
             System.out.println("collided"); // just for debugging
-            playerY = prevY;
-            playerX = prevX;
+            //playerY = prevY;
+            //playerX = prevX;
         }  
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             System.out.println("w, was pressed"); // just for debugging
-            prevY = playerY;
+            // prevY = playerY;
             playerY += Gdx.graphics.getDeltaTime() * Speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             System.out.println("s, was pressed");
-            prevY = playerY;
+            // prevY = playerY;
             playerY -= Gdx.graphics.getDeltaTime() * Speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             System.out.println("a, was pressed");
-            prevX = playerX;
+            // prevX = playerX;
             playerX -= Gdx.graphics.getDeltaTime() * Speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             System.out.println("d, was pressed");
-            prevX = playerX;
+            // prevX = playerX;
             playerX += Gdx.graphics.getDeltaTime() * Speed;
         }
 
