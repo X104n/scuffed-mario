@@ -31,8 +31,8 @@ public class GameScreen implements Screen {
 
     com.badlogic.gdx.math.Rectangle player_rectangle; // creates a rectangle around the player
     com.badlogic.gdx.math.Rectangle object_rectangle;
-    float prevX; // last x pos
-    float prevY; // last y pos
+    float prevX = 0; // last x pos
+    float prevY = 0; // last y pos
 
     int SCENE_HEIGHT = 480;
     int SCENE_WIDTH = 800;
@@ -59,14 +59,11 @@ public class GameScreen implements Screen {
         objectImage = new Texture("assets/black_box.png");
 
         stage = new Stage();
-        // player_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), player.getWidth(), player.getHeight()); // math.round to use to convert float to int
+
         player_rectangle = new com.badlogic.gdx.math.Rectangle(playerX, playerY, player.getWidth(), player.getHeight());
-        object_rectangle = new com.badlogic.gdx.math.Rectangle(100, 100, objectImage.getWidth(), objectImage.getHeight());
-
-        //object_rectangle = new Rectangle(Math.round(playerX), Math.round(playerY), objectImage.getWidth(), objectImage.getHeight());
-
-        prevY = 0;
-        prevX = 0;
+        object_rectangle = new com.badlogic.gdx.math.Rectangle(playerX, playerY, objectImage.getWidth(), objectImage.getHeight());
+        System.out.println("width: " + objectImage.getWidth());
+        System.out.println("height: " + objectImage.getHeight());
 
         Gdx.input.setInputProcessor(stage);
         batch = new SpriteBatch();
