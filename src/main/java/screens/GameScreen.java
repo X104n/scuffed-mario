@@ -29,11 +29,6 @@ public class GameScreen implements Screen {
     float playerY = 0;
     float Speed = 300.0f;
 
-    com.badlogic.gdx.math.Rectangle player_rectangle; // creates a rectangle around the player
-    com.badlogic.gdx.math.Rectangle object_rectangle;
-    float prevX; // last x pos
-    float prevY; // last y pos
-
     int SCENE_HEIGHT = 480;
     int SCENE_WIDTH = 800;
 
@@ -60,11 +55,6 @@ public class GameScreen implements Screen {
 
         stage = new Stage();
 
-        prevX = 0;
-        prevY = 0;
-
-        player_rectangle = new com.badlogic.gdx.math.Rectangle(playerX, playerY, player.getWidth(), player.getHeight());
-        object_rectangle = new com.badlogic.gdx.math.Rectangle(playerX, playerY, objectImage.getWidth(), objectImage.getHeight());
         System.out.println("width: " + objectImage.getWidth());
         System.out.println("height: " + objectImage.getHeight());
 
@@ -77,41 +67,30 @@ public class GameScreen implements Screen {
         //screen part:
         ScreenUtils.clear(0, 0, 0, 1);
 
-        //Character part
+        //Character part:
         batch.begin();
         batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
-        batch.draw(objectImage, 0, 0);
+        batch.draw(objectImage, 300, 300);
+        //batch.draw(object_rectangle, 300, 300);
         batch.draw(player, playerX, playerY, 64, 64);
 
-        if (player_rectangle.overlaps(object_rectangle)) {
-            System.out.println("collided"); // just for debugging
-            //playerY = prevY; // can't move player if line 88-89 is running
-            //playerX = prevX;
-        }
 
         if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             System.out.println("w, was pressed"); // just for debugging
-            // prevY = playerY;
             playerY += Gdx.graphics.getDeltaTime() * Speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             System.out.println("s, was pressed");
-            // prevY = playerY;
             playerY -= Gdx.graphics.getDeltaTime() * Speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             System.out.println("a, was pressed");
-            // prevX = playerX;
             playerX -= Gdx.graphics.getDeltaTime() * Speed;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             System.out.println("d, was pressed");
-            // prevX = playerX;
             playerX += Gdx.graphics.getDeltaTime() * Speed;
         }
-
-        player_rectangle = new com.badlogic.gdx.math.Rectangle(playerX, playerY, player.getWidth(), player.getHeight()); // updates rectangle around the player
-        // object_rectangle = new com.badlogic.gdx.math.Rectangle(playerX, playerY, objectImage.getWidth(), objectImage.getHeight()); // we use this if the player is going to move an object
 
         camera.update();
 
