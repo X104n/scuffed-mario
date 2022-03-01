@@ -13,6 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import org.lwjgl.opengl.GL30;
+import com.badlogic.gdx.physics.box2d.World;
+import com.brentaureli.mariobros.Tools.B2WorldCreator;
+import com.brentaureli.mariobros.Tools.WorldContactListener;
 
 public class GameScreen implements Screen {
 
@@ -22,8 +25,6 @@ public class GameScreen implements Screen {
     Stage stage;
     SpriteBatch batch;
     Texture player;
-    Texture backGroundImage;
-    Texture objectImage;
 
     float playerX = 0; // where mario is placed on the board
     float playerY = 0;
@@ -37,6 +38,10 @@ public class GameScreen implements Screen {
     private TmxMapLoader mapLoader;
     private OrthogonalTiledMapRenderer renderer;
     private TiledMap map;
+
+    // box2d
+    private World world;
+    private Box2dDebugRenderer box2dDebugRenderer;
 
     public GameScreen(final ScuffedMario game) {
         this.game = game;
