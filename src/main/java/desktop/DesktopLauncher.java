@@ -10,6 +10,7 @@ public class DesktopLauncher {
         config.setForegroundFPS(60);
         config.setTitle("Scuffed mario");
         config.setWindowSizeLimits(800, 480, 9999, 9999);
+        config.setWindowIcon("assets/Glory.png");
         new Lwjgl3Application(new ScuffedMario(), config);
     }
 }
