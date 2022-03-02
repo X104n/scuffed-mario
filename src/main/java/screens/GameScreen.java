@@ -43,8 +43,8 @@ public class GameScreen implements Screen {
     private TiledMap map;
 
     // box2d
-    private World world;
-    private Box2DDebugRenderer box2DDebugRenderer;
+    private final World world;
+    private final Box2DDebugRenderer box2DDebugRenderer;
 
     public GameScreen(final ScuffedMario game) {
         this.game = game;
