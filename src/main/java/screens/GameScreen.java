@@ -13,9 +13,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import org.lwjgl.opengl.GL30;
-import com.badlogic.gdx.physics.box2d.World;
-import com.brentaureli.mariobros.Tools.B2WorldCreator;
-import com.brentaureli.mariobros.Tools.WorldContactListener;
 
 public class GameScreen implements Screen {
 
@@ -40,8 +37,8 @@ public class GameScreen implements Screen {
     private TiledMap map;
 
     // box2d
-    private World world;
-    private Box2dDebugRenderer box2dDebugRenderer;
+    // private World world;
+    // private Box2dDebugRenderer box2dDebugRenderer;
 
     public GameScreen(final ScuffedMario game) {
         this.game = game;
@@ -111,7 +108,7 @@ public class GameScreen implements Screen {
 
         //Character part:
         batch.begin();
-    //batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+        //batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
         //batch.draw(objectImage, 300, 300);
         //batch.draw(object_rectangle, 300, 300);
         batch.draw(player, playerX, playerY, 30, 30);
