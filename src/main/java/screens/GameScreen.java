@@ -74,7 +74,9 @@ public class GameScreen implements Screen {
         FixtureDef fixtureDef = new FixtureDef();
         Body body;
 
-        // still will ALL be moved into its own class later on!
+        // all this will ALL be moved into its own class later on!
+
+        // ground
         for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) { // collect the "objects" from the "tiled" software
             Rectangle rectangle = ((RectangleMapObject)object).getRectangle();
 
@@ -87,7 +89,7 @@ public class GameScreen implements Screen {
             fixtureDef.shape = shape;
             body.createFixture(fixtureDef);
         }
-        // pipes
+/*        // pipes
         for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) { // collect the "objects" from the "tiled" software
             Rectangle rectangle = ((RectangleMapObject)object).getRectangle();
 
@@ -112,7 +114,7 @@ public class GameScreen implements Screen {
             shape.setAsBox(rectangle.getWidth() / 2, rectangle.getHeight() / 2);
             fixtureDef.shape = shape;
             body.createFixture(fixtureDef);
-        }
+        }*/
 
     }
 
