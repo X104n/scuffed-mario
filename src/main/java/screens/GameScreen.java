@@ -49,11 +49,6 @@ public class GameScreen implements Screen {
     public GameScreen(final ScuffedMario game) {
         this.game = game;
 
-        // load the test image
-        //marioImage = new Texture(Gdx.files.internal("assets/notFinalScuffedMario.png"));
-        //backGroundImage = new Texture(Gdx.files.internal("assets/testBackground.png"));
-
-        // Creates a new camera for the game screen
         camera = new OrthographicCamera();
 
         // Note that we make the camera a fixed size here so if we want to show more at a time we need to upscale it here
