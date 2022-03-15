@@ -1,8 +1,10 @@
 package screens;
 
+import Sprite.Mario;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,7 +28,8 @@ public class GameScreen implements Screen {
     OrthographicCamera camera;
     Stage stage;
     SpriteBatch batch;
-    Texture player;
+    //Texture playerTexture;
+    Mario player;
 
     float playerX = 0; // where mario is placed on the board
     float playerY = 0;
@@ -65,7 +68,8 @@ public class GameScreen implements Screen {
         renderer = new OrthogonalTiledMapRenderer(map);
         //camera.position.set(gamePort.getScreenWidth() / 2, gamePort.getScreenHeight() / 2), 0;
 
-        world = new World(new Vector2(0,0), true);
+        world = new World(new Vector2(0, -10), true);
+        this.player = new Mario(world);
         box2DDebugRenderer = new Box2DDebugRenderer();
 
         BodyDef bdef = new BodyDef();
@@ -77,66 +81,64 @@ public class GameScreen implements Screen {
          * All of these for loops should not be in the constructor, this is just to test if the code works
          */
 
-        // Create brick objects
-        for(MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
+        for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
 
-            Rectangle rect = ((RectangleMapObject)object).getRectangle();
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(rect.getX() + rect.getWidth() / 2, rect.getY() + rect.getHeight() / 2);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / ScuffedMario.PPM, (rect.getY() + rect.getHeight() / 2) / ScuffedMario.PPM);
 
             body = world.createBody(bdef);
 
-            shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+            shape.setAsBox((rect.getWidth() / 2)/ScuffedMario.PPM, (rect.getHeight() / 2)/ScuffedMario.PPM);
             fdef.shape = shape;
             body.createFixture(fdef);
 
         }
 
         // Create ground objects
-        for(MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
+        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
 
-            Rectangle rect = ((RectangleMapObject)object).getRectangle();
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(rect.getX() + rect.getWidth() / 2, rect.getY() + rect.getHeight() / 2);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / ScuffedMario.PPM, (rect.getY() + rect.getHeight() / 2) / ScuffedMario.PPM);
 
             body = world.createBody(bdef);
 
-            shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+            shape.setAsBox((rect.getWidth() / 2)/ScuffedMario.PPM, (rect.getHeight() / 2)/ScuffedMario.PPM);
             fdef.shape = shape;
             body.createFixture(fdef);
 
         }
 
         // Create coin objects
-        for(MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)){
+        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
 
-            Rectangle rect = ((RectangleMapObject)object).getRectangle();
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(rect.getX() + rect.getWidth() / 2, rect.getY() + rect.getHeight() / 2);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / ScuffedMario.PPM, (rect.getY() + rect.getHeight() / 2) / ScuffedMario.PPM);
 
             body = world.createBody(bdef);
 
-            shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+            shape.setAsBox((rect.getWidth() / 2)/ScuffedMario.PPM, (rect.getHeight() / 2)/ScuffedMario.PPM);
             fdef.shape = shape;
             body.createFixture(fdef);
 
         }
 
         // Create brick objects
-        for(MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)){
+        for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
 
-            Rectangle rect = ((RectangleMapObject)object).getRectangle();
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(rect.getX() + rect.getWidth() / 2, rect.getY() + rect.getHeight() / 2);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / ScuffedMario.PPM, (rect.getY() + rect.getHeight() / 2) / ScuffedMario.PPM);
 
             body = world.createBody(bdef);
 
-            shape.setAsBox(rect.getWidth() / 2, rect.getHeight() / 2);
+            shape.setAsBox((rect.getWidth() / 2)/ScuffedMario.PPM, (rect.getHeight() / 2)/ScuffedMario.PPM);
             fdef.shape = shape;
             body.createFixture(fdef);
 
         }
-
     }
 
     public void mapRenderer() {
@@ -150,7 +152,7 @@ public class GameScreen implements Screen {
     @Override
     public void show() {
         mapRenderer();
-        player = new Texture("assets/notFinalScuffedMario.png");
+        //playerTexture = new Texture("assets/notFinalScuffedMario.png");
         // backGroundImage = new Texture("assets/testBackground.png");
         // objectImage = new Texture("assets/black_box.png");
 
@@ -165,13 +167,25 @@ public class GameScreen implements Screen {
 
     public void update(float dt) {
         handleinput(dt);
+
+        camera.position.x = player.b2body.getPosition().x;
+        world.step(1/60f, 6, 2);
         camera.update();
         renderer.setView(camera);
     }
 
     private void handleinput(float dt) {
-        if (Gdx.input.isTouched()) {
-            camera.position.x += 100 * dt;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+            System.out.println("pressed: W");
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.D) && player.b2body.getLinearVelocity().x <= 2) {
+            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+            System.out.println("pressed: D");
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -2) {
+            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+            System.out.println("pressed: A");
         }
     }
 
@@ -190,10 +204,10 @@ public class GameScreen implements Screen {
         //batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
         //batch.draw(objectImage, 300, 300);
         //batch.draw(object_rectangle, 300, 300);
-        batch.draw(player, playerX, playerY, 30, 30);
+        //batch.draw(playerTexture, playerX, playerY, 30, 30);
 
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+       /* if (Gdx.input.isKeyPressed(Input.Keys.W)) {
             System.out.println("w, was pressed"); // just for debugging
             playerY += Gdx.graphics.getDeltaTime() * Speed;
         }
@@ -208,7 +222,7 @@ public class GameScreen implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             System.out.println("d, was pressed");
             playerX += Gdx.graphics.getDeltaTime() * Speed;
-        }
+        }*/
 
         camera.update();
 
@@ -246,6 +260,6 @@ public class GameScreen implements Screen {
     public void dispose() {
         //backGroundImage.dispose();
         //objectImage.dispose();
-        player.dispose();
+        //playerTexture.dispose();
     }
 }
