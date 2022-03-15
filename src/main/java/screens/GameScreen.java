@@ -1,6 +1,7 @@
 package screens;
 
 import Sprite.Mario;
+import Tools.B2WorldCreator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -69,76 +70,11 @@ public class GameScreen implements Screen {
         //camera.position.set(gamePort.getScreenWidth() / 2, gamePort.getScreenHeight() / 2), 0;
 
         world = new World(new Vector2(0, -10), true);
-        this.player = new Mario(world);
         box2DDebugRenderer = new Box2DDebugRenderer();
 
-        BodyDef bdef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
-        FixtureDef fdef = new FixtureDef();
-        Body body;
+        new B2WorldCreator(world, map);
 
-        /**
-         * All of these for loops should not be in the constructor, this is just to test if the code works
-         */
-
-        for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
-
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / ScuffedMario.PPM, (rect.getY() + rect.getHeight() / 2) / ScuffedMario.PPM);
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2)/ScuffedMario.PPM, (rect.getHeight() / 2)/ScuffedMario.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-
-        }
-
-        // Create ground objects
-        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)) {
-
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / ScuffedMario.PPM, (rect.getY() + rect.getHeight() / 2) / ScuffedMario.PPM);
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2)/ScuffedMario.PPM, (rect.getHeight() / 2)/ScuffedMario.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-
-        }
-
-        // Create coin objects
-        for (MapObject object : map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
-
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / ScuffedMario.PPM, (rect.getY() + rect.getHeight() / 2) / ScuffedMario.PPM);
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2)/ScuffedMario.PPM, (rect.getHeight() / 2)/ScuffedMario.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-
-        }
-
-        // Create brick objects
-        for (MapObject object : map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
-
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / ScuffedMario.PPM, (rect.getY() + rect.getHeight() / 2) / ScuffedMario.PPM);
-
-            body = world.createBody(bdef);
-
-            shape.setAsBox((rect.getWidth() / 2)/ScuffedMario.PPM, (rect.getHeight() / 2)/ScuffedMario.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-
-        }
+        this.player = new Mario(world);
     }
 
     public void mapRenderer() {
@@ -258,8 +194,10 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        //backGroundImage.dispose();
-        //objectImage.dispose();
-        //playerTexture.dispose();
+       map.dispose();
+       renderer.dispose();
+       world.dispose();
+       box2DDebugRenderer.dispose();
+
     }
 }
