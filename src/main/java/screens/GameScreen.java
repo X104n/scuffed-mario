@@ -5,18 +5,15 @@ import Tools.B2WorldCreator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -31,6 +28,7 @@ public class GameScreen implements Screen {
     SpriteBatch batch;
     //Texture playerTexture;
     Mario player;
+    Music backgroundMusic;
 
     float playerX = 0; // where mario is placed on the board
     float playerY = 0;
@@ -51,6 +49,8 @@ public class GameScreen implements Screen {
 
     public GameScreen(final ScuffedMario game) {
         this.game = game;
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/widePutin.mp3"));
+        backgroundMusic.setLooping(true);
 
         // load the test image
         //marioImage = new Texture(Gdx.files.internal("assets/notFinalScuffedMario.png"));
@@ -78,7 +78,7 @@ public class GameScreen implements Screen {
     }
 
     public void mapRenderer() {
-        Gdx.gl.glClearColor(0,0,0,0);
+        Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glBlendFunc(GL30.GL_SRC0_ALPHA, GL30.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
@@ -87,6 +87,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
+        backgroundMusic.play();
         mapRenderer();
         //playerTexture = new Texture("assets/notFinalScuffedMario.png");
         // backGroundImage = new Texture("assets/testBackground.png");
@@ -105,7 +106,7 @@ public class GameScreen implements Screen {
         handleinput(dt);
 
         camera.position.x = player.b2body.getPosition().x;
-        world.step(1/60f, 6, 2);
+        world.step(1 / 60f, 6, 2);
         camera.update();
         renderer.setView(camera);
     }
@@ -115,11 +116,11 @@ public class GameScreen implements Screen {
             player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
             System.out.println("pressed: W");
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.D) && player.b2body.getLinearVelocity().x <= 2) {
+        if (Gdx.input.isKeyPressed(Input.Keys.D) && player.b2body.getLinearVelocity().x <= 2) {
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
             System.out.println("pressed: D");
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -2) {
+        if (Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -2) {
             player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
             System.out.println("pressed: A");
         }
@@ -194,10 +195,10 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-       map.dispose();
-       renderer.dispose();
-       world.dispose();
-       box2DDebugRenderer.dispose();
-
+        map.dispose();
+        renderer.dispose();
+        world.dispose();
+        box2DDebugRenderer.dispose();
+        backgroundMusic.dispose();
     }
 }
