@@ -6,7 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -28,8 +27,6 @@ public class GameScreen implements Screen {
     final ScuffedMario game;
 
     OrthographicCamera camera;
-
-    Music backgroundMusic;
     Stage stage;
     SpriteBatch batch;
     //Texture playerTexture;
@@ -58,10 +55,6 @@ public class GameScreen implements Screen {
         // load the test image
         //marioImage = new Texture(Gdx.files.internal("assets/notFinalScuffedMario.png"));
         //backGroundImage = new Texture(Gdx.files.internal("assets/testBackground.png"));
-
-        //Loading backgroundMusic
-        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/widePutin.mp3"));
-        backgroundMusic.setLooping(true);
 
         // Creates a new camera for the game screen
         camera = new OrthographicCamera();
@@ -98,10 +91,6 @@ public class GameScreen implements Screen {
         //playerTexture = new Texture("assets/notFinalScuffedMario.png");
         // backGroundImage = new Texture("assets/testBackground.png");
         // objectImage = new Texture("assets/black_box.png");
-
-        backgroundMusic.play();
-        player = new Texture("assets/marioV2.1.png");
-        backGroundImage = new Texture("assets/testBackground.png");
 
         stage = new Stage();
 
@@ -148,8 +137,10 @@ public class GameScreen implements Screen {
 
         //Character part:
         batch.begin();
-        batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
-        batch.draw(player, playerX, playerY, 900, 150);
+        //batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+        //batch.draw(objectImage, 300, 300);
+        //batch.draw(object_rectangle, 300, 300);
+        //batch.draw(playerTexture, playerX, playerY, 30, 30);
 
 
        /* if (Gdx.input.isKeyPressed(Input.Keys.W)) {
@@ -203,10 +194,10 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        map.dispose();
-        renderer.dispose();
-        world.dispose();
-        box2DDebugRenderer.dispose();
-        backgroundMusic.dispose();
+       map.dispose();
+       renderer.dispose();
+       world.dispose();
+       box2DDebugRenderer.dispose();
+
     }
 }
