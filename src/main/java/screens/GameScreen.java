@@ -121,7 +121,7 @@ public class GameScreen implements Screen {
             System.out.println("pressed: D");
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -2) {
-            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
             System.out.println("pressed: A");
         }
     }
