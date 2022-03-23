@@ -1,14 +1,12 @@
-package Sprite;
+package Objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
-import static screens.ScuffedMario.PPM;
+import static Tools.Constants.PPM;
 
 public class Player extends Entity {
 
