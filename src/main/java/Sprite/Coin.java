@@ -8,9 +8,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import screens.ScuffedMario;
 
-import java.awt.*;
-
-public class Coin extends InteractiveTileObject {
+public class Coin extends Entity {
     public Coin(World world, TiledMap map, Rectangle bounds) {
         super(world, map, bounds);
         BodyDef bdef = new BodyDef();

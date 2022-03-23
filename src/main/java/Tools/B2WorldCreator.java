@@ -2,7 +2,6 @@ package Tools;
 
 import Sprite.Brick;
 import Sprite.Coin;
-import Sprite.Pipes;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -21,6 +20,8 @@ public class B2WorldCreator {
          * All of these for loops should not be in the constructor, this is just to test if the code works
          */
 
+
+        // Create ground object
         for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)) {
 
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
