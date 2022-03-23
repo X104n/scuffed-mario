@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import screens.GameScreen;
 
 public class ScuffedMario extends Game {
+    public static final int PPM = 1;
 
     // We should only use one sprite batch, so we make this one public.
     public SpriteBatch batch;
