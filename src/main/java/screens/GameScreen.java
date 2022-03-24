@@ -51,7 +51,7 @@ public class GameScreen extends Game implements Screen {
         this.tiledMapHandler = new TiledMapHandler(this);
         this.renderer = tiledMapHandler.setupMap();
 
-        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/widePutin.mp3"));
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/widePutin.mp3"));
         backgroundMusic.setLooping(true);
     }
 
@@ -72,20 +72,16 @@ public class GameScreen extends Game implements Screen {
     public void update() {
         world.step(1 / 60f, 6, 2);
         cameraUpdate();
-
-
         renderer.setView(camera);
-
         player.update();
-
-        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             Gdx.app.exit();
-        }
-
     }
 
     private void cameraUpdate(){
         Vector3 position = camera.position;
+
+        // Multiplying and dividing by 10 to round off the number
         position.x = Math.round(player.getBody().getPosition().x * PPM * 10) / 10f;
         position.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
         camera.position.set(position);
@@ -95,13 +91,12 @@ public class GameScreen extends Game implements Screen {
     @Override
     public void render(float v) {
         this.update();
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0,0,0,0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         renderer.render();
 
         batch.begin();
-        // Render
+        // Render things here
 
         batch.end();
 
@@ -141,5 +136,6 @@ public class GameScreen extends Game implements Screen {
         world.dispose();
         box2DDebugRenderer.dispose();
         backgroundMusic.dispose();
+        batch.dispose();
     }
 }

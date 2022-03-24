@@ -28,7 +28,7 @@ public class TiledMapHandler {
     }
 
     public OrthoCachedTiledMapRenderer setupMap() {
-        tiledMap = new TmxMapLoader().load("assets/level0.tmx");
+        tiledMap = new TmxMapLoader().load("assets/Map/level0.tmx");
         parseMapObjects(tiledMap.getLayers().get("objects").getObjects());
         return new OrthoCachedTiledMapRenderer(tiledMap);
     }

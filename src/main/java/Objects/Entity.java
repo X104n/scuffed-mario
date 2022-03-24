@@ -26,15 +26,4 @@ public abstract class Entity {
     public Body getBody(){
         return body;
     }
-//    protected World world;
-//    protected TiledMap map;
-//    protected TiledMapTile tile;
-//    protected Rectangle bounds;
-//    protected Body body;
-//
-//    public Entity(World world, TiledMap map, Rectangle bounds){
-//        this.world = world;
-//        this.map = map;
-//        this.bounds = bounds;
-//    }
 }
