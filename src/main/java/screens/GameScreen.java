@@ -1,6 +1,7 @@
 package screens;
 
 import Sprite.Mario;
+import Sprite.Opponent;
 import Tools.B2WorldCreator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -28,6 +29,9 @@ public class GameScreen implements Screen {
     SpriteBatch batch;
     //Texture playerTexture;
     Mario player;
+    //Mario-player #2
+    Opponent enemy;
+
     Music backgroundMusic;
 
     float playerX = 0; // where mario is placed on the board
@@ -75,6 +79,7 @@ public class GameScreen implements Screen {
         new B2WorldCreator(world, map);
 
         this.player = new Mario(world);
+        this.enemy = new Opponent(world);
     }
 
     public void mapRenderer() {
@@ -103,7 +108,7 @@ public class GameScreen implements Screen {
     }
 
     public void update(float dt) {
-        handleinput(dt);
+        handleInput(dt);
 
         camera.position.x = player.b2body.getPosition().x;
         world.step(1 / 60f, 6, 2);
@@ -111,19 +116,45 @@ public class GameScreen implements Screen {
         renderer.setView(camera);
     }
 
-    private void handleinput(float dt) {
+    private void handleInput(float dt) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
-            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
+            player.b2body.applyLinearImpulse(new Vector2(0, 10f),
+                    player.b2body.getWorldCenter(), true);
+            //For testing if enemy can move with the same input as player.
+            //enemy.b2body.applyLinearImpulse(new Vector2(0, 10f), player.b2body.getWorldCenter(), true);
             System.out.println("pressed: W");
         }
         if (Gdx.input.isKeyPressed(Input.Keys.D) && player.b2body.getLinearVelocity().x <= 2) {
-            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+            player.b2body.applyLinearImpulse(new Vector2(2f, 0),
+                    player.b2body.getWorldCenter(), true);
+            //For testing if enemy can move with the same input as player.
+            //enemy.b2body.applyLinearImpulse(new Vector2(2f, 0), player.b2body.getWorldCenter(), true);
             System.out.println("pressed: D");
         }
         if (Gdx.input.isKeyPressed(Input.Keys.A) && player.b2body.getLinearVelocity().x >= -2) {
-            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
+            player.b2body.applyLinearImpulse(new Vector2(-2, 0),
+                    player.b2body.getWorldCenter(), true);
+            //For testing if enemy can move with the same input as player.
+            //enemy.b2body.applyLinearImpulse(new Vector2(-2f, 0), player.b2body.getWorldCenter(), true);
             System.out.println("pressed: A");
         }
+        //The "enemy's" input commands.
+        if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
+            enemy.b2body.applyLinearImpulse(new Vector2(0, 10f),
+                    enemy.b2body.getWorldCenter(), true);
+            System.out.println("pressed: I");
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.L) && player.b2body.getLinearVelocity().x <= 2) {
+            enemy.b2body.applyLinearImpulse(new Vector2(2f, 0),
+                    enemy.b2body.getWorldCenter(), true);
+            System.out.println("pressed: L");
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.J) && player.b2body.getLinearVelocity().x >= -2) {
+            enemy.b2body.applyLinearImpulse(new Vector2(-2, 0),
+                    enemy.b2body.getWorldCenter(), true);
+            System.out.println("pressed: J");
+        }
+
     }
 
     @Override
