@@ -2,6 +2,7 @@ package screens;
 
 import Objects.Player;
 import Tools.TiledMapHandler;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -23,23 +24,14 @@ import org.lwjgl.opengl.GL30;
 
 import static Tools.Constants.PPM;
 
-public class GameScreen implements Screen {
-
-    final ScuffedMario game;
+public class GameScreen extends Game implements Screen {
 
     OrthographicCamera camera;
     SpriteBatch batch;
-    Stage stage;
 
     Player player;
 
     Music backgroundMusic;
-
-
-    int SCENE_HEIGHT = Gdx.graphics.getHeight();
-    int SCENE_WIDTH = Gdx.graphics.getWidth();
-
-    FitViewport gamePort;
 
     private TiledMapHandler tiledMapHandler;
     private OrthoCachedTiledMapRenderer renderer;
@@ -49,20 +41,15 @@ public class GameScreen implements Screen {
     private Box2DDebugRenderer box2DDebugRenderer;
 
 
-    public GameScreen(final ScuffedMario game) {
-        this.game = game;
-        batch = new SpriteBatch();
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, SCENE_WIDTH, SCENE_HEIGHT);
+    public GameScreen(OrthographicCamera camera) {
+        this.batch = new SpriteBatch();
+        this.camera = camera;
 
-        world = new World(new Vector2(0, -25), false);
-        box2DDebugRenderer = new Box2DDebugRenderer();
+        this.world = new World(new Vector2(0, -25f), false);
+        this.box2DDebugRenderer = new Box2DDebugRenderer();
 
         this.tiledMapHandler = new TiledMapHandler(this);
         this.renderer = tiledMapHandler.setupMap();
-
-
-        //new B2WorldCreator(world, map);
 
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/widePutin.mp3"));
         backgroundMusic.setLooping(true);
@@ -118,9 +105,14 @@ public class GameScreen implements Screen {
 
         batch.end();
 
-        box2DDebugRenderer.render(world, camera.combined);
+        box2DDebugRenderer.render(world, camera.combined.scl(PPM));
     }
 
+
+    @Override
+    public void create() {
+
+    }
 
     @Override
     public void resize(int i, int i1) {

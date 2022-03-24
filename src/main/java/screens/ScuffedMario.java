@@ -1,23 +1,26 @@
 package screens;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class ScuffedMario extends Game {
 
+    public static ScuffedMario INSTANCE;
+    private int widthScreen, heightScreen;
+    private OrthographicCamera orthographicCamera;
 
-
-    // Can be used to create front in the future.
-    public BitmapFont font;
+    public ScuffedMario(){
+        INSTANCE = this;
+    }
 
     @Override
     public void create() {
-        this.setScreen(new GameScreen(this));
-    }
-
-    public void render(){super.render();}
-
-    public void dispose(){
+        this.widthScreen = Gdx.graphics.getWidth();
+        this.heightScreen = Gdx.graphics.getHeight();
+        this.orthographicCamera = new OrthographicCamera();
+        this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
+        setScreen(new GameScreen(orthographicCamera));
     }
 }
 
