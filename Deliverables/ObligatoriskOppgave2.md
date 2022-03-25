@@ -60,13 +60,13 @@ Vi legger alle møtene inn i wikien på git. Her er møtene vi har hatt etter ob
 **«Stretch goal»**
 
 **Bestem dere for én litt mer avansert ting som dere vil prøve å få til utover et vanlig single-player platform spill. Dette kan være f.eks.: multiplayer (på samme maskin eller over nett), å porte til en annen platform (Android eller Web, f.eks.), å bytte ut grafikk-frontenden, e.l.**
-For øyeblikket så skal spillet være et "single-player" spill. Dette kan selvsagt bli forandret i etterkant, men da vil det bli det bli oppdatert. 
+For øyeblikket er spillet et "single-player" spill, men vi har ambisjoner om å implementere mulighet for lokal multiplayer. Vi tenker å begynne på dette når all singelplayer-funksjonalitet fungerer.
 
 **Prioritér MVP og å få de enklere delene av spillet til å fungere – det er mye viktigere å ha et bra enspiller-spill for desktop med høy kodekvalitet, enn å ha noe som funker dårlig i med både én og flere spillere og på flere platformer.**
-Som nevnt ovenfor så fokuserer vi på få single-player til å fungere først. 
+Som nevnt ovenfor så fokuserer vi på få single-player til å fungere først, før vi begynner på støtte for multiplayer. 
 
 **Det er likevel et poeng i å tenke på dette tidlig i prosessen, så man ikke låser seg i dårlige løsninger. (Forøvrig, godt design, bra skille mellom model / view / controller, og klare abstraksjoner gjør det mye enklere å oppnå «stretch»-forslagene over.)**
-For øyeblikket så har vi ikke en "main character", ettersom vi ikke ble helt ferdig med design. Blir selvsagt fikset til neste gang. 
+For tida fokuserer vi på design, ryddig kode og kode med høy kvalitet, slik at vi senere kan utvikle ønsket stretch "mål" fra et solid grunnlag.
 
 
 **MVP og annet**
