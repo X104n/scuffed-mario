@@ -80,3 +80,5 @@ Vi beholder MVP kravene fra forrige gang, ettersom vi går for høyere kodekvali
 
 
 # **Deloppgave 3: Krav**
+
+![Class Diagram](klasseDiagarm.png?raw=true "Class Diagram")
