@@ -14,7 +14,6 @@ The game starts imminently when you start it in DesktopLauncher.java.
 You move left with "A", and right with "D", you jump with "space". 
 
 ## Known bugs:
-**Important!** We have audio in this game, however, it may be very loud, so be prepared for that.
-
 There's currently a scaling issue, and is being worked on, see issue [#30](https://git.app.uib.no/relish-earshot/scuffed-mario/-/issues/30).
 
+**Important!** We have audio in this game, however, it may be very loud, so be prepared for that.
