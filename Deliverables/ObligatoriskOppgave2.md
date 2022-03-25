@@ -1,5 +1,5 @@
 # Oblig 2 - *Scuffed Mario*
-* Team *relish-earshot-voice* (Gruppe 8: Belmin Husanovic, Stian Munkejord, Sander Kavli, Magne Stenseng) *
+**Team *relish-earshot-voice* (Gruppe 8: Belmin Husanovic, Stian Munkejord, Sander Kavli, Magne Stenseng)**
 
 # **Deloppgave 1: Team og prosjekt**
 
@@ -73,12 +73,11 @@ For øyeblikket så har vi ikke en "main character", ettersom vi ikke ble helt f
 For øyeblikket så prioriterer vi kjeren til spillet dvs. kollisjon, bevegelse, fiender osv. Siden sist gang så har vi byttet ut "placeholder"-bilder med mer permentant bilder. Vi har også begynt å bygge på vårt design. Vi går fremover ved å bygge på kjernen til spillet, ved å lage score, spiller må kunne dø, og selvsagt så må spiller kunne vinne. Det er vårt neste steg nå. 
 
 
-Vi hadde store problemer med back-end og dependencies, dette tok desverre mye lengre til enn forventet å fått ordnet dette. Vi ligger derfor litt bak på hvor vi hadde ønsket å ligget, men gruppen er motivert å ta dette igjen for neste oblig. Dette skal Belmin følge veldig godt med i tiden fremover nå. Problemet som startet dette var kollisjon. Back-end våres støttet rett og slett ikke hva vi prøvde å implementere, noe som gjorde at vi trengte en back-end oppgradering. Vi mener at dette kommer vi til å få mer utnytte fremover nå, ettersom vi nå setter fokus på å bli ferdig med MVP. 
+Vi hadde store problemer med back-end og dependencies, dette tok desverre mye lengre til enn forventet å fått ordnet dette. Vi ligger derfor litt bak på hvor vi hadde ønsket å ligget når det gjelder MVP kravene, men gruppen er motivert å ta dette igjen for neste oblig. Dette skal Belmin følge veldig godt med i tiden fremover nå. Problemet som startet dette var kollisjon. Back-end våres støttet rett og slett ikke hva vi prøvde å implementere, noe som gjorde at vi trengte en back-end oppgradering. Vi mener at dette kommer vi til å få mer utnytte fremover nå, ettersom vi nå setter fokus på å bli ferdig med MVP kravene. 
 Enemy blir jobbet på nå, men desverre ikke klar for denne obligen. 
 
 Vi beholder MVP kravene fra forrige gang, ettersom vi går for høyere kodekvalitet.
 
 
 # **Deloppgave 3: Krav**
-
 ![Class Diagram](klasseDiagarm.png?raw=true "Class Diagram")
