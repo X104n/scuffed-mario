@@ -73,7 +73,7 @@ For øyeblikket så har vi ikke en "main character", ettersom vi ikke ble helt f
 For øyeblikket så prioriterer vi kjeren til spillet dvs. kollisjon, bevegelse, fiender osv. Siden sist gang så har vi byttet ut "placeholder"-bilder med mer permentant bilder. Vi har også begynt å bygge på vårt design. Vi går fremover ved å bygge på kjernen til spillet, ved å lage score, spiller må kunne dø, og selvsagt så må spiller kunne vinne. Det er vårt neste steg nå. 
 
 
-Vi har jobbet mye med back-end som ligger nå i master-branch, dette tok lengre tid enn forventet ettersom vi mente det var bedre å ha en høy kodekvalitet på back-end, noe som gjør det lettere å bygge opp spillet på senere i utviklingen. 
+Vi hadde store problemer med back-end og dependencies, dette tok desverre mye lengre til enn forventet å fått ordnet dette. Vi ligger derfor litt bak på hvor vi hadde ønsket å ligget, men gruppen er motivert å ta dette igjen for neste oblig. Dette skal Belmin følge veldig godt med i tiden fremover nå. Problemet som startet dette var kollisjon. Back-end våres støttet rett og slett ikke hva vi prøvde å implementere, noe som gjorde at vi trengte en back-end oppgradering. Vi mener at dette kommer vi til å få mer utnytte fremover nå, ettersom vi nå setter fokus på å bli ferdig med MVP. 
 Enemy blir jobbet på nå, men desverre ikke klar for denne obligen. 
 
 Vi beholder MVP kravene fra forrige gang, ettersom vi går for høyere kodekvalitet.
