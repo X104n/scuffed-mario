@@ -80,4 +80,5 @@ Vi beholder MVP kravene fra forrige gang, ettersom vi går for høyere kodekvali
 
 
 # **Deloppgave 3: Krav**
+For øyeblikket så har vi ingen CI/CD eller statiske analyseverktøy, men skal bli sett på for neste gang. 
 ![Class Diagram](klasseDiagarm.png?raw=true "Class Diagram")
