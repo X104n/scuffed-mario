@@ -18,6 +18,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.release>17</maven.compiler.release>
 		<libgdx.version>1.10.0</libgdx.version>
+		<gdx.version>1.10.0</gdx.version>
 		<!-- FIXME - set to app's main class' -->
 		<main.class>desktop.DesktopLauncher</main.class>
 	</properties>
@@ -66,25 +67,44 @@
 
 
 	<dependencies>
-		<!--libGDX graphics library – https://libgdx.com/ -->
 		<dependency>
 			<groupId>com.badlogicgames.gdx</groupId>
-			<artifactId>gdx</artifactId>
-			<version>${libgdx.version}</version>
+			<artifactId>gdx-box2d-platform</artifactId>
+			<classifier>natives-desktop</classifier>
+			<version>${gdx.version}</version>
+			<scope>compile</scope>
 		</dependency>
-
-		<!-- Platform-specific libraries -->
 		<dependency>
 			<groupId>com.badlogicgames.gdx</groupId>
 			<artifactId>gdx-platform</artifactId>
-			<version>${libgdx.version}</version>
 			<classifier>natives-desktop</classifier>
+			<version>${gdx.version}</version>
+			<scope>compile</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx</artifactId>
+			<version>${gdx.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.badlogicgames.gdx</groupId>
 			<artifactId>gdx-backend-lwjgl3</artifactId>
-			<version>${libgdx.version}</version>
+			<version>${gdx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx-box2d-platform</artifactId>
+			<version>${gdx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.badlogicgames.box2dlights</groupId>
+			<artifactId>box2dlights</artifactId>
+			<version>1.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx-openal</artifactId>
+			<version>0.9.9</version>
 		</dependency>
 
 		<dependency>
@@ -93,6 +113,7 @@
 			<version>5.5.2</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>

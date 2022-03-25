@@ -1,95 +1,111 @@
 package screens;
 
+import Objects.Player;
+import Tools.TiledMapHandler;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import org.lwjgl.opengl.GL20;
+import org.lwjgl.opengl.GL30;
 
-public class GameScreen implements Screen {
+import static Tools.Constants.PPM;
 
-    final ScuffedMario game;
+public class GameScreen extends Game implements Screen {
 
     OrthographicCamera camera;
-
-    Stage stage;
     SpriteBatch batch;
 
-    Texture player;
-    Texture backGroundImage;
+    Player player;
 
-    float playerX = 0;
-    float playerY = 0;
-    float Speed = 50.0f;
+    Music backgroundMusic;
 
-    int SCENE_HEIGHT = 480;
-    int SCENE_WIDTH = 800;
+    private TiledMapHandler tiledMapHandler;
+    private OrthoCachedTiledMapRenderer renderer;
 
-    public GameScreen(final ScuffedMario game) {
-        this.game = game;
+    // box2d
+    private World world;
+    private Box2DDebugRenderer box2DDebugRenderer;
 
 
-        // load the test image
-        //marioImage = new Texture(Gdx.files.internal("assets/notFinalScuffedMario.png"));
-        //backGroundImage = new Texture(Gdx.files.internal("assets/testBackground.png"));
+    public GameScreen(OrthographicCamera camera) {
+        this.batch = new SpriteBatch();
+        this.camera = camera;
 
-        // Creates a new camera for the game screen
-        camera = new OrthographicCamera();
+        this.world = new World(new Vector2(0, -25f), false);
+        this.box2DDebugRenderer = new Box2DDebugRenderer();
 
-        // Note that we make the camera a fixed size here so if we want to show more at a time we need to upscale it here
-        camera.setToOrtho(false, SCENE_WIDTH, SCENE_HEIGHT);
+        this.tiledMapHandler = new TiledMapHandler(this);
+        this.renderer = tiledMapHandler.setupMap();
+
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/widePutin.mp3"));
+        backgroundMusic.setLooping(true);
+    }
+
+    public World getWorld(){
+        return this.world;
+    }
+
+    public void setPlayer(Player player){
+        this.player = player;
     }
 
     @Override
     public void show() {
-        player = new Texture("assets/notFinalScuffedMario.png");
-        backGroundImage = new Texture("assets/testBackground.png");
+        backgroundMusic.play();
+        backgroundMusic.setVolume(0.1f);
+    }
 
-        stage = new Stage();
-        Gdx.input.setInputProcessor(stage);
-        batch = new SpriteBatch();
+    public void update() {
+        world.step(1 / 60f, 6, 2);
+        cameraUpdate();
+        renderer.setView(camera);
+        player.update();
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+            Gdx.app.exit();
+    }
+
+    private void cameraUpdate(){
+        Vector3 position = camera.position;
+
+        // Multiplying and dividing by 10 to round off the number
+        position.x = Math.round(player.getBody().getPosition().x * PPM * 10) / 10f;
+        position.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
+        camera.position.set(position);
+        camera.update();
     }
 
     @Override
     public void render(float v) {
-        //screen part:
-        ScreenUtils.clear(0, 0, 0, 1);
+        this.update();
+        Gdx.gl.glClearColor(0,0,0,0);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        renderer.render();
 
-        //Character part
         batch.begin();
-        batch.draw(backGroundImage, 0, 0, SCENE_WIDTH, SCENE_HEIGHT);
-        batch.draw(player, playerX, playerY, 64, 64);
+        // Render things here
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            System.out.println("w, was pressed"); // just for debugging
-            playerY += Gdx.graphics.getDeltaTime() * Speed;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            System.out.println("s, was pressed");
-            playerY -= Gdx.graphics.getDeltaTime() * Speed;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-            System.out.println("a, was pressed");
-            playerX -= Gdx.graphics.getDeltaTime() * Speed;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            System.out.println("d, was pressed");
-            playerX += Gdx.graphics.getDeltaTime() * Speed;
-        }
-
-
-        camera.update();
-
-        // tell the SpriteBatch to render in the
-        // coordinate system specified by the camera.
-        batch.setProjectionMatrix(camera.combined);
-
-
-        batch.setProjectionMatrix(camera.combined);
         batch.end();
+
+        box2DDebugRenderer.render(world, camera.combined.scl(PPM));
+    }
+
+
+    @Override
+    public void create() {
 
     }
 
@@ -103,6 +119,7 @@ public class GameScreen implements Screen {
 
     }
 
+
     @Override
     public void resume() {
 
@@ -115,7 +132,10 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-        backGroundImage.dispose();
-        player.dispose();
+        renderer.dispose();
+        world.dispose();
+        box2DDebugRenderer.dispose();
+        backgroundMusic.dispose();
+        batch.dispose();
     }
 }
