@@ -40,8 +40,6 @@ public class GameScreen extends Game implements Screen {
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;
 
-    public boolean touched = false;
-
 
     public GameScreen(OrthographicCamera camera) {
         this.batch = new SpriteBatch();
@@ -100,10 +98,6 @@ public class GameScreen extends Game implements Screen {
         batch.begin();
         // Render things here
 
-        if(Gdx.input.isTouched()){
-            touched = true;
-        }
-
         batch.end();
 
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));
@@ -153,9 +147,5 @@ public class GameScreen extends Game implements Screen {
 
     public TiledMapHandler getTiledMapHandler(){
         return this.tiledMapHandler;
-    }
-
-    public boolean isTouched() {
-        return touched;
     }
 }
