@@ -1,7 +1,7 @@
 # Oblig 2 - *Scuffed Mario*
 * Team *relish-earshot-voice* (Gruppe 8: Belmin Husanovic, Stian Munkejord, Sander Kavli, Magne Stenseng*
 
-*Deloppgave 1: Team og prosjekt*
+# **Deloppgave 1: Team og prosjekt**
 
 **Hvordan fungerer rollene i teamet? Trenger dere å oppdatere hvem som er teamlead eller kundekontakt?**
 
@@ -55,7 +55,7 @@ Vi legger alle møtene inn i wikien på git. Her er møtene vi har hatt etter ob
 **Fordele commits** - Fordele commits, eller iallefall skriver i commit meldinger hvis vi parprogrammerer, slik at arbeidsfordelingen ser mer realistisk ut.
 
 
-*Deloppgave 2: Krav*
+# **Deloppgave 2: Krav**
 
 **«Stretch goal»**
 
@@ -79,4 +79,4 @@ Enemy blir jobbet på nå, men desverre ikke klar for denne obligen.
 Vi beholder MVP kravene fra forrige gang, ettersom vi går for høyere kodekvalitet.
 
 
-**Deloppgave 3: Produkt og kode**
+# **Deloppgave 3: Krav**
