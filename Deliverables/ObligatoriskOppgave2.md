@@ -1,7 +1,7 @@
 # Oblig 2 - *Scuffed Mario*
 * Team *relish-earshot-voice* (Gruppe 8: Belmin Husanovic, Stian Munkejord, Sander Kavli, Magne Stenseng*
 
-**Deloppg 1: Team og prosjekt**
+**Deloppgave 1: Team og prosjekt**
 
 **Hvordan fungerer rollene i teamet? Trenger dere å oppdatere hvem som er teamlead eller kundekontakt?**
 
@@ -10,12 +10,12 @@ Alle på gruppen er enig i rollefordelingen og er fornøyd med sine tildelte opp
 
 **Trenger dere andre roller? Skriv ned noen linjer om hva de ulike rollene faktisk innebærer for dere.**
 
-De originale rollene fungerer bra og vi føler ikke at vi trenger å bytte. Hovedsakelig så jobber alle nå i begynnelsen, men begynner nå gå mer og mer i sine tildelte roller. F.eks hvis det er en person som skal ha kontroll på libGDX, men så trenger faktisk flere personer på gruppen å jobbe med libGDX også, og det er derfor flere som jobber på det da. 
+De originale rollene fungerer bra og vi føler ikke at vi trenger å bytte. Hovedsakelig så jobber alle nå i begynnelsen, men begynner nå gå mer og mer i sine tildelte roller. F.eks. hvis det er en person som skal ha kontroll på libGDX, men så trenger faktisk flere personer på gruppen å jobbe med libGDX også, og det er derfor flere som jobber på det da. 
 
 
 **Er det noen erfaringer enten team-messig eller mtp prosjektmetodikk som er verdt å nevne? Synes teamet at de valgene dere har tatt er gode? Hvis ikke, hva kan dere gjøre annerledes for å forbedre måten teamet fungerer på?**
 
-Test-driven development (TTD) fungerer dårlig. Vi har ikke vært flinke på dette, ettersom vi har hatt interne problemer med koden (blir forklart senere). Vi mener at mye av koden ikke er særlig relatert til forretningslogikken, som gjør det å lage tester vanskelig. 
+Test-Driven Development (TTD) fungerer dårlig. Vi har ikke vært flinke på dette, ettersom vi har hatt interne problemer med koden (blir forklart senere). Vi mener at mye av koden ikke er særlig relatert til forretningslogikken, som gjør det å lage tester vanskelig. 
 
 Vi jobber med Git/GitLab, og mener branches fungerer veldig godt. Merker veldig godt at teamet har veldig lite tid, ettersom alle har "tunge" fag, og det fører til at vi ligger litt bak for denne innleveringen. 
 
@@ -27,7 +27,7 @@ Vi mener at gruppedynamikken er bra. Vi har aldri hatt noen konflikter eller uen
 
 **Hvordan fungerer kommunikasjonen for dere?**
 
-Vi har sånn omtrent 50/50 når det gjelder digital- og i person-infomrasjon. Alle er godt kjent med Discord, og vi prøver å møte i person for gruppetimene på tirsdagene. I chatten så er vi ganske "seriøse", blir bare sendt viktige meldinger.
+Vi har sånn omtrent 50/50 når det gjelder digital- og i person-informasjon. Alle er godt kjent med Discord, og vi prøver å møte i person for gruppetimene på tirsdagene. I chatten så er vi ganske "seriøse", blir bare sendt viktige meldinger.
 
 
 **Gjør et kort retrospektiv hvor dere vurderer hva dere har klart til nå, og hva som kan forbedres. Dette skal handle om prosjektstruktur, ikke kode. Dere kan selvsagt diskutere kode, men dette handler ikke om feilretting, men om hvordan man jobber og kommuniserer.**
@@ -41,8 +41,10 @@ Vi lager en branch, og deretter merger den branchen inn til development. Hvis ma
 
 **Referat fra møter siden forrige leveranse skal legges ved (mange av punktene over er typisk ting som havner i referat)..**
 
-Vi legger alle møtene inn i wikien på git. Den kan finnes her:
-[Møtereferat](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/home)
+Vi legger alle møtene inn i wikien på git. Her er møtene vi har hatt etter oblig 1:
+[Møtereferat 1](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/M%C3%B8tereferat-22.feb-2022)
+[Møtereferat 2](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/M%C3%B8tereferat-11.mars-2022)
+[Møtereferat 3](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/M%C3%B8tereferat-15.mars-2022)
 
 **Bli enige om maks tre forbedringspunkter fra retrospektivet, som skal følges opp under neste sprint.**
 
@@ -51,3 +53,30 @@ Vi legger alle møtene inn i wikien på git. Den kan finnes her:
 **Issue Board** - Bli bedre på å jobbe mer med issues. 
 
 **Fordele commits** - Fordele commits, eller iallefall skriver i commit meldinger hvis vi parprogrammerer, slik at arbeidsfordelingen ser mer realistisk ut.
+
+
+**Deloppgave 2: Krav**
+
+**«Stretch goal»**
+
+**Bestem dere for én litt mer avansert ting som dere vil prøve å få til utover et vanlig single-player platform spill. Dette kan være f.eks.: multiplayer (på samme maskin eller over nett), å porte til en annen platform (Android eller Web, f.eks.), å bytte ut grafikk-frontenden, e.l.**
+For øyeblikket så skal spillet være et "single-player" spill. Dette kan selvsagt bli forandret i etterkant, men da vil det bli det bli oppdatert. 
+
+**Prioritér MVP og å få de enklere delene av spillet til å fungere – det er mye viktigere å ha et bra enspiller-spill for desktop med høy kodekvalitet, enn å ha noe som funker dårlig i med både én og flere spillere og på flere platformer.**
+Som nevnt ovenfor så fokuserer vi på få single-player til å fungere først. 
+
+**Det er likevel et poeng i å tenke på dette tidlig i prosessen, så man ikke låser seg i dårlige løsninger. (Forøvrig, godt design, bra skille mellom model / view / controller, og klare abstraksjoner gjør det mye enklere å oppnå «stretch»-forslagene over.)**
+For øyeblikket så har vi ikke en "main character", ettersom vi ikke ble helt ferdig med design. Blir selvsagt fikset til neste gang. 
+
+
+**MVP og annet**
+For øyeblikket så prioriterer vi kjeren til spillet dvs. kollisjon, bevegelse, fiender osv. Siden sist gang så har vi byttet ut "placeholder"-bilder med mer permentant bilder. Vi har også begynt å bygge på vårt design. Vi går fremover ved å bygge på kjernen til spillet, ved å lage score, spiller må kunne dø, og selvsagt så må spiller kunne vinne. Det er vårt neste steg nå. 
+
+
+Vi har jobbet mye med back-end som ligger nå i master-branch, dette tok lengre tid enn forventet ettersom vi mente det var bedre å ha en høy kodekvalitet på back-end, noe som gjør det lettere å bygge opp spillet på senere i utviklingen. 
+Enemy blir jobbet på nå, men desverre ikke klar for denne obligen. 
+
+Vi beholder MVP kravene fra forrige gang, ettersom vi går for høyere kodekvalitet.
+
+
+**Deloppgave 3: Produkt og kode**
