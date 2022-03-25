@@ -3,6 +3,8 @@ This is a student project in the class INF112 where we are set to make a digital
 
 We're using libgdx and Tilded for this project.
 
+The game works on Windows 10 and 11 and MacOS. Linux is untested.  
+
 ## Build and run:
 1. Clone the repository: ```git@git.app.uib.no:relish-earshot/scuffed-mario.git```
 2. Open the project in IntelliJ or similar programs.
