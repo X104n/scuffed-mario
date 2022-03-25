@@ -2,16 +2,28 @@ package desktop;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import screens.ScuffedMario;
 
 public class AppTest {
+
+	static ScuffedMario mario;
 	/**
 	 * Static method run before everything else
 	 */
 	@BeforeAll
 	static void setUpBeforeAll() {
+		mario = new ScuffedMario();
+		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+		config.setForegroundFPS(60);
+		config.setTitle("Glory to Ukraine");
+		config.setWindowIcon("assets/Images/Icon.png");
+		config.setWindowSizeLimits(800, 480, 9999, 9999);
+		new Lwjgl3Application(mario, config);
 	}
 
 	/**
@@ -21,26 +33,63 @@ public class AppTest {
 	void setUpBeforeEach() {
 	}
 
-	/**
-	 * Simple test case
-	 */
 	@Test
-	void dummy1() {
-		// Expected result is the first argument, value to be tested is the second.
-		// The message is optional.
-		assertEquals("foo", "f".concat("oo"), "fooo?");
+	@DisplayName("Testing if the game board is properly shown.")
+	void testBoard() {
+		assertTrue(mario.getGame().getTiledMapHandler().isCreated());
 	}
 
-	/**
-	 * Simple test case
-	 */
 	@Test
-	void dummy2() {
-		// For floats and doubles it's best to use assertEquals with a delta, since
-		// floating-point numbers are imprecise
-		float a = 100000;
-		a = a + 0.1f;
-		assertEquals(100000.1, a, 0.01);
+	@DisplayName("Testing if the game board is properly shown.")
+	void testPlayer() {
+		assertTrue(mario.getGame().getTiledMapHandler().isCreatePlayer());
+	}
+
+	@Test
+	@DisplayName("Testing if the player can move. Has to make the player move around.")
+	void testMovePlayer() {
+		assertTrue(mario.getGame().getPlayer().isMoved());
+	}
+
+	@Test
+	@DisplayName("Testing if the player won't go through the blocks/terrain.")
+	void testInteractWithTerrain(){
+		assertTrue(mario.getGame().isTouched());
+	}
+
+	@Test
+	void testPoints(){
+
+	}
+
+	@Test
+	void testEnemies(){
+
+	}
+
+	@Test
+	void testDeath(){
+
+	}
+
+	@Test
+	void testGoal(){
+
+	}
+
+	@Test
+	void testNewBoard(){
+
+	}
+
+	@Test
+	void testStartScreen(){
+
+	}
+
+	@Test
+	void testMultiplePlayers(){
+
 	}
 
 	/**
@@ -55,4 +104,5 @@ public class AppTest {
 	void addTest(int a, int b, int c) {
 		assertEquals(c, a + b);
 	}
+
 }
