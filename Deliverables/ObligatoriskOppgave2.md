@@ -1,5 +1,5 @@
 # Oblig 2 - *Scuffed Mario*
-* Team *relish-earshot-voice* (Gruppe 8: Belmin Husanovic, Stian Munkejord, Sander Kavli, Magne Stenseng*
+* Team *relish-earshot-voice* (Gruppe 8: Belmin Husanovic, Stian Munkejord, Sander Kavli, Magne Stenseng) *
 
 # **Deloppgave 1: Team og prosjekt**
 
