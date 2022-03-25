@@ -5,12 +5,12 @@
 
 **Hvordan fungerer rollene i teamet? Trenger dere å oppdatere hvem som er teamlead eller kundekontakt?**
 
-Alle på gruppen er enig i rollefordelingen og er fornøyd med sine tildelte oppgaver. 
+Vi gjør noen små endringer til rollene, Stian går fra Test-leder til Design-leder, og Magne går fra design til Tester.  Alle på gruppen er enig i rollefordelingen og er fornøyd med sine tildelte oppgaver. 
 
 
 **Trenger dere andre roller? Skriv ned noen linjer om hva de ulike rollene faktisk innebærer for dere.**
 
-De originale rollene fungerer bra og vi føler ikke at vi trenger å bytte. Hovedsakelig så jobber alle nå i begynnelsen, men begynner nå gå mer og mer i sine tildelte roller. F.eks. hvis det er en person som skal ha kontroll på libGDX, men så trenger faktisk flere personer på gruppen å jobbe med libGDX også, og det er derfor flere som jobber på det da. 
+De nye rollene fungerer bra. Hovedsakelig så jobber alle nå i begynnelsen litt med alt, men begynner nå gå mer og mer i sine tildelte roller. F.eks. hvis det er en person som skal ha kontroll på libGDX, men så trenger faktisk flere personer på gruppen å jobbe med libGDX også, og det er derfor flere som jobber på det da. 
 
 
 **Er det noen erfaringer enten team-messig eller mtp prosjektmetodikk som er verdt å nevne? Synes teamet at de valgene dere har tatt er gode? Hvis ikke, hva kan dere gjøre annerledes for å forbedre måten teamet fungerer på?**
