@@ -11,13 +11,13 @@ import screens.ScuffedMario;
 
 public class AppTest {
 
-	static ScuffedMario mario;
+	static ScuffedMario mario = new ScuffedMario();
+
 	/**
 	 * Static method run before everything else
 	 */
 	@BeforeAll
 	static void setUpBeforeAll() {
-		mario = new ScuffedMario();
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("Glory to Ukraine");
