@@ -18,12 +18,7 @@ public class AppTest {
 	 */
 	@BeforeAll
 	static void setUpBeforeAll() {
-		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setForegroundFPS(60);
-		config.setTitle("Glory to Ukraine");
-		config.setWindowIcon("assets/Images/Icon.png");
-		config.setWindowSizeLimits(800, 480, 9999, 9999);
-		new Lwjgl3Application(mario, config);
+
 	}
 
 	/**
@@ -36,19 +31,19 @@ public class AppTest {
 	@Test
 	@DisplayName("Testing if the game board is properly shown.")
 	void testBoard() {
-		assertTrue(mario.getGame().getTiledMapHandler().isCreated());
+
 	}
 
 	@Test
 	@DisplayName("Testing if the game board is properly shown.")
 	void testPlayer() {
-		assertTrue(mario.getGame().getTiledMapHandler().isCreatePlayer());
+
 	}
 
 	@Test
 	@DisplayName("Testing if the player can move. Has to make the player move around.")
 	void testMovePlayer() {
-		assertTrue(mario.getGame().getPlayer().isMoved());
+
 	}
 
 	@Test
