@@ -9,18 +9,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
 
 import static Tools.Constants.PPM;
 
@@ -33,12 +27,11 @@ public class GameScreen extends Game implements Screen {
 
     Music backgroundMusic;
 
-    private TiledMapHandler tiledMapHandler;
-    private OrthoCachedTiledMapRenderer renderer;
+    private final OrthoCachedTiledMapRenderer renderer;
 
     // box2d
-    private World world;
-    private Box2DDebugRenderer box2DDebugRenderer;
+    private final World world;
+    private final Box2DDebugRenderer box2DDebugRenderer;
 
 
     public GameScreen(OrthographicCamera camera) {
@@ -48,7 +41,7 @@ public class GameScreen extends Game implements Screen {
         this.world = new World(new Vector2(0, -25f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
 
-        this.tiledMapHandler = new TiledMapHandler(this);
+        TiledMapHandler tiledMapHandler = new TiledMapHandler(this);
         this.renderer = tiledMapHandler.setupMap();
 
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/widePutin.mp3"));

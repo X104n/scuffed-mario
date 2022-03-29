@@ -20,9 +20,7 @@ import static Tools.Constants.PPM;
 
 public class TiledMapHandler {
     private TiledMap tiledMap;
-    private GameScreen gameScreen;
-    private boolean creation = false;
-    private boolean createPlayer = false;
+    private final GameScreen gameScreen;
 
     public TiledMapHandler(GameScreen gameScreen){
         this.gameScreen = gameScreen;
@@ -38,9 +36,6 @@ public class TiledMapHandler {
         for (MapObject mapObject : mapObjects) {
             if (mapObject instanceof PolygonMapObject) {
                 createStaticBody((PolygonMapObject) mapObject);
-                if(creation == false){
-                    creation = true;
-                }
             }
             if (mapObject instanceof RectangleMapObject){
                 Rectangle rectangle = ((RectangleMapObject) mapObject).getRectangle();
@@ -54,7 +49,6 @@ public class TiledMapHandler {
                             false,
                             gameScreen.getWorld()
                     );
-                    createPlayer = true;
                     System.out.println("123");
                     gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body));
                     System.out.println("123");
@@ -82,13 +76,5 @@ public class TiledMapHandler {
         PolygonShape shape = new PolygonShape();
         shape.set(worldVertices);
         return shape;
-    }
-
-    public boolean isCreated() {
-        return creation;
-    }
-
-    public boolean isCreatePlayer() {
-        return createPlayer;
     }
 }

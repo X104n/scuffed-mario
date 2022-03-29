@@ -29,7 +29,6 @@ public class AppTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-		mario.createTest();
 	}
 
 	@Test
