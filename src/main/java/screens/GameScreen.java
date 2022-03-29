@@ -140,12 +140,4 @@ public class GameScreen extends Game implements Screen {
         backgroundMusic.dispose();
         batch.dispose();
     }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public TiledMapHandler getTiledMapHandler(){
-        return this.tiledMapHandler;
-    }
 }

@@ -1,17 +1,20 @@
 package desktop;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import org.junit.jupiter.api.*;
+import com.badlogic.gdx.physics.box2d.World;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import screens.ScuffedMario;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class AppTest {
 
-	static ScuffedMario mario = new ScuffedMario();
+	private final ScuffedMario mario = new ScuffedMario();
 
 	/**
 	 * Static method run before everything else
@@ -26,12 +29,14 @@ public class AppTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
+		mario.createTest();
 	}
 
 	@Test
 	@DisplayName("Testing if the game board is properly shown.")
 	void testBoard() {
-
+		World copyWorld = this.mario.getGame().getWorld();
+		assertTrue(copyWorld.isLocked());
 	}
 
 	@Test

@@ -25,6 +25,15 @@ public class ScuffedMario extends Game {
         setScreen(game);
     }
 
+    public void createTest() {
+        this.widthScreen = Gdx.graphics.getWidth();
+        this.heightScreen = Gdx.graphics.getHeight();
+        this.orthographicCamera = new OrthographicCamera();
+        this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
+        game = new GameScreen(this.orthographicCamera);
+        setScreen(game);
+    }
+
     public GameScreen getGame() {
         return this.game;
     }
