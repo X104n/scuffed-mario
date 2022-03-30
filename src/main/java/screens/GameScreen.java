@@ -1,6 +1,8 @@
 package screens;
 
+import Objects.Entity;
 import Objects.Player;
+import Objects.Putin;
 import Tools.TiledMapHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -22,6 +24,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
+import java.awt.*;
+
 import static Tools.Constants.PPM;
 
 public class GameScreen extends Game implements Screen {
@@ -30,6 +34,8 @@ public class GameScreen extends Game implements Screen {
     SpriteBatch batch;
 
     Player player;
+
+    public Putin putin;
 
     Music backgroundMusic;
 
@@ -74,6 +80,13 @@ public class GameScreen extends Game implements Screen {
         cameraUpdate();
         renderer.setView(camera);
         player.update();
+        if(putin.alive) {
+            putin.update();
+            if (checkCollision(player, putin)) {
+                world.destroyBody(putin.getBody());
+                putin.alive = false;
+            }
+        }
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             Gdx.app.exit();
     }
@@ -137,5 +150,15 @@ public class GameScreen extends Game implements Screen {
         box2DDebugRenderer.dispose();
         backgroundMusic.dispose();
         batch.dispose();
+    }
+
+    public Putin getPutin(){
+        return this.putin;
+    }
+
+    private boolean checkCollision(Player player, Putin putin){
+        if(player.getBounds().intersects(putin.getBounds()))
+            return true;
+        return false;
     }
 }

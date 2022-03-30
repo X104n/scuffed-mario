@@ -21,6 +21,8 @@
 		<gdx.version>1.10.0</gdx.version>
 		<!-- FIXME - set to app's main class' -->
 		<main.class>desktop.DesktopLauncher</main.class>
+		<maven.compiler.source>18</maven.compiler.source>
+		<maven.compiler.target>18</maven.compiler.target>
 	</properties>
 
 	<repositories>
