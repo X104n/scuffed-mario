@@ -3,6 +3,8 @@ package Objects;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 
+import java.awt.*;
+
 public abstract class Entity {
     protected float x, y, velX, velY, speed;
     protected float width, height;
@@ -26,4 +28,6 @@ public abstract class Entity {
     public Body getBody(){
         return body;
     }
+
+    public abstract Rectangle getBounds();
 }

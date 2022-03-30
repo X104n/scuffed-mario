@@ -82,7 +82,7 @@ public class GameScreen extends Game implements Screen {
         player.update();
         if(putin.alive) {
             putin.update();
-            if (checkCollision(player, putin)) {
+            if (checkPlayerCollision(player, putin)) {
                 world.destroyBody(putin.getBody());
                 putin.alive = false;
             }
@@ -156,8 +156,8 @@ public class GameScreen extends Game implements Screen {
         return this.putin;
     }
 
-    private boolean checkCollision(Player player, Putin putin){
-        if(player.getBounds().intersects(putin.getBounds()))
+    private boolean checkPlayerCollision(Player player, Entity ent2){
+        if(player.getBounds().intersects(ent2.getBounds()))
             return true;
         return false;
     }
