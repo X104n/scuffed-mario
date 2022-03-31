@@ -8,7 +8,7 @@ import java.awt.*;
 import static Tools.Constants.PPM;
 
 public class Putin extends Entity{
-    public boolean alive = true;
+
     long lastTurn;
     int turnRight = 1;
 
@@ -18,6 +18,7 @@ public class Putin extends Entity{
         super(width, height, body);
         System.out.println(width);
         System.out.println(height);
+        super.isPutin = true;
 
         lastTurn = System.currentTimeMillis();
 
@@ -47,7 +48,14 @@ public class Putin extends Entity{
         return new Rectangle((int) this.x - (int) this.width / 2, (int) this.y - (int) this.height / 2, (int) this.width, (int) this.height);
     }
 
+
     public Putin getPutin(){
         return this;
+    }
+
+    public boolean deathCriterium(Entity player){
+        if((int) player.getBody().getPosition().y * PPM - (int) player.getHeight() + 1 > (int) this.getBody().getPosition().y * PPM)
+            return true;
+        return false;
     }
 }

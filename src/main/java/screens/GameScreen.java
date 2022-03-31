@@ -3,6 +3,8 @@ package screens;
 import Objects.Entity;
 import Objects.Player;
 import Objects.Putin;
+import Objects.SmallPutin;
+import Tools.EntetyBuilder;
 import Tools.TiledMapHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -11,12 +13,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -25,6 +30,7 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static Tools.Constants.PPM;
 
@@ -35,7 +41,7 @@ public class GameScreen extends Game implements Screen {
 
     Player player;
 
-    public Putin putin;
+    public ArrayList<Entity> enemies = new ArrayList<Entity>();
 
     Music backgroundMusic;
 
@@ -80,11 +86,19 @@ public class GameScreen extends Game implements Screen {
         cameraUpdate();
         renderer.setView(camera);
         player.update();
-        if(putin.alive) {
-            putin.update();
-            if (checkPlayerCollision(player, putin) && (int) player.getBody().getPosition().y * PPM - (int) player.getHeight() > (int) putin.getBody().getPosition().y * PPM) {
-                world.destroyBody(putin.getBody());
-                putin.alive = false;
+        for(int i = 0 ; i < enemies.size() ; i++) {
+            Entity enemy = enemies.get(i);
+            if (enemy.isAlive()) {
+                enemy.update();
+                System.out.println(String.format("Player %f , Putin %f",  player.getBody().getPosition().y * PPM - (int) player.getHeight(), enemy.getBody().getPosition().y * PPM));
+                if (checkPlayerCollision(player, enemy) && enemy.deathCriterium(player)) {
+                    if(enemy.isPutin)
+                        spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
+                    world.destroyBody(enemy.getBody());
+                    enemy.die();
+                    enemies.remove(enemy);
+                    i -= 1;
+                }
             }
         }
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
@@ -152,8 +166,18 @@ public class GameScreen extends Game implements Screen {
         batch.dispose();
     }
 
-    public Putin getPutin(){
-        return this.putin;
+    private void spawnSmallPutin(int x, int y, int w, int h){
+        Rectangle rectangle = new Rectangle(x,y,w,h/2);
+
+            Body body = EntetyBuilder.createBody(
+                    rectangle.getX() + rectangle.getWidth() / 2,
+                    rectangle.getY() - rectangle.getHeight() / 2,
+                    rectangle.getWidth(),
+                    rectangle.getHeight(),
+                    false,
+                    this.getWorld()
+            );
+            enemies.add(new SmallPutin(rectangle.getWidth(), rectangle.getHeight(), body));
     }
 
     private boolean checkPlayerCollision(Player player, Entity ent2){

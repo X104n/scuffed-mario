@@ -71,4 +71,9 @@ public class Player extends Entity {
         return new Rectangle((int) this.x - (int) this.width / 2 - 1, (int) this.y - (int) this.height / 2 - 1, (int) (this.width) + 2,(int) (this.height) + 2);
     }
 
+    public boolean deathCriterium(Entity player){
+        if(false)
+            return true;
+        return false;
+    }
 }
