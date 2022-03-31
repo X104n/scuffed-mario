@@ -1,5 +1,10 @@
 package desktop;
 
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import screens.GameScreen;
 import screens.ScuffedMario;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,14 +20,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AppTest {
 
-	private final ScuffedMario mario = new ScuffedMario();
+	public static ScuffedMario mario = new ScuffedMario();
 
 	/**
 	 * Static method run before everything else
 	 */
 	@BeforeAll
 	static void setUpBeforeAll() {
-
+		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+		config.setForegroundFPS(60);
+		config.setTitle("Glory to Ukraine");
+		config.setWindowIcon("assets/Images/Icon.png");
+		config.setWindowSizeLimits(800, 480, 9999, 9999);
+		new Lwjgl3Application(mario, config);
 	}
 
 	/**
@@ -29,13 +40,14 @@ public class AppTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
+		//In case a test requires booleans.
+		boolean confirm = false;
 	}
 
 	@Test
 	@DisplayName("Testing if the game board is properly shown.")
 	void testBoard() {
-		World copyWorld = this.mario.getGame().getWorld();
-		assertTrue(copyWorld.isLocked());
+
 	}
 
 	@Test
@@ -52,9 +64,8 @@ public class AppTest {
 
 	@Test
 	@DisplayName("Testing if the player won't go through the blocks/terrain.")
-	//This test may be impossible to find out as the classes used provide items that do not collide
-		// with each other,nor have their positions saved in any types of lists.
 	void testInteractWithTerrain(){
+
 	}
 
 	@Test

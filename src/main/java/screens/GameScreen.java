@@ -41,7 +41,7 @@ public class GameScreen extends Game implements Screen {
 
     Player player;
 
-    public ArrayList<Entity> enemies = new ArrayList<Entity>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
+    public ArrayList<Entity> enemies = new ArrayList<>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
 
     Music backgroundMusic;
 
@@ -164,7 +164,7 @@ public class GameScreen extends Game implements Screen {
         batch.dispose();
     }
 
-    private void spawnSmallPutin(int x, int y, int w, int h){
+    private void spawnSmallPutin(float x, float y, float w, float h){
         Rectangle rectangle = new Rectangle(x,y,w,h/2);
 
             Body body = EntetyBuilder.createBody(
@@ -179,8 +179,17 @@ public class GameScreen extends Game implements Screen {
     }
 
     private boolean checkPlayerCollision(Player player, Entity ent2){
-        if(player.getBounds().intersects(ent2.getBounds()))
-            return true;
+        return player.getBounds().intersects(ent2.getBounds());
+    }
+
+    //To be used to confirm if the player isn't going through anything
+    public boolean checkCollision(Player player, Entity ent2){
+
         return false;
     }
+
+    public TiledMapHandler getTiledMapHandler() {
+        return tiledMapHandler;
+    }
+
 }
