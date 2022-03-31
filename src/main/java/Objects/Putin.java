@@ -10,7 +10,7 @@ import static Tools.Constants.PPM;
 public class Putin extends Entity{
     public boolean alive = true;
     long lastTurn;
-    boolean turnRight = false;
+    int turnRight = 1;
 
     int timeBeforeTurn = 2000;
 
@@ -19,8 +19,9 @@ public class Putin extends Entity{
         System.out.println(width);
         System.out.println(height);
 
-        this.speed = 5f;
         lastTurn = System.currentTimeMillis();
+
+        velX = 1.5f;
     }
 
     @Override
@@ -29,16 +30,12 @@ public class Putin extends Entity{
         y = body.getPosition().y * PPM;
         long time = System.currentTimeMillis();
         if(time - lastTurn > timeBeforeTurn){
-            if(turnRight){
-                velX = (float) -0.3;
-                turnRight = false;
-            }else{
-                velX = (float) 0.3;
-                turnRight = true;
-            }
+            velX -= 2*velX;
+            System.out.println(velX);
+            turnRight -= turnRight;
             lastTurn = time;
-            body.setLinearVelocity(velX * speed, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
         }
+        body.setLinearVelocity(velX, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
     }
 
     @Override

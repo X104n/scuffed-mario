@@ -25,6 +25,10 @@ public abstract class Entity {
 
     public abstract void render(SpriteBatch batch);
 
+    public float getHeight(){ return this.height; }
+
+    public float getWidth(){ return this.width; }
+
     public Body getBody(){
         return body;
     }

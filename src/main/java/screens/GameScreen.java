@@ -82,7 +82,7 @@ public class GameScreen extends Game implements Screen {
         player.update();
         if(putin.alive) {
             putin.update();
-            if (checkPlayerCollision(player, putin)) {
+            if (checkPlayerCollision(player, putin) && (int) player.getBody().getPosition().y * PPM - (int) player.getHeight() > (int) putin.getBody().getPosition().y * PPM) {
                 world.destroyBody(putin.getBody());
                 putin.alive = false;
             }

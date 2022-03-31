@@ -45,7 +45,6 @@ public class TiledMapHandler {
                 String rectangleName = mapObject.getName();
 
                 if(rectangleName.equals("player")){
-                    System.out.println(String.format("X : %f X2 : %f", rectangle.getX(), rectangle.getX() + rectangle.getWidth() /2));
                     Body body = EntetyBuilder.createBody(
                             rectangle.getX() + rectangle.getWidth() /2,
                             rectangle.getY() + rectangle.getHeight() / 2,
