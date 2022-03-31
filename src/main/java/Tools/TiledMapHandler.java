@@ -1,6 +1,7 @@
 package Tools;
 
 import Objects.Player;
+import Objects.Putin;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
@@ -8,6 +9,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -20,7 +22,7 @@ import static Tools.Constants.PPM;
 
 public class TiledMapHandler {
     private TiledMap tiledMap;
-    private final GameScreen gameScreen;
+    private GameScreen gameScreen;
 
     public TiledMapHandler(GameScreen gameScreen){
         this.gameScreen = gameScreen;
@@ -37,11 +39,13 @@ public class TiledMapHandler {
             if (mapObject instanceof PolygonMapObject) {
                 createStaticBody((PolygonMapObject) mapObject);
             }
+
             if (mapObject instanceof RectangleMapObject){
                 Rectangle rectangle = ((RectangleMapObject) mapObject).getRectangle();
                 String rectangleName = mapObject.getName();
+
                 if(rectangleName.equals("player")){
-                    Body body = EntityBuilder.createBody(
+                    Body body = EntetyBuilder.createBody(
                             rectangle.getX() + rectangle.getWidth() /2,
                             rectangle.getY() + rectangle.getHeight() / 2,
                             rectangle.getWidth(),
@@ -50,8 +54,20 @@ public class TiledMapHandler {
                             gameScreen.getWorld()
                     );
                     System.out.println("123");
-                    gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body));
+                    gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                     System.out.println("123");
+                }
+                if(rectangleName.equals("Putin"))
+                {
+                    Body body = EntetyBuilder.createBody(
+                            rectangle.getX() + rectangle.getWidth() /2,
+                            rectangle.getY() + rectangle.getHeight() / 2,
+                            rectangle.getWidth(),
+                            rectangle.getHeight(),
+                            false,
+                            gameScreen.getWorld()
+                    );
+                    gameScreen.enemies.add(new Putin(rectangle.getWidth(), rectangle.getHeight(), body));
                 }
             }
         }
@@ -69,12 +85,15 @@ public class TiledMapHandler {
     private Shape createPolygonShape(PolygonMapObject polygonMapObject) {
         float[] vertices = polygonMapObject.getPolygon().getTransformedVertices();
         Vector2[] worldVertices = new Vector2[vertices.length / 2];
+
         for (int i = 0; i < vertices.length / 2; i++) {
             Vector2 current = new Vector2(vertices[i * 2] / PPM, vertices[i * 2 + 1] / PPM);
             worldVertices[i] = current;
         }
+
         PolygonShape shape = new PolygonShape();
         shape.set(worldVertices);
         return shape;
     }
+
 }

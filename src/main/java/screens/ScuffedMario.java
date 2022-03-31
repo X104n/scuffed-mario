@@ -9,7 +9,6 @@ public class ScuffedMario extends Game {
     public static ScuffedMario INSTANCE;
     private int widthScreen, heightScreen;
     private OrthographicCamera orthographicCamera;
-    private GameScreen game;
 
     public ScuffedMario(){
         INSTANCE = this;
@@ -21,21 +20,7 @@ public class ScuffedMario extends Game {
         this.heightScreen = Gdx.graphics.getHeight();
         this.orthographicCamera = new OrthographicCamera();
         this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
-        game = new GameScreen(this.orthographicCamera);
-        setScreen(game);
-    }
-
-    public void createTest() {
-        this.widthScreen = Gdx.graphics.getWidth();
-        this.heightScreen = Gdx.graphics.getHeight();
-        this.orthographicCamera = new OrthographicCamera();
-        this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
-        game = new GameScreen(this.orthographicCamera);
-        setScreen(game);
-    }
-
-    public GameScreen getGame() {
-        return this.game;
+        setScreen(new GameScreen(orthographicCamera));
     }
 }
 
