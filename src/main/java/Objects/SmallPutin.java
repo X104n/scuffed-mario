@@ -52,7 +52,7 @@ public class SmallPutin extends Entity{
     }
 
     public boolean deathCriterium(Entity player){
-        if((int) player.getBody().getPosition().y * PPM - (int) player.getHeight() +2 < (int) this.getBody().getPosition().y * PPM)
+        if((int) (player.getBody().getPosition().y + 1) * PPM - (int) player.getHeight() < (int) this.getBody().getPosition().y * PPM)
             return true;
         return false;
     }

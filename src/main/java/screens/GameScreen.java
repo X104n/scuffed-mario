@@ -41,7 +41,7 @@ public class GameScreen extends Game implements Screen {
 
     Player player;
 
-    public ArrayList<Entity> enemies = new ArrayList<Entity>();
+    public ArrayList<Entity> enemies = new ArrayList<Entity>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
 
     Music backgroundMusic;
 
@@ -86,21 +86,19 @@ public class GameScreen extends Game implements Screen {
         cameraUpdate();
         renderer.setView(camera);
         player.update();
-        for(int i = 0 ; i < enemies.size() ; i++) {
+        for(int i = 0 ; i < enemies.size() ; i++) { // Loop through all living enemies
             Entity enemy = enemies.get(i);
-            if (enemy.isAlive()) {
-                enemy.update();
-                System.out.println(String.format("Player %f , Putin %f",  player.getBody().getPosition().y * PPM - (int) player.getHeight(), enemy.getBody().getPosition().y * PPM));
-                if (checkPlayerCollision(player, enemy) && enemy.deathCriterium(player)) {
-                    if(enemy.isPutin)
-                        spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
-                    world.destroyBody(enemy.getBody());
-                    enemy.die();
-                    enemies.remove(enemy);
-                    i -= 1;
-                }
+            enemy.update();
+            if (checkPlayerCollision(player, enemy) && enemy.deathCriterium(player)) {
+                if(enemy.isPutin)
+                    spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
+                world.destroyBody(enemy.getBody());
+                enemy.die();
+                enemies.remove(enemy);
+                i -= 1;
             }
         }
+
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             Gdx.app.exit();
     }
