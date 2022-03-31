@@ -8,8 +8,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import org.lwjgl.opengl.GL20;
 
 public class MainMenu implements Screen {
+    private static final int EXIT_BUTTON_WIDTH = 300;
+    private static final int EXIT_BUTTON_HEIGHT = 150;
+
+    private static final int PLAY_BUTTON_WIDTH = 330;
+    private static final int PLAY_BUTTON_HEIGHT = 150;
+
+    private static final int SETTINGS_BUTTON_WIDTH = 300;
+    private static final int SETTINGS_BUTTON_HEIGHT = 300;
+
     SpriteBatch batch;
-    OrthographicCamera camera;
     ScuffedMario mario;
 
     Texture exitButton;
@@ -33,7 +41,9 @@ public class MainMenu implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        batch.draw(playButton, 100, 100);
+        // 800, and 480 is form width and height on game window
+        // to center the button
+        batch.draw(playButton, 800/2 - 480/2, 100, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
         batch.end();
     }
 
