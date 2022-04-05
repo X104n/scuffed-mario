@@ -15,6 +15,8 @@ The game starts imminently when you start it in DesktopLauncher.java.
 
 You move left with "A", and right with "D", you jump with "space". 
 
+"esc" to stop the game. 
+
 ## Known bugs:
 There's currently a scaling issue, and is being worked on, see issue [#30](https://git.app.uib.no/relish-earshot/scuffed-mario/-/issues/30).
 
