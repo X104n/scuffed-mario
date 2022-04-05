@@ -2,12 +2,14 @@ package screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import desktop.DesktopLauncher;
 import org.lwjgl.opengl.GL20;
 
 public class MainMenu implements Screen {
+    Music backgroundMusic;
     private static final int EXIT_BUTTON_WIDTH = 300;
     private static final int EXIT_BUTTON_HEIGHT = 150;
 
@@ -25,6 +27,9 @@ public class MainMenu implements Screen {
     Texture settingsButton;
 
     public MainMenu(ScuffedMario mario) {
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/thomas.mp3"));
+        backgroundMusic.setLooping(true);
+
         this.batch = new SpriteBatch();
         this.mario = mario;
         playButton = new Texture("assets/Buttons/play.png");
@@ -33,6 +38,7 @@ public class MainMenu implements Screen {
     }
     @Override
     public void show() {
+        backgroundMusic.play();
     }
 
     @Override
@@ -70,5 +76,6 @@ public class MainMenu implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+        backgroundMusic.dispose();
     }
 }
