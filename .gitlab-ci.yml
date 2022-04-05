@@ -2,7 +2,7 @@ stages:
   - build     # compile everything
   - test      # run tests
   - package   # build jars
-  #- deploy    # (unused) deploy jars
+  - deploy    # (unused) deploy jars
 
 
 variables:
