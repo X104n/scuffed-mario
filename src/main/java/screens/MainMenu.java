@@ -16,7 +16,7 @@ public class MainMenu implements Screen {
 
     private static final int PLAY_BUTTON_WIDTH = 330;
     private static final int PLAY_BUTTON_HEIGHT = 150;
-    private static final int PLAY_BUTTON_Y = 150;
+    private static final int PLAY_BUTTON_Y = 250;
 
     private static final int SETTINGS_BUTTON_WIDTH = 300;
     private static final int SETTINGS_BUTTON_HEIGHT = 150;
@@ -64,6 +64,13 @@ public class MainMenu implements Screen {
             batch.draw(activeExitButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
         } else {
             batch.draw(exitButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
+        }
+
+        int xx = DesktopLauncher.width / 2 - PLAY_BUTTON_WIDTH / 2;
+        if (checkMouseHover(x, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT, PLAY_BUTTON_Y)) {
+            batch.draw(activePlayButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
+        } else {
+            batch.draw(playButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
         }
 
         batch.end();
