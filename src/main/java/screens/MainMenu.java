@@ -60,33 +60,14 @@ public class MainMenu implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-
-        int x = DesktopLauncher.width / 2 - DesktopLauncher.height / 2; // center of the screen, used to center the buttons
-        if (checkMouseHover(x)) {
-            batch.draw(activePlayButton, x, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
+        if (Gdx.input.getX() > DesktopLauncher.width / 2 - EXIT_BUTTON_WIDTH / 2 && Gdx.input.getX() < DesktopLauncher.width / 2 + EXIT_BUTTON_WIDTH / 2 && DesktopLauncher.height - Gdx.input.getY() > EXIT_BUTTON_Y && DesktopLauncher.height - Gdx.input.getY() < EXIT_BUTTON_Y + EXIT_BUTTON_HEIGHT) {
+            batch.draw(activeExitButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
         } else {
-            batch.draw(playButton, x, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
+            batch.draw(exitButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
         }
+
         batch.end();
     }
-
-    /**
-     * Checks if the mouse is hovering over the button
-     * @param x the x coordinate of the button
-     *          (the center of the button)
-     * @return true if the mouse is hovering over the button
-     */
-    private boolean checkMouseHover(int x) {
-        if (Gdx.input.getX() < x + PLAY_BUTTON_WIDTH){
-            if (Gdx.input.getX() > x){
-                if (Gdx.input.getY() < PLAY_BUTTON_Y + PLAY_BUTTON_HEIGHT){
-                    return Gdx.input.getY() > PLAY_BUTTON_Y;
-                }
-            }
-        }
-        return false;
-    }
-
 
     @Override
     public void resize(int i, int i1) {
