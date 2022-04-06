@@ -5,19 +5,22 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import screens.GameScreen;
+
+import java.awt.*;
 
 import static Tools.Constants.PPM;
 
 public class Player extends Entity {
 
     private int jumpCounter;
-    Vector2 spawn;
+    GameScreen gameScreen;
 
-    public Player(float width, float height, Body body) {
+    public Player(float width, float height, Body body, GameScreen gameScreen) {
         super(width, height, body);
         this.speed = 10f;
         this.jumpCounter = 0;
-        this.spawn = body.getPosition();
+        this.gameScreen = gameScreen;
     }
 
     @Override
@@ -61,4 +64,15 @@ public class Player extends Entity {
 
     }
 
+
+    // Method returns a rectangle covering the players hitbox, but with +1 in every direction, such that the rectangle overlaps other rectangles within distance 1
+    public Rectangle getBounds(){
+        return new Rectangle((int) this.x - (int) this.width / 2 - 1, (int) this.y - (int) this.height / 2 - 1, (int) (this.width) + 2,(int) (this.height) + 2);
+    }
+
+    public boolean deathCriterium(Entity player){
+        if(false)
+            return true;
+        return false;
+    }
 }

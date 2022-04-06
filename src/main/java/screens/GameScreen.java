@@ -1,6 +1,10 @@
 package screens;
 
+import Objects.Entity;
 import Objects.Player;
+import Objects.Putin;
+import Objects.SmallPutin;
+import Tools.EntetyBuilder;
 import Tools.TiledMapHandler;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -9,18 +13,24 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 import static Tools.Constants.PPM;
 
@@ -30,6 +40,8 @@ public class GameScreen extends Game implements Screen {
     SpriteBatch batch;
 
     Player player;
+
+    public ArrayList<Entity> enemies = new ArrayList<Entity>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
 
     Music backgroundMusic;
 
@@ -79,9 +91,24 @@ public class GameScreen extends Game implements Screen {
         cameraUpdate();
         renderer.setView(camera);
         player.update();
-        if (player.playerDead()){
-            resetPlayer();
+
+        // Make a method for this mess :))
+        for(int i = 0 ; i < enemies.size() ; i++) { // Loop through all living enemies
+            Entity enemy = enemies.get(i);
+            enemy.update();
+            if (checkPlayerCollision(player, enemy) && enemy.deathCriterium(player)) {
+                if(enemy.isPutin)
+                    spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
+                world.destroyBody(enemy.getBody());
+                enemy.die();
+                enemies.remove(enemy);
+                i -= 1;
+            }
         }
+
+        // Conditions
+        if (player.playerDead())
+            resetPlayer();
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             Gdx.app.exit();
     }
@@ -145,5 +172,23 @@ public class GameScreen extends Game implements Screen {
         box2DDebugRenderer.dispose();
         backgroundMusic.dispose();
         batch.dispose();
+    }
+
+    private void spawnSmallPutin(int x, int y, int w, int h){
+        Rectangle rectangle = new Rectangle(x,y,w,h/2);
+
+            Body body = EntetyBuilder.createBody(
+                    rectangle.getX() + rectangle.getWidth() / 2,
+                    rectangle.getY() - rectangle.getHeight() / 2,
+                    rectangle.getWidth(),
+                    rectangle.getHeight(),
+                    false,
+                    this.getWorld()
+            );
+            enemies.add(new SmallPutin(rectangle.getWidth(), rectangle.getHeight(), body));
+    }
+
+    private boolean checkPlayerCollision(Player player, Entity ent2){
+        return player.getBounds().intersects(ent2.getBounds());
     }
 }

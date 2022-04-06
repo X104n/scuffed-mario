@@ -1,6 +1,7 @@
 package Tools;
 
 import Objects.Player;
+import Objects.Putin;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
@@ -44,7 +45,6 @@ public class TiledMapHandler {
                 String rectangleName = mapObject.getName();
 
                 if(rectangleName.equals("player")){
-
                     Body body = EntetyBuilder.createBody(
                             rectangle.getX() + rectangle.getWidth() /2,
                             rectangle.getY() + rectangle.getHeight() / 2,
@@ -54,8 +54,20 @@ public class TiledMapHandler {
                             gameScreen.getWorld()
                     );
                     System.out.println("123");
-                    gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body));
+                    gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                     System.out.println("123");
+                }
+                if(rectangleName.equals("Putin"))
+                {
+                    Body body = EntetyBuilder.createBody(
+                            rectangle.getX() + rectangle.getWidth() /2,
+                            rectangle.getY() + rectangle.getHeight() / 2,
+                            rectangle.getWidth(),
+                            rectangle.getHeight(),
+                            false,
+                            gameScreen.getWorld()
+                    );
+                    gameScreen.enemies.add(new Putin(rectangle.getWidth(), rectangle.getHeight(), body));
                 }
             }
         }
