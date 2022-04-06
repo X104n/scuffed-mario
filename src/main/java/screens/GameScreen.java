@@ -63,6 +63,11 @@ public class GameScreen extends Game implements Screen {
         this.player = player;
     }
 
+    public void resetPlayer(){
+        world.destroyBody(player.getBody());
+        this.renderer = tiledMapHandler.setupMap();
+    }
+
     @Override
     public void show() {
         backgroundMusic.play();
@@ -74,6 +79,9 @@ public class GameScreen extends Game implements Screen {
         cameraUpdate();
         renderer.setView(camera);
         player.update();
+        if (player.playerDead()){
+            resetPlayer();
+        }
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             Gdx.app.exit();
     }

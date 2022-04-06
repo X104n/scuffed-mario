@@ -11,19 +11,24 @@ import static Tools.Constants.PPM;
 public class Player extends Entity {
 
     private int jumpCounter;
+    Vector2 spawn;
 
     public Player(float width, float height, Body body) {
         super(width, height, body);
         this.speed = 10f;
         this.jumpCounter = 0;
+        this.spawn = body.getPosition();
     }
 
     @Override
     public void update() {
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
-
         checkUserInput();
+    }
+
+    public boolean playerDead(){
+        return y <= 0f;
     }
 
     @Override
