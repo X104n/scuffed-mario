@@ -26,8 +26,11 @@ public class MainMenu implements Screen {
     ScuffedMario mario;
 
     Texture exitButton;
+    Texture activeExitButton;
     Texture playButton;
+    Texture activePlayButton;
     Texture settingsButton;
+    Texture activeSettingsButton;
 
     public MainMenu(ScuffedMario mario) {
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/thomas.mp3"));
@@ -35,13 +38,19 @@ public class MainMenu implements Screen {
 
         this.batch = new SpriteBatch();
         this.mario = mario;
+
         playButton = new Texture("assets/Buttons/play.png");
-        exitButton = new Texture("assets/Images/black_box1.png");
-        settingsButton = new Texture("assets/Images/black_box2.png");
+        activePlayButton = new Texture("assets/Buttons/active_play.png");
+
+        exitButton = new Texture("assets/Buttons/exit.png");
+        activeExitButton = new Texture("assets/Buttons/active_exit.png");
+
+        settingsButton = new Texture("assets/Buttons/settings.png");
+        activeSettingsButton = new Texture("assets/Buttons/active_settings.png");
     }
     @Override
     public void show() {
-        backgroundMusic.play();
+        //backgroundMusic.play();
         backgroundMusic.setVolume(0.1f); // sets volume to 10%
     }
 
@@ -52,14 +61,32 @@ public class MainMenu implements Screen {
 
         batch.begin();
 
-        if (Gdx.input.getX() < 100){
-            batch.draw(exitButton, 0, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
+        int x = DesktopLauncher.width / 2 - DesktopLauncher.height / 2; // center of the screen, used to center the buttons
+        if (checkMouseHover(x)) {
+            batch.draw(activePlayButton, x, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
+        } else {
+            batch.draw(playButton, x, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
         }
-        // 800, and 480 is form width and height on game window
-        // to center the button
-        batch.draw(playButton, DesktopLauncher.width /2 - DesktopLauncher.height/2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
         batch.end();
     }
+
+    /**
+     * Checks if the mouse is hovering over the button
+     * @param x the x coordinate of the button
+     *          (the center of the button)
+     * @return true if the mouse is hovering over the button
+     */
+    private boolean checkMouseHover(int x) {
+        if (Gdx.input.getX() < x + PLAY_BUTTON_WIDTH){
+            if (Gdx.input.getX() > x){
+                if (Gdx.input.getY() < PLAY_BUTTON_Y + PLAY_BUTTON_HEIGHT){
+                    return Gdx.input.getY() > PLAY_BUTTON_Y;
+                }
+            }
+        }
+        return false;
+    }
+
 
     @Override
     public void resize(int i, int i1) {
