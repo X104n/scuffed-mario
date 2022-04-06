@@ -3,13 +3,13 @@ package screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import desktop.DesktopLauncher;
 import org.lwjgl.opengl.GL20;
 
 public class MainMenu implements Screen {
-    Music backgroundMusic;
     private static final int EXIT_BUTTON_WIDTH = 300;
     private static final int EXIT_BUTTON_HEIGHT = 150;
     private static final int EXIT_BUTTON_Y = 50;
@@ -23,6 +23,9 @@ public class MainMenu implements Screen {
 
     SpriteBatch batch;
     ScuffedMario mario;
+    OrthographicCamera camera;
+
+    Music backgroundMusic;
 
     Texture exitButton;
     Texture activeExitButton;
@@ -37,6 +40,7 @@ public class MainMenu implements Screen {
 
         this.batch = new SpriteBatch();
         this.mario = mario;
+        this.camera = new OrthographicCamera();
 
         playButton = new Texture("assets/Buttons/play.png");
         activePlayButton = new Texture("assets/Buttons/active_play.png");
@@ -62,13 +66,20 @@ public class MainMenu implements Screen {
         int x = DesktopLauncher.width / 2 - EXIT_BUTTON_WIDTH / 2;
         if (checkMouseHover(x, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT, EXIT_BUTTON_Y)) {
             batch.draw(activeExitButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
+            if (Gdx.input.isButtonPressed(0)) {
+                Gdx.app.exit();
+            }
         } else {
             batch.draw(exitButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
         }
 
-        int xx = DesktopLauncher.width / 2 - PLAY_BUTTON_WIDTH / 2;
-        if (checkMouseHover(x, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT, PLAY_BUTTON_Y)) {
+        int i = DesktopLauncher.width / 2 - PLAY_BUTTON_WIDTH / 2;
+        if (checkMouseHover(i, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT, PLAY_BUTTON_Y)) {
             batch.draw(activePlayButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
+            if (Gdx.input.isButtonPressed(0)) {
+                this.dispose();
+                mario.setScreen(new GameScreen(mario)); // problem here
+            }
         } else {
             batch.draw(playButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
         }
