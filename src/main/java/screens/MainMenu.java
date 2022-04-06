@@ -78,7 +78,7 @@ public class MainMenu implements Screen {
             batch.draw(activePlayButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
             if (Gdx.input.isButtonPressed(0)) {
                 this.dispose();
-                mario.setScreen(new GameScreen(mario)); // problem here
+                mario.setScreen(new GameScreen(camera)); // problem here
             }
         } else {
             batch.draw(playButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
