@@ -12,9 +12,12 @@ public class MainMenu implements Screen {
     Music backgroundMusic;
     private static final int EXIT_BUTTON_WIDTH = 300;
     private static final int EXIT_BUTTON_HEIGHT = 150;
+    private static final int EXIT_BUTTON_Y = 100;
 
     private static final int PLAY_BUTTON_WIDTH = 330;
     private static final int PLAY_BUTTON_HEIGHT = 150;
+    private static final int PLAY_BUTTON_Y = 300;
+
 
     private static final int SETTINGS_BUTTON_WIDTH = 300;
     private static final int SETTINGS_BUTTON_HEIGHT = 300;
@@ -39,6 +42,7 @@ public class MainMenu implements Screen {
     @Override
     public void show() {
         backgroundMusic.play();
+        backgroundMusic.setVolume(0.1f); // sets volume to 10%
     }
 
     @Override
@@ -47,9 +51,13 @@ public class MainMenu implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
+
+        if (Gdx.input.getX() < 100){
+            batch.draw(exitButton, 0, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
+        }
         // 800, and 480 is form width and height on game window
         // to center the button
-        batch.draw(playButton, DesktopLauncher.width /2 - DesktopLauncher.height/2, 100, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
+        batch.draw(playButton, DesktopLauncher.width /2 - DesktopLauncher.height/2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
         batch.end();
     }
 
