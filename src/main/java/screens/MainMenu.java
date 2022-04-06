@@ -12,15 +12,14 @@ public class MainMenu implements Screen {
     Music backgroundMusic;
     private static final int EXIT_BUTTON_WIDTH = 300;
     private static final int EXIT_BUTTON_HEIGHT = 150;
-    private static final int EXIT_BUTTON_Y = 100;
+    private static final int EXIT_BUTTON_Y = 50;
 
     private static final int PLAY_BUTTON_WIDTH = 330;
     private static final int PLAY_BUTTON_HEIGHT = 150;
-    private static final int PLAY_BUTTON_Y = 300;
-
+    private static final int PLAY_BUTTON_Y = 150;
 
     private static final int SETTINGS_BUTTON_WIDTH = 300;
-    private static final int SETTINGS_BUTTON_HEIGHT = 300;
+    private static final int SETTINGS_BUTTON_HEIGHT = 150;
 
     SpriteBatch batch;
     ScuffedMario mario;
@@ -60,13 +59,26 @@ public class MainMenu implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        if (Gdx.input.getX() > DesktopLauncher.width / 2 - EXIT_BUTTON_WIDTH / 2 && Gdx.input.getX() < DesktopLauncher.width / 2 + EXIT_BUTTON_WIDTH / 2 && DesktopLauncher.height - Gdx.input.getY() > EXIT_BUTTON_Y && DesktopLauncher.height - Gdx.input.getY() < EXIT_BUTTON_Y + EXIT_BUTTON_HEIGHT) {
+        int x = DesktopLauncher.width / 2 - EXIT_BUTTON_WIDTH / 2;
+        if (checkMouseHover(x, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT, EXIT_BUTTON_Y)) {
             batch.draw(activeExitButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
         } else {
             batch.draw(exitButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
         }
 
         batch.end();
+    }
+
+    /**
+     * Checks if the mouse is hovering over the button
+     * @param x the x coordinate of the button
+     * @param width the width of the button
+     * @param height the height of the button
+     * @param y the y coordinate of the button
+     * @return true if the mouse is hovering over the button, false otherwise
+     */
+    private boolean checkMouseHover(int x, int width, int height, int y) {
+        return Gdx.input.getX() < x + width && Gdx.input.getX() > x && DesktopLauncher.height - Gdx.input.getY() < y + height && DesktopLauncher.height - Gdx.input.getY() > y;
     }
 
     @Override
