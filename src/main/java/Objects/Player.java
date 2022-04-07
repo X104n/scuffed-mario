@@ -20,6 +20,7 @@ public class Player extends Entity {
         super(width, height, body);
         System.out.println(width);
         System.out.println(height);
+        this.isPlayer = true;
         this.speed = 10f;
         this.jumpCounter = 0;
         this.gameScreen = gameScreen;

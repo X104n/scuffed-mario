@@ -11,6 +11,7 @@ public abstract class Entity {
     protected Body body;
     protected boolean isAlive = true;
     public boolean isPutin = false;
+    public boolean isPlayer = false;
 
     public Entity(float width, float height, Body body){
         this.x = body.getPosition().x;
