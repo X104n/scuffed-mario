@@ -75,6 +75,11 @@ public class GameScreen extends Game implements Screen {
         this.player = player;
     }
 
+    public void resetPlayer(){
+        world.destroyBody(player.getBody());
+        this.renderer = tiledMapHandler.setupMap();
+    }
+
     @Override
     public void show() {
         backgroundMusic.play();
@@ -86,12 +91,14 @@ public class GameScreen extends Game implements Screen {
         cameraUpdate();
         renderer.setView(camera);
         player.update();
+
+        // Make a method for this mess :))
         for(int i = 0 ; i < enemies.size() ; i++) { // Loop through all living enemies
             Entity enemy = enemies.get(i);
             enemy.update();
             if (checkPlayerCollision(player, enemy) && enemy.deathCriterium(player)) {
                 if(enemy.isPutin)
-                    spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM, (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
+                    spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
                 world.destroyBody(enemy.getBody());
                 enemy.die();
                 enemies.remove(enemy);
@@ -99,6 +106,9 @@ public class GameScreen extends Game implements Screen {
             }
         }
 
+        // Conditions
+        if (player.playerDead())
+            resetPlayer();
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             Gdx.app.exit();
     }
@@ -109,6 +119,9 @@ public class GameScreen extends Game implements Screen {
         // Multiplying and dividing by 10 to round off the number
         position.x = Math.round(player.getBody().getPosition().x * PPM * 10) / 10f;
         position.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
+        if(position.y < Gdx.graphics.getHeight()/2){
+            position.y = Gdx.graphics.getHeight()/2;
+        }
         camera.position.set(position);
         camera.update();
     }
@@ -164,7 +177,7 @@ public class GameScreen extends Game implements Screen {
         batch.dispose();
     }
 
-    private void spawnSmallPutin(float x, float y, float w, float h){
+    private void spawnSmallPutin(int x, int y, int w, int h){
         Rectangle rectangle = new Rectangle(x,y,w,h/2);
 
             Body body = EntetyBuilder.createBody(
@@ -179,10 +192,8 @@ public class GameScreen extends Game implements Screen {
     }
 
     private boolean checkPlayerCollision(Player player, Entity ent2){
-        return player.getBounds().intersects(ent2.getBounds());
-    }
-
-    public Player getPlayer() {
-        return player;
+        if(player.getBounds().intersects(ent2.getBounds()))
+            return true;
+        return false;
     }
 }
