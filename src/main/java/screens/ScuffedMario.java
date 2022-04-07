@@ -21,7 +21,7 @@ public class ScuffedMario extends Game {
         this.orthographicCamera = new OrthographicCamera();
         this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
         //setScreen(new GameScreen(orthographicCamera));
-        setScreen(new MainMenu(this));
+        setScreen(new MainMenu(this, orthographicCamera));
     }
 }
 

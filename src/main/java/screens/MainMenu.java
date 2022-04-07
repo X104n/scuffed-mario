@@ -34,13 +34,13 @@ public class MainMenu implements Screen {
     Texture settingsButton;
     Texture activeSettingsButton;
 
-    public MainMenu(ScuffedMario mario) {
+    public MainMenu(ScuffedMario mario, OrthographicCamera camera) {
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/thomas.mp3"));
         backgroundMusic.setLooping(true);
 
         this.batch = new SpriteBatch();
         this.mario = mario;
-        this.camera = new OrthographicCamera();
+        this.camera = camera;
 
         playButton = new Texture("assets/Buttons/play.png");
         activePlayButton = new Texture("assets/Buttons/active_play.png");
