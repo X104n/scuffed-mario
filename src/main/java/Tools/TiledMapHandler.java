@@ -53,9 +53,7 @@ public class TiledMapHandler {
                             false,
                             gameScreen.getWorld()
                     );
-                    System.out.println("123");
                     gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
-                    System.out.println("123");
                 }
                 if(rectangleName.equals("Putin"))
                 {
