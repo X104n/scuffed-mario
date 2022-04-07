@@ -68,8 +68,8 @@ public class MainMenu implements Screen {
     }
     @Override
     public void show() {
-        //backgroundMusic.play();
-        backgroundMusic.setVolume(0.1f); // sets volume to 10%
+        backgroundMusic.play();
+        backgroundMusic.setVolume(0.01f); // sets volume to 10%
     }
 
     @Override
