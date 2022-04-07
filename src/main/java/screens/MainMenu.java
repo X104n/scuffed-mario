@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -31,6 +32,7 @@ public class MainMenu implements Screen {
     OrthographicCamera camera;
     Viewport viewport;
     Stage stage;
+    SpriteBatch spriteBatch;
 
     Music backgroundMusic;
 
@@ -40,6 +42,7 @@ public class MainMenu implements Screen {
     Texture activePlayButton;
     Texture settingsButton;
     Texture activeSettingsButton;
+    Texture background;
 
     public MainMenu(ScuffedMario mario, OrthographicCamera camera) {
         viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, camera);
@@ -65,6 +68,8 @@ public class MainMenu implements Screen {
 
         settingsButton = new Texture("assets/Buttons/settings.png");
         activeSettingsButton = new Texture("assets/Buttons/active_settings.png");
+
+        background = new Texture("assets/Images/thomas.jpg");
     }
     @Override
     public void show() {
@@ -74,10 +79,11 @@ public class MainMenu implements Screen {
 
     @Override
     public void render(float v) {
+        batch.begin();
+        batch.draw(background, 0, 0, DesktopLauncher.width, DesktopLauncher.height);
         Gdx.gl.glClearColor(1,1,1,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        batch.begin();
         int x = (int) (camera.viewportWidth / 2 - PLAY_BUTTON_WIDTH / 2);
         //int x = DesktopLauncher.width / 2 - EXIT_BUTTON_WIDTH / 2;
         if (checkMouseHover(x, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT, EXIT_BUTTON_Y)) {
@@ -139,6 +145,7 @@ public class MainMenu implements Screen {
 
     @Override
     public void dispose() {
+        background.dispose();
         batch.dispose();
         backgroundMusic.dispose();
     }
