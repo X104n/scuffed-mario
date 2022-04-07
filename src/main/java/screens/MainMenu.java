@@ -81,7 +81,6 @@ public class MainMenu implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         int x = (int) (camera.viewportWidth / 2 - PLAY_BUTTON_WIDTH / 2);
-        //int x = DesktopLauncher.width / 2 - EXIT_BUTTON_WIDTH / 2;
         if (checkMouseHover(x, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT, EXIT_BUTTON_Y)) {
             batch.draw(activeExitButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
             if (Gdx.input.isButtonPressed(0)) {
@@ -91,7 +90,6 @@ public class MainMenu implements Screen {
             batch.draw(exitButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, EXIT_BUTTON_Y, EXIT_BUTTON_WIDTH, EXIT_BUTTON_HEIGHT);
         }
 
-        //int i = DesktopLauncher.width / 2 - PLAY_BUTTON_WIDTH / 2;
         int i = (int) (camera.viewportWidth / 2 - PLAY_BUTTON_WIDTH / 2);
         if (checkMouseHover(i, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT, PLAY_BUTTON_Y)) {
             batch.draw(activePlayButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
@@ -104,19 +102,6 @@ public class MainMenu implements Screen {
         }
 
         batch.end();
-    }
-
-    /**
-     * Checks if the mouse is hovering over the button
-     * @param x the x coordinate of the button
-     * @param width the width of the button
-     * @param height the height of the button
-     * @param y the y coordinate of the button
-     * @return true if the mouse is hovering over the button, false otherwise
-     */
-    private boolean checkMouseHover(int x, int width, int height, int y) {
-        //return Gdx.input.getX() > x && Gdx.input.getX() < x + width && Gdx.input.getY() > y && Gdx.input.getY() < y + height;
-        return Gdx.input.getX() < x + width && Gdx.input.getX() > x && DesktopLauncher.height - Gdx.input.getY() < y + height && DesktopLauncher.height - Gdx.input.getY() > y;
     }
 
     @Override
@@ -137,6 +122,18 @@ public class MainMenu implements Screen {
     @Override
     public void hide() {
 
+    }
+
+    /**
+     * Checks if the mouse is hovering over the button
+     * @param x the x coordinate of the button
+     * @param width the width of the button
+     * @param height the height of the button
+     * @param y the y coordinate of the button
+     * @return true if the mouse is hovering over the button, false otherwise
+     */
+    private boolean checkMouseHover(int x, int width, int height, int y) {
+        return Gdx.input.getX() < x + width && Gdx.input.getX() > x && DesktopLauncher.height - Gdx.input.getY() < y + height && DesktopLauncher.height - Gdx.input.getY() > y;
     }
 
     @Override
