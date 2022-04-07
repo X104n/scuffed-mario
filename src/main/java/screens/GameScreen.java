@@ -120,7 +120,7 @@ public class GameScreen extends Game implements Screen {
         position.x = Math.round(player.getBody().getPosition().x * PPM * 10) / 10f;
         position.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
         if(position.y < Gdx.graphics.getHeight()/2){
-            position.y = Gdx.graphics.getHeight()/2;ddd
+            position.y = Gdx.graphics.getHeight()/2;
         }
         camera.position.set(position);
         camera.update();
