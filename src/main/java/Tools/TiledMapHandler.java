@@ -53,7 +53,8 @@ public class TiledMapHandler {
                             gameScreen.getWorld()
                     );
                     System.out.println("123");
-                    gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
+                    gameScreen.setPlayer(new Player(rectangle.getWidth(),
+                            rectangle.getHeight(), body, gameScreen));
                     System.out.println("123");
                 }
                 if(rectangleName.equals("Putin"))
@@ -89,7 +90,6 @@ public class TiledMapHandler {
             Vector2 current = new Vector2(vertices[i * 2] / PPM, vertices[i * 2 + 1] / PPM);
             worldVertices[i] = current;
         }
-
         PolygonShape shape = new PolygonShape();
         shape.set(worldVertices);
         return shape;

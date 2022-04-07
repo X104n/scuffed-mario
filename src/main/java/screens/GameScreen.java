@@ -91,7 +91,7 @@ public class GameScreen extends Game implements Screen {
             enemy.update();
             if (checkPlayerCollision(player, enemy) && enemy.deathCriterium(player)) {
                 if(enemy.isPutin)
-                    spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
+                    spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM, (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
                 world.destroyBody(enemy.getBody());
                 enemy.die();
                 enemies.remove(enemy);
@@ -182,14 +182,7 @@ public class GameScreen extends Game implements Screen {
         return player.getBounds().intersects(ent2.getBounds());
     }
 
-    //To be used to confirm if the player isn't going through anything
-    public boolean checkCollision(Player player, Entity ent2){
-
-        return false;
+    public Player getPlayer() {
+        return player;
     }
-
-    public TiledMapHandler getTiledMapHandler() {
-        return tiledMapHandler;
-    }
-
 }
