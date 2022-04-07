@@ -2,6 +2,7 @@ package Objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
@@ -36,7 +37,7 @@ public class Player extends Entity {
 
     @Override
     public void render(SpriteBatch batch) {
-
+        batch.draw(new Texture("assets/Images/Icon.png"), x, y, width, height);
     }
 
     private void checkUserInput(){
