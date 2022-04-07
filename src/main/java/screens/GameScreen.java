@@ -63,7 +63,7 @@ public class GameScreen extends Game implements Screen {
         this.tiledMapHandler = new TiledMapHandler(this);
         this.renderer = tiledMapHandler.setupMap();
 
-        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/widePutin.mp3"));
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/widePutinEarrape.mp3"));
         backgroundMusic.setLooping(true);
     }
 
@@ -83,7 +83,7 @@ public class GameScreen extends Game implements Screen {
     @Override
     public void show() {
         backgroundMusic.play();
-        backgroundMusic.setVolume(0.1f);
+        backgroundMusic.setVolume(0.11f);
     }
 
     public void update() {
