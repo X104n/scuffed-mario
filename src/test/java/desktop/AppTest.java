@@ -53,7 +53,7 @@ public class AppTest {
 	}
 
 	@Test
-	@DisplayName("Testing if the game board is properly shown.")
+	@DisplayName("Testing if the player is properly shown.")
 	void testPlayer() {
 
 	}
@@ -69,7 +69,8 @@ public class AppTest {
 	@Test
 	@DisplayName("Testing if the player can move.")
 	void testMovePlayer() {
-
+		// Check if the player can move.
+		assertTrue(mario.getGame().getPlayer().getBody().getPosition().x > 0);
 	}
 
 	@Test
