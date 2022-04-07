@@ -42,8 +42,8 @@ public class AppTest {
 	@BeforeEach
 	void setUpBeforeEach() {
 		//In case a test requires booleans.
-		boolean confirm = false;
-		startPos = mario.getGame().getPlayer().getBody().getPosition().x;
+//		boolean confirm = false;
+//		startPos = mario.getGame().getPlayer().getBody().getPosition().x;
 	}
 
 	@Test
@@ -76,9 +76,19 @@ public class AppTest {
 	@Test
 	@DisplayName("Testing if the player won't go through the blocks/terrain.")
 	void testInteractWithTerrain(){
-
+		// Check if the player can move.
+		assertTrue(mario.getGame().getPlayer().getBody().getPosition().x > 0);
 	}
 
+	@Test
+	@DisplayName("Testing if the player can die.")
+	void testDeath() {
+		// Check if the player can move.
+		Player player1 = mario.getGame().getPlayer();
+		mario.getGame().resetPlayer();
+		Player player2 = mario.getGame().getPlayer();
+		assertNotEquals(player1, player2);
+	}
 	@Test
 	void testPoints(){
 
@@ -86,11 +96,6 @@ public class AppTest {
 
 	@Test
 	void testEnemies(){
-
-	}
-
-	@Test
-	void testDeath(){
 
 	}
 
