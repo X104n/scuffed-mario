@@ -1,5 +1,6 @@
 package desktop;
 
+import Objects.Player;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
@@ -15,12 +16,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 import screens.GameScreen;
 import screens.ScuffedMario;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
 
 	public static ScuffedMario mario = new ScuffedMario();
+	float startPos;
 
 	/**
 	 * Static method run before everything else
@@ -42,6 +43,7 @@ public class AppTest {
 	void setUpBeforeEach() {
 		//In case a test requires booleans.
 		boolean confirm = false;
+		startPos = mario.getGame().getPlayer().getBody().getPosition().x;
 	}
 
 	@Test
@@ -57,7 +59,15 @@ public class AppTest {
 	}
 
 	@Test
-	@DisplayName("Testing if the player can move. Has to make the player move around.")
+	@DisplayName("Testing if the player starts at the right position.")
+	void testStartPosition() {
+		Player testPlayer = mario.getGame().getPlayer();
+		float testX = testPlayer.getBody().getPosition().x;
+		assertEquals(startPos, testX);
+	}
+
+	@Test
+	@DisplayName("Testing if the player can move.")
 	void testMovePlayer() {
 
 	}
