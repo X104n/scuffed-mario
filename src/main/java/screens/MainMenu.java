@@ -1,11 +1,16 @@
 package screens;
 
+import Tools.Constants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import desktop.DesktopLauncher;
 import org.lwjgl.opengl.GL20;
 
@@ -24,6 +29,8 @@ public class MainMenu implements Screen {
     SpriteBatch batch;
     ScuffedMario mario;
     OrthographicCamera camera;
+    Viewport viewport;
+    Stage stage;
 
     Music backgroundMusic;
 
@@ -35,12 +42,20 @@ public class MainMenu implements Screen {
     Texture activeSettingsButton;
 
     public MainMenu(ScuffedMario mario, OrthographicCamera camera) {
+        viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, camera);
+        viewport.apply();
+
+        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+        camera.update();
+
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/thomas.mp3"));
         backgroundMusic.setLooping(true);
 
         this.batch = new SpriteBatch();
         this.mario = mario;
         this.camera = camera;
+
+        stage = new Stage(viewport, batch);
 
         playButton = new Texture("assets/Buttons/play.png");
         activePlayButton = new Texture("assets/Buttons/active_play.png");
