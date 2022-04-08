@@ -19,6 +19,6 @@ You move left with "A", and right with "D", you jump with "space".
 
 ## Known bugs:
 There's currently a scaling issue, and is being worked on, see issue [#42](https://git.app.uib.no/relish-earshot/scuffed-mario/-/issues/42).
-**THE GAME ONLY WORK CORRENTLY WHEN NOT CHANGING THE SIZE OF THE WINDOW! (I.E NOT FULLSCREEN)**
+**THE GAME ONLY WORK CORRECTLY WHEN NOT CHANGING THE SIZE OF THE WINDOW! (I.E NOT FULLSCREEN)**
 
 **Important!** We have audio in this game, however, it may be very loud, so be prepared for that.
