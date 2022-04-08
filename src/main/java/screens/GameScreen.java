@@ -103,11 +103,13 @@ public class GameScreen extends Game implements Screen {
                 enemy.die();
                 enemies.remove(enemy);
                 i -= 1;
+                if(enemy.isBullet)
+                    player.die();
             }
         }
 
         // Conditions
-        if (player.playerDead())
+        if (player.playerDead() || !player.isAlive())
             resetPlayer();
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             Gdx.app.exit();
