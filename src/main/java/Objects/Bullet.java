@@ -14,13 +14,18 @@ public class Bullet extends Entity{
     Texture image;
     GameScreen screen;
     boolean right;
+    float lastX;
 
-    public Bullet(float width, float height, Body body, GameScreen gameScreen){
+    public Bullet(float width, float height, Body body, GameScreen gameScreen, boolean goesRight){
         super(width, height, body);
         screen = gameScreen;
 
-        image = new Texture("bullet.png");
-        velX = 3f;
+        image = new Texture("assets/Images/bullet.png");
+        if(goesRight)
+            velX = 3f;
+        else
+            velX = -3f;
+        this.isBullet = true;
     }
 
     public void setDirectionRight(){
@@ -35,7 +40,12 @@ public class Bullet extends Entity{
     public void update() {
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
-        body.setLinearVelocity(velX, 0);
+        body.setLinearVelocity(velX, 0.45f);
+        if(Math.abs(body.getPosition().x - lastX) < 0.03){
+            screen.getWorld().destroyBody(body);
+            screen.enemies.remove(this);
+        }
+        lastX = body.getPosition().x;
     }
 
     @Override
@@ -45,11 +55,11 @@ public class Bullet extends Entity{
 
     @Override
     public Rectangle getBounds() {
-        return null;
+        return new Rectangle((int) this.x - (int) this.width / 2, (int) this.y - (int) this.height / 2, (int) this.width, (int) this.height);
     }
 
     @Override
     public boolean deathCriterium(Entity player) {
-        return false;
+        return true;
     }
 }

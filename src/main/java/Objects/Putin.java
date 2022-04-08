@@ -15,7 +15,7 @@ public class Putin extends Entity{
 
     long lastTurn;
     long lastShot;
-    int turnRight = 1;
+    boolean turnRight = false;
 
     int timeBeforeTurn = 2000;
     int reloadSpeed = 1000;
@@ -40,11 +40,12 @@ public class Putin extends Entity{
         if(time - lastTurn > timeBeforeTurn){
             velX -= 2*velX;
             System.out.println(velX);
-            turnRight -= turnRight;
+            turnRight = !turnRight;
             lastTurn = time;
         }
         if(time-lastShot > reloadSpeed){
             shoot();
+            lastShot = time;
         }
         body.setLinearVelocity(velX, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
     }
@@ -64,7 +65,10 @@ public class Putin extends Entity{
     }
 
     private void shoot(){
-        com.badlogic.gdx.math.Rectangle rectangle = new com.badlogic.gdx.math.Rectangle(x,y,20,10);
+        float w = -width;
+        if(turnRight)
+            w = -w;
+        com.badlogic.gdx.math.Rectangle rectangle = new com.badlogic.gdx.math.Rectangle(x+w/2,y,20,10);
 
         Body body = EntetyBuilder.createBody(
                 rectangle.getX() + rectangle.getWidth() / 2,
@@ -74,7 +78,7 @@ public class Putin extends Entity{
                 false,
                 screen.getWorld()
         );
-        new Bullet(20, 10, body, screen);
+        screen.enemies.add(new Bullet(20, 10, body, screen, (boolean) turnRight));
     }
 
     public boolean deathCriterium(Entity player){
