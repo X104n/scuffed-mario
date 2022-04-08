@@ -5,7 +5,7 @@
 
 **Hvordan fungerer rollene i teamet? Trenger dere å oppdatere hvem som er teamlead eller kundekontakt?**
 
-Vi beholder de nye rollene fra forrige gang, ettersom vi mener de fungere veldig bra. 
+Vi beholder de nye rollene fra forrige gang, ettersom vi mener de fungerer veldig bra. 
 
 
 **Trenger dere andre roller? Skriv ned noen linjer om hva de ulike rollene faktisk innebærer for dere.**
@@ -14,9 +14,9 @@ De nye rollene fungerer bra. Folk jobber for det meste med bare rollen de har f�
 
 **Er det noen erfaringer enten team-messig eller mtp prosjektmetodikk som er verdt å nevne? Synes teamet at de valgene dere har tatt er gode? Hvis ikke, hva kan dere gjøre annerledes for å forbedre måten teamet fungerer på?**
 
-Har blitt satt større fokus på Test-Driven Development (TTD). Vi begynner å bli flinkere på dette. For øyeblikket så må man starte spillet for at testene skal bli kjørt, dette har test-leader fått beskjed om, og blir sett på. 
+Har nå blitt satt større fokus på Test-Driven Development (TTD). Vi begynner å bli flinkere på dette, men fortsatt en lang vei å gå. For øyeblikket så må man starte spillet for at testene skal bli kjørt, dette har test-leader fått beskjed om, og blir sett på for øyeblikket.
 
-Vi jobber med Git/GitLab, og mener branches fungerer veldig godt. Etter vi ble "strengere", oftere møter og bedre fordeling av issues føler vi at vi har fått gjort en del.
+Vi jobber med Git/GitLab, og mener branches fungerer veldig godt. Etter vi ble "strengere", dvs. oftere møter og bedre fordeling av issues føler vi at vi har fått gjort mer.
 
 
 **Hvordan er gruppedynamikken?**
@@ -32,15 +32,15 @@ Vi har sånn omtrent 50/50 når det gjelder digital- og i person-informasjon. Al
 **Gjør et kort retrospektiv hvor dere vurderer hva dere har klart til nå, og hva som kan forbedres. Dette skal handle om prosjektstruktur, ikke kode. Dere kan selvsagt diskutere kode, men dette handler ikke om feilretting, men om hvordan man jobber og kommuniserer.**
 Til nå har vi klart å legge opp prosjektet bra via issue board på GitLab. Holder på nå å implemenere GitLab CI CD Pipeline for automatisk testing. 
 
-Som nevnt fra oblig 2 så var det nevnt at folk har det veldig travelt med andre fag. Team-leader bestemte seg for å bli "strengere", dvs. oftere møter, slik at resten av teamet vet hva alle gjør. Dette har fungert veldig bra. 
+Som nevnt fra oblig 2 så var det nevnt at folk har det veldig travelt med andre fag. Team-leader bestemte seg for å bli "strengere", dvs. oftere møter, slik at resten av teamet vet hva alle gjør. Dette har fungert veldig bra, og vi fortsetter slik.
 
 **Under vurdering vil det vektlegges at alle bidrar til kodebasen. Hvis det er stor forskjell i hvem som committer, må dere legge ved en kort forklaring for hvorfor det er sånn. Husk å committe alt. (Også designfiler)**
 
-Vi lager en branch, og deretter merger den branchen inn til development. Hvis man går inn på development så ser det for øyeblikket ikke særlig fordelt av antalls commits. Belmin, Stain og Magne har "par-programmert" over på test-development branchen. 
+Vi lager en branch, og deretter merger den branchen inn til development. Hvis man går inn på development så ser det for øyeblikket ikke særlig fordelt av antalls commits. Belmin, Stain og Magne har "trippel-par-programmert" over på test-development branchen. 
 
 **Referat fra møter siden forrige leveranse skal legges ved (mange av punktene over er typisk ting som havner i referat)..**
 
-Vi legger alle møtene inn i wikien på git. Her er møtene vi har hatt etter oblig 1:
+Vi legger alltid møtene inn i wikien på git. Her er møtene vi har hatt etter oblig 2:
 
 [Møtereferat 1](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/M%C3%B8tereferat-29.mars-2022)
 [Møtereferat 2](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/M%C3%B8tereferat-1.april-2022)
@@ -49,9 +49,9 @@ Vi legger alle møtene inn i wikien på git. Her er møtene vi har hatt etter ob
 
 **Bli enige om maks tre forbedringspunkter fra retrospektivet, som skal følges opp under neste sprint.**
 
-**Jevnere Arbeid** -  Sette av mer til i uken til å jobbe med prosjektet.
+**Prøve med par programming** -  Prøve å sette sammen de som jobber mye sammen med de som jobber litt mindre
 
-**Issue Board** - Bli bedre på å jobbe mer med issues, og skrive 
+**Issue Board** - Bli bedre på å jobbe tiitel på issue, og bedre forklaring inne på issues 
 
 **Fordele commits** - Fordele commits, eller iallefall skriver i commit meldinger hvis vi parprogrammerer, slik at arbeidsfordelingen ser mer realistisk ut.
 
@@ -84,7 +84,7 @@ For øyeblikket så prioriterer vi "kjernen" til spillet dvs. kollisjon, bevegel
 
 Vi beholder MVP kravene fra forrige gang, ettersom vi går for høyere kodekvalitet.
 
-Neste steg er å sette bilder for alle objektene, lage score, enda mer implementering av fiende og til slutt "mål"
+Neste steg er å sette bilder for alle objektene, lage score, enda mer implementering av fiende (flere av dem) og til slutt en form av "mål"
 
 ### Brukerhistorie for hva som har blitt jobbet på denne gang
 1. Som en spiller må jeg kunne se menyen for å starte spillet.
