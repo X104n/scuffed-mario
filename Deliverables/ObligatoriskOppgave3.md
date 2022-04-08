@@ -86,6 +86,49 @@ Vi beholder MVP kravene fra forrige gang, ettersom vi går for høyere kodekvali
 
 Neste steg er å sette bilder for alle objektene, lage score, enda mer implementering av fiende og til slutt "mål"
 
+### Brukerhistorie for hva som har blitt jobbet på denne gang
+1. Som en spiller må jeg kunne se menyen for å starte spillet.
+- Akseptansekriterier: Spillet starter på "main menu" når man starter spillet.
+- Arbeidsoppgaver: 
+	- [x] En visuell indikasjon for start knappen
+	- [x] Vise når spillet har startet
+
+2. Som en spiller må jeg kunne stoppe spillet i menyen
+- Akseptansekriterier: Spilleren må kunne stoppe spillet etter man har startet det
+- Arbeidsoppgaver: 
+	- [ ] Som spiller må jeg kunne få opp menyen etter jeg har startet det (etter man trykket "play")
+	- [ ] Lage logikk for å vise en avslutt knapp i menyen ((etter man har trykket "play"))
+	- [x] kunne avslutte spillet med å trykke "esc" etter man har startet spillet
+
+3. Som en spiller må jeg kunne stoppe lukke(exit) i menyen
+- Akseptansekriterier: Spilleren må ha mulighet til å trykke "exit" for å lukke spillet i "main menu"
+- Arbeidsoppgaver: 
+	- [x] Lage logikk for å vise en avslutt knapp i menyen
+
+4. Som en spiller må jeg kunne dø
+- Akseptansekriterier: Spilleren må kunne ta skade
+- Arbeidsoppgaver: 
+	- [ ] Som spiller må jeg se hvor mye liv jeg her
+	- [x] Som spiller må jeg ha mulighet til å miste liv
+
+5. Som en spiller må jeg kunne "respawne"
+- Akseptansekriterier: Spilleren må kunne "komme tilbake"/ begynne på nytt hvis man dør
+- Arbeidsoppgaver: 
+	- [x] Som spiller må jeg kunne ha mulighet til å begynne på nytt hvis man dør
+
+6. Som en fiende må jeg kunne bevege meg selv
+- Akseptansekriterier: Fienden må kunne bevege seg høyre og venstre
+- Arbeidsoppgaver: 
+	- [x] Som en fiende må jeg ha muligheten til å bevege meg 
+	- [x] Som en fiende må jeg kunne flytte på meg selv
+
+7. Som en fiende må jeg kunne skade spiller
+- Akseptansekriterier: Fienden må kunne skade spiller ved å skyte på dem
+- Arbeidsoppgaver: 
+	- [x] Som en fiende må jeg kunne ha mulighet til å skyte
+	- [x] Som en fiende må jeg kunne oppdage at skuddet treffer spiller (kollisjons-bokser)
+
+
 
 # **Deloppgave 3: Krav**
 For øyeblikket så har vi en CI/CD, men vi har litt problemer med å få satt den 
