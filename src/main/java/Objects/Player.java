@@ -37,7 +37,7 @@ public class Player extends Entity {
 
     @Override
     public void render(SpriteBatch batch) {
-        batch.draw(new Texture("assets/Images/Zelensky.png"), x, y, width, height);
+        //batch.draw(new Texture("assets/Images/Zelensky.png"), x, y, width, height);
     }
 
     private void checkUserInput(){
