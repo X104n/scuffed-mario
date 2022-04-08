@@ -80,6 +80,7 @@ Neste steg er å sette bilder for alle objektene, lage score, enda mer implement
 
 
 # **Deloppgave 3: Krav**
-For øyeblikket så har vi en CI/CD, men vi har litt problemer med å få satt den opp riktig. Dette må vi se på mer for neste gang.  
+For øyeblikket så har vi en CI/CD, men vi har litt problemer med å få satt den 
+opp riktig. Dette må vi se på mer for neste gang.  
 
-![Class Diagram](klasseDiagarm2.png?raw=true "Class Diagram")
+![Class Diagram](klasseDiagarm.png?raw=true "Class Diagram")
