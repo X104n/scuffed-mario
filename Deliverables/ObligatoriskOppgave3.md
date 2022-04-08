@@ -41,6 +41,7 @@ Vi lager en branch, og deretter merger den branchen inn til development. Hvis ma
 **Referat fra møter siden forrige leveranse skal legges ved (mange av punktene over er typisk ting som havner i referat)..**
 
 Vi legger alle møtene inn i wikien på git. Her er møtene vi har hatt etter oblig 1:
+
 [Møtereferat 1](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/M%C3%B8tereferat-29.mars-2022)
 [Møtereferat 2](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/M%C3%B8tereferat-1.april-2022)
 [Møtereferat 3](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/M%C3%B8tereferat-5.april-2022)
@@ -70,13 +71,12 @@ For tida fokuserer vi på design, ryddig kode og kode med høy kvalitet, slik at
 
 
 **MVP og annet**
-For øyeblikket så prioriterer vi kjeren til spillet dvs. kollisjon, bevegelse, fiender osv. 
-
-Siden siten gang så har vi implementert at spiller kan dø hvis man detter ut av banen. Fienden har nå fått kollisjon, og flytter seg automatisk til høyre og venstre. 
+For øyeblikket så prioriterer vi "kjernen" til spillet dvs. kollisjon, bevegelse, fiender osv. 
 
 - Spilleren kan nå spawne på nytt hvis man faller ut av kartet
 - Fienden kan nå bevege seg på egen hånd
 - Spilleren kan nå "krympe" fienden ved å hoppe på den
+- spilleren kan nå "drepe fienden ved å først hoppe på den, deretter gi i den fra siden (når den er liten)
 - Fienden kan nå skyte
 - Spilleren kan nå dø av å bli skutt
 - Hovedmeny lagt til
@@ -116,18 +116,22 @@ Neste steg er å sette bilder for alle objektene, lage score, enda mer implement
 - Arbeidsoppgaver: 
 	- [x] Som spiller må jeg kunne ha mulighet til å begynne på nytt hvis man dør
 
-6. Som en fiende må jeg kunne bevege meg selv
+6. Som en spiller må jeg kunne skade fienden
+- Akseptansekriterier: Spilleren må kunne fienden
+- Arbeidsoppgaver: 
+	- [x] Som en spiller må jeg kunne "skade" fienden på ved å hoppe på den
+
+7. Som en fiende må jeg kunne bevege meg selv
 - Akseptansekriterier: Fienden må kunne bevege seg høyre og venstre
 - Arbeidsoppgaver: 
 	- [x] Som en fiende må jeg ha muligheten til å bevege meg 
 	- [x] Som en fiende må jeg kunne flytte på meg selv
 
-7. Som en fiende må jeg kunne skade spiller
+8. Som en fiende må jeg kunne skade spiller
 - Akseptansekriterier: Fienden må kunne skade spiller ved å skyte på dem
 - Arbeidsoppgaver: 
 	- [x] Som en fiende må jeg kunne ha mulighet til å skyte
 	- [x] Som en fiende må jeg kunne oppdage at skuddet treffer spiller (kollisjons-bokser)
-
 
 
 # **Deloppgave 3: Krav**
