@@ -76,7 +76,7 @@ For øyeblikket så prioriterer vi "kjernen" til spillet dvs. kollisjon, bevegel
 - Spilleren kan nå spawne på nytt hvis man faller ut av kartet
 - Fienden kan nå bevege seg på egen hånd
 - Spilleren kan nå "krympe" fienden ved å hoppe på den
-- spilleren kan nå "drepe fienden ved å først hoppe på den, deretter gi i den fra siden (når den er liten)
+- spilleren kan nå "drepe fienden ved å først hoppe på den, deretter gå i den fra siden (når den er liten)
 - Fienden kan nå skyte
 - Spilleren kan nå dø av å bli skutt
 - Hovedmeny lagt til
