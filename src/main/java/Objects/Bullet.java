@@ -50,7 +50,7 @@ public class Bullet extends Entity{
 
     @Override
     public void render(SpriteBatch batch) {
-        batch.draw(image,x,y);
+        batch.draw(new Texture("assets/Images/Bullet.png"), x, y, width, height);
     }
 
     @Override
