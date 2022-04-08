@@ -65,7 +65,7 @@ public class TiledMapHandler {
                             false,
                             gameScreen.getWorld()
                     );
-                    gameScreen.enemies.add(new Putin(rectangle.getWidth(), rectangle.getHeight(), body));
+                    gameScreen.enemies.add(new Putin(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
             }
         }

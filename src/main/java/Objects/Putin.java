@@ -1,7 +1,11 @@
 package Objects;
 
+import Tools.EntetyBuilder;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
+import screens.GameScreen;
 
 import java.awt.*;
 
@@ -10,17 +14,22 @@ import static Tools.Constants.PPM;
 public class Putin extends Entity{
 
     long lastTurn;
+    long lastShot;
     int turnRight = 1;
 
     int timeBeforeTurn = 2000;
+    int reloadSpeed = 1000;
 
-    public Putin(float width, float height, Body body) {
+    GameScreen screen;
+
+    public Putin(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
         super.isPutin = true;
 
         lastTurn = System.currentTimeMillis();
-
+        lastShot = System.currentTimeMillis();
         velX = 1.5f;
+        this.screen = screen;
     }
 
     @Override
@@ -33,6 +42,9 @@ public class Putin extends Entity{
             System.out.println(velX);
             turnRight -= turnRight;
             lastTurn = time;
+        }
+        if(time-lastShot > reloadSpeed){
+            shoot();
         }
         body.setLinearVelocity(velX, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
     }
@@ -49,6 +61,20 @@ public class Putin extends Entity{
 
     public Putin getPutin(){
         return this;
+    }
+
+    private void shoot(){
+        com.badlogic.gdx.math.Rectangle rectangle = new com.badlogic.gdx.math.Rectangle(x,y,20,10);
+
+        Body body = EntetyBuilder.createBody(
+                rectangle.getX() + rectangle.getWidth() / 2,
+                rectangle.getY() - rectangle.getHeight() / 2,
+                rectangle.getWidth(),
+                rectangle.getHeight(),
+                false,
+                screen.getWorld()
+        );
+        new Bullet(20, 10, body, screen);
     }
 
     public boolean deathCriterium(Entity player){
