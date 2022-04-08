@@ -76,7 +76,7 @@ Siden siten gang så har vi implementert at spiller kan dø hvis man detter ut a
 
 Vi beholder MVP kravene fra forrige gang, ettersom vi går for høyere kodekvalitet.
 
-Neste steg er å sette bilder for alle objektene, lage score, enda mer implementering av fiende, "mål"
+Neste steg er å sette bilder for alle objektene, lage score, enda mer implementering av fiende og til slutt "mål"
 
 
 # **Deloppgave 3: Krav**
