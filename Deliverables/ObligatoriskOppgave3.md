@@ -72,7 +72,15 @@ For tida fokuserer vi på design, ryddig kode og kode med høy kvalitet, slik at
 **MVP og annet**
 For øyeblikket så prioriterer vi kjeren til spillet dvs. kollisjon, bevegelse, fiender osv. 
 
-Siden siten gang så har vi implementert at spiller kan dø hvis man detter ut av banen. Fienden har nå fått kollisjon, og flytter seg automatisk til høyre og venstre. Fiender kan nå skyte. Spiller kan dø hvis man blir skytt på. Hvis man dette ut av banen, eller blir skytt på, så "re-spawner" man. Har også implementert tester, selv om disse for øyeblikket er ikke "automatisk".
+Siden siten gang så har vi implementert at spiller kan dø hvis man detter ut av banen. Fienden har nå fått kollisjon, og flytter seg automatisk til høyre og venstre. 
+
+- Spilleren kan nå spawne på nytt hvis man faller ut av kartet
+- Fienden kan nå bevege seg på egen hånd
+- Spilleren kan nå "krympe" fienden ved å hoppe på den
+- Fienden kan nå skyte
+- Spilleren kan nå dø av å bli skutt
+- Hovedmeny lagt til
+- Lagt til nye tester, selv om disse for øyeblikket er ikke "automatisk".
 
 Vi beholder MVP kravene fra forrige gang, ettersom vi går for høyere kodekvalitet.
 
