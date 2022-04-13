@@ -41,7 +41,7 @@ public class GameScreen extends Game implements Screen {
 
     Player player;
 
-    public ArrayList<Entity> enemies = new ArrayList<Entity>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
+    public ArrayList<Entity> enemies = new ArrayList<>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
 
     Music backgroundMusic;
 
@@ -195,6 +195,12 @@ public class GameScreen extends Game implements Screen {
     }
 
     private boolean checkPlayerCollision(Player player, Entity ent2){
-        return player.getBounds().intersects(ent2.getBounds());
+        if(player.getBounds().intersects(ent2.getBounds()))
+            return true;
+        return false;
+    }
+
+    public Player getPlayer(){
+        return this.player;
     }
 }
