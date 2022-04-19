@@ -121,9 +121,9 @@ public class GameScreen extends Game implements Screen {
         // Multiplying and dividing by 10 to round off the number
         position.x = Math.round(player.getBody().getPosition().x * PPM * 10) / 10f;
         position.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
-        if(position.y < Gdx.graphics.getHeight()/2){
+       /* if(position.y < Gdx.graphics.getHeight()/2){
             position.y = Gdx.graphics.getHeight()/2;
-        }
+        }*/
         camera.position.set(position);
         camera.update();
     }

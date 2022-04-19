@@ -16,6 +16,7 @@ public class Player extends Entity {
 
     private int jumpCounter;
     GameScreen gameScreen;
+    Texture playerTexture;
 
     public Player(float width, float height, Body body, GameScreen gameScreen) {
         super(width, height, body);
@@ -24,10 +25,12 @@ public class Player extends Entity {
         this.speed = 10f;
         this.jumpCounter = 0;
         this.gameScreen = gameScreen;
+        this.playerTexture = new Texture("assets/Images/Icon.png");
     }
 
     @Override
     public void update() {
+        //setPosition(body.getPosition().x * PPM, body.getPosition().y * PPM);
 
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
@@ -41,6 +44,8 @@ public class Player extends Entity {
 
     @Override
     public void render(SpriteBatch batch) {
+        //batch.draw(playerTexture, x, y, width, height);
+        batch.draw(playerTexture, x - ((float)playerTexture.getWidth())/2, y - ((float)playerTexture.getHeight())/2, width, height);
         //batch.draw(new Texture("assets/Images/Zelensky.png"), x, y, width, height);
     }
 
