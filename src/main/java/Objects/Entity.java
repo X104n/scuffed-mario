@@ -10,8 +10,8 @@ public abstract class Entity {
     protected float width, height;
     protected Body body;
     protected boolean isAlive = true;
-    public boolean isPutin = false;
-    public boolean isBullet = false;
+
+    public ObjectType type;
 
     public Entity(float width, float height, Body body){
         this.x = body.getPosition().x;
@@ -36,6 +36,7 @@ public abstract class Entity {
         return body;
     }
 
+    public ObjectType getObjType() { return type; }
     public boolean isAlive(){ return this.isAlive; }
 
     public void die(){ this.isAlive = false; }

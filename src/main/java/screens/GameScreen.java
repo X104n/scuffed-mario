@@ -1,9 +1,6 @@
 package screens;
 
-import Objects.Entity;
-import Objects.Player;
-import Objects.Putin;
-import Objects.SmallPutin;
+import Objects.*;
 import Tools.EntetyBuilder;
 import Tools.TiledMapHandler;
 import com.badlogic.gdx.Game;
@@ -97,7 +94,8 @@ public class GameScreen extends Game implements Screen {
             Entity enemy = enemies.get(i);
             enemy.update();
             if (checkPlayerCollision(player, enemy) && enemy.deathCriterium(player)) {
-                if(enemy.isPutin)
+
+                if(enemy.getObjType() == ObjectType.PUTIN)
                     spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
                 world.destroyBody(enemy.getBody());
                 enemy.die();
