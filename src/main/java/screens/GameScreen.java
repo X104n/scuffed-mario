@@ -1,9 +1,6 @@
 package screens;
 
-import Objects.Entity;
-import Objects.Player;
-import Objects.Putin;
-import Objects.SmallPutin;
+import Objects.*;
 import Tools.EntetyBuilder;
 import Tools.TiledMapHandler;
 import com.badlogic.gdx.Game;
@@ -97,14 +94,23 @@ public class GameScreen extends Game implements Screen {
             Entity enemy = enemies.get(i);
             enemy.update();
             if (checkPlayerCollision(player, enemy) && enemy.deathCriterium(player)) {
-                if(enemy.isPutin)
-                    spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
-                world.destroyBody(enemy.getBody());
-                enemy.die();
-                enemies.remove(enemy);
+                ObjectType objtype = enemy.getObjType();
+                switch(objtype) { //Determine how different collisions should affect the game
+                    case PUTIN:
+                        spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
+                        world.destroyBody(enemy.getBody());
+                        enemy.die();
+                        enemies.remove(enemy);
+                        break;
+                    case BULLET:
+                        player.die();
+                        break;
+                    case SMALLPUTIN:
+                        world.destroyBody(enemy.getBody());
+                        enemy.die();
+                        enemies.remove(enemy);
+                }
                 i -= 1;
-                if(enemy.isBullet)
-                    player.die();
             }
         }
 

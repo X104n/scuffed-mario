@@ -20,7 +20,7 @@ public class SmallPutin extends Entity{
         System.out.println(height);
 
         lastTurn = System.currentTimeMillis();
-
+        super.type = ObjectType.SMALLPUTIN;
         velX = 1.5f;
     }
 

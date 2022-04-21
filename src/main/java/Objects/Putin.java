@@ -24,7 +24,7 @@ public class Putin extends Entity{
 
     public Putin(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
-        super.isPutin = true;
+        super.type = ObjectType.PUTIN;
 
         lastTurn = System.currentTimeMillis();
         lastShot = System.currentTimeMillis();

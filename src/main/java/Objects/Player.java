@@ -24,6 +24,7 @@ public class Player extends Entity {
         this.speed = 10f;
         this.jumpCounter = 0;
         this.gameScreen = gameScreen;
+        super.type = ObjectType.PLAYER;
     }
 
     @Override

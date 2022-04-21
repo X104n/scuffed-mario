@@ -25,7 +25,7 @@ public class Bullet extends Entity{
             velX = 3f;
         else
             velX = -3f;
-        this.isBullet = true;
+        super.type = ObjectType.BULLET;
     }
 
     public void setDirectionRight(){
