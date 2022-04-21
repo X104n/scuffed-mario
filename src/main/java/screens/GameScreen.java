@@ -83,7 +83,7 @@ public class GameScreen extends Game implements Screen {
     @Override
     public void show() {
         backgroundMusic.play();
-        backgroundMusic.setVolume(0.11f);
+        backgroundMusic.setVolume(0.001f);
     }
 
     public void update() {
