@@ -102,7 +102,7 @@ public class GameScreen extends Game implements Screen {
                         enemy.die();
                         enemies.remove(enemy);
                         break;
-                    case BULLET;
+                    case BULLET:
                         player.die();
                         break;
                 }
