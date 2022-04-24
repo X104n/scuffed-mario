@@ -13,13 +13,19 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import screens.GameScreen;
 import screens.ScuffedMario;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class AppTest {
 
+	@InjectMocks
 	public static ScuffedMario mario = new ScuffedMario();
 	float startPos;
 
@@ -28,12 +34,7 @@ public class AppTest {
 	 */
 	@BeforeAll
 	static void setUpBeforeAll() {
-		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setForegroundFPS(60);
-		config.setTitle("Glory to Ukraine");
-		config.setWindowIcon("assets/Images/Icon.png");
-		config.setWindowSizeLimits(800, 480, 9999, 9999);
-		new Lwjgl3Application(mario, config);
+		mario.create();
 	}
 
 	/**
@@ -41,9 +42,7 @@ public class AppTest {
 	 */
 	@BeforeEach
 	void setUpBeforeEach() {
-		//In case a test requires booleans.
-//		boolean confirm = false;
-//		startPos = mario.getGame().getPlayer().getBody().getPosition().x;
+
 	}
 
 	@Test
