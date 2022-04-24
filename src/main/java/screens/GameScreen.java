@@ -114,6 +114,7 @@ public class GameScreen extends Game implements Screen {
         if (player.playerDead() || !player.isAlive()) {
             //resetPlayer();
             game.setScreen(new GameOverScreen(game, camera));
+            this.dispose();
 
         }
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
@@ -182,11 +183,12 @@ public class GameScreen extends Game implements Screen {
 
     @Override
     public void dispose() {
-        renderer.dispose();
-        world.dispose();
-        box2DDebugRenderer.dispose();
+        // Temporary dispose of only background music
+        //renderer.dispose();
+        //world.dispose();
+        //box2DDebugRenderer.dispose();
         backgroundMusic.dispose();
-        batch.dispose();
+        //batch.dispose();
     }
 
     private void spawnSmallPutin(int x, int y, int w, int h){
