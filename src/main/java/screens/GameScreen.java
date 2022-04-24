@@ -1,9 +1,6 @@
 package screens;
 
-import Objects.Entity;
-import Objects.Player;
-import Objects.Putin;
-import Objects.SmallPutin;
+import Objects.*;
 import Tools.EntetyBuilder;
 import Tools.TiledMapHandler;
 import com.badlogic.gdx.Game;
@@ -63,7 +60,7 @@ public class GameScreen extends Game implements Screen {
         this.tiledMapHandler = new TiledMapHandler(this);
         this.renderer = tiledMapHandler.setupMap();
 
-        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/widePutin.mp3"));
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/widePutinEarrape.mp3"));
         backgroundMusic.setLooping(true);
     }
 
@@ -83,7 +80,7 @@ public class GameScreen extends Game implements Screen {
     @Override
     public void show() {
         backgroundMusic.play();
-        backgroundMusic.setVolume(0.1f);
+        backgroundMusic.setVolume(0.11f);
     }
 
     public void update() {
@@ -97,17 +94,28 @@ public class GameScreen extends Game implements Screen {
             Entity enemy = enemies.get(i);
             enemy.update();
             if (checkPlayerCollision(player, enemy) && enemy.deathCriterium(player)) {
-                if(enemy.isPutin)
-                    spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
-                world.destroyBody(enemy.getBody());
-                enemy.die();
-                enemies.remove(enemy);
+                ObjectType objtype = enemy.getObjType();
+                switch(objtype) { //Determine how different collisions should affect the game
+                    case PUTIN:
+                        spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
+                        world.destroyBody(enemy.getBody());
+                        enemy.die();
+                        enemies.remove(enemy);
+                        break;
+                    case BULLET:
+                        player.die();
+                        break;
+                    case SMALLPUTIN:
+                        world.destroyBody(enemy.getBody());
+                        enemy.die();
+                        enemies.remove(enemy);
+                }
                 i -= 1;
             }
         }
 
         // Conditions
-        if (player.playerDead())
+        if (player.playerDead() || !player.isAlive())
             resetPlayer();
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
             Gdx.app.exit();
@@ -135,6 +143,7 @@ public class GameScreen extends Game implements Screen {
 
         batch.begin();
         // Render things here
+        player.render(batch);
 
         batch.end();
 

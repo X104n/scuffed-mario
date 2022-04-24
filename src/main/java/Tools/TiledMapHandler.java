@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -52,10 +53,7 @@ public class TiledMapHandler {
                             false,
                             gameScreen.getWorld()
                     );
-                    System.out.println("123");
-                    gameScreen.setPlayer(new Player(rectangle.getWidth(),
-                            rectangle.getHeight(), body, gameScreen));
-                    System.out.println("123");
+                    gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
                 if(rectangleName.equals("Putin"))
                 {
@@ -67,7 +65,7 @@ public class TiledMapHandler {
                             false,
                             gameScreen.getWorld()
                     );
-                    gameScreen.enemies.add(new Putin(rectangle.getWidth(), rectangle.getHeight(), body));
+                    gameScreen.enemies.add(new Putin(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
             }
         }
@@ -90,6 +88,7 @@ public class TiledMapHandler {
             Vector2 current = new Vector2(vertices[i * 2] / PPM, vertices[i * 2 + 1] / PPM);
             worldVertices[i] = current;
         }
+
         PolygonShape shape = new PolygonShape();
         shape.set(worldVertices);
         return shape;

@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 public class ScuffedMario extends Game {
 
     public static ScuffedMario INSTANCE;
+    private int widthScreen, heightScreen;
     private OrthographicCamera orthographicCamera;
-    public GameScreen game;
 
     public ScuffedMario(){
         INSTANCE = this;
@@ -16,20 +16,12 @@ public class ScuffedMario extends Game {
 
     @Override
     public void create() {
-        int widthScreen = Gdx.graphics.getWidth();
-        int heightScreen = Gdx.graphics.getHeight();
+        this.widthScreen = Gdx.graphics.getWidth();
+        this.heightScreen = Gdx.graphics.getHeight();
         this.orthographicCamera = new OrthographicCamera();
         this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
-        game = new GameScreen(orthographicCamera);
-        setScreen(game);
-    }
-
-    public GameScreen getGame() {
-        return game;
-    }
-
-    public OrthographicCamera getOrthographicCamera() {
-        return this.orthographicCamera;
+        //setScreen(new GameScreen(orthographicCamera));
+        setScreen(new MainMenu(this, orthographicCamera));
     }
 }
 
