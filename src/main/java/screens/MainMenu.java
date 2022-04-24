@@ -41,6 +41,10 @@ public class MainMenu implements Screen {
     Texture background;
 
     public MainMenu(ScuffedMario mario, OrthographicCamera camera) {
+        this.batch = new SpriteBatch();
+        this.mario = mario;
+        this.camera = camera;
+
         viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, camera);
         viewport.apply();
 
@@ -50,9 +54,6 @@ public class MainMenu implements Screen {
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/thomas.mp3"));
         backgroundMusic.setLooping(true);
 
-        this.batch = new SpriteBatch();
-        this.mario = mario;
-        this.camera = camera;
 
         stage = new Stage(viewport, batch);
 
@@ -95,7 +96,7 @@ public class MainMenu implements Screen {
             batch.draw(activePlayButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
             if (Gdx.input.isButtonPressed(0)) {
                 this.dispose();
-                mario.setScreen(new GameScreen(camera)); // problem here
+                mario.setScreen(new GameScreen(camera)); // sets the screen to the game screen
             }
         } else {
             batch.draw(playButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);

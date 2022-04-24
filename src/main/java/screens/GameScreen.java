@@ -33,8 +33,10 @@ import static Tools.Constants.PPM;
 
 public class GameScreen extends Game implements Screen {
 
-    OrthographicCamera camera;
     SpriteBatch batch;
+    OrthographicCamera camera;
+
+    ScuffedMario mario;
 
     Player player;
 
@@ -53,6 +55,7 @@ public class GameScreen extends Game implements Screen {
     public GameScreen(OrthographicCamera camera) {
         this.batch = new SpriteBatch();
         this.camera = camera;
+        this.mario = new ScuffedMario();
 
         this.world = new World(new Vector2(0, -25f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
@@ -115,10 +118,17 @@ public class GameScreen extends Game implements Screen {
         }
 
         // Conditions
-        if (player.playerDead() || !player.isAlive())
-            resetPlayer();
-        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
+        if (player.playerDead() || !player.isAlive()) {
+            //resetPlayer();
+            mario.setScreen(new GameOverScreen(mario));
+            dispose();
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.R)) { // if the player should get stuck in the game
+            resetPlayer();
+        }
     }
 
     private void cameraUpdate(){
