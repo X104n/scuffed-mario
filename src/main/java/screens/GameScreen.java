@@ -128,6 +128,10 @@ public class GameScreen extends Game implements Screen {
         camera.update();
     }
 
+    public OrthographicCamera getCamera(){
+        return camera;
+    }
+
     @Override
     public void render(float v) {
         this.update();
