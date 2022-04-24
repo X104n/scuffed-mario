@@ -1,5 +1,6 @@
 package screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
@@ -39,10 +40,11 @@ public class MainMenu implements Screen {
     Texture settingsButton;
     Texture activeSettingsButton;
     Texture background;
+    ScuffedMario game;
 
-    public MainMenu(ScuffedMario mario, OrthographicCamera camera) {
+    public MainMenu(ScuffedMario game , OrthographicCamera camera) {
         this.batch = new SpriteBatch();
-        this.mario = mario;
+        this.game = game;
         this.camera = camera;
 
         viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, camera);
@@ -96,7 +98,7 @@ public class MainMenu implements Screen {
             batch.draw(activePlayButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
             if (Gdx.input.isButtonPressed(0)) {
                 this.dispose();
-                mario.setScreen(new GameScreen(camera)); // sets the screen to the game screen
+                game.setScreen(new GameScreen(game, camera)); // sets the screen to the game screen
             }
         } else {
             batch.draw(playButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);

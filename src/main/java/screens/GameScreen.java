@@ -30,8 +30,6 @@ public class GameScreen extends Game implements Screen {
 
     SpriteBatch batch;
     OrthographicCamera camera;
-    //ScuffedMario mario;
-
     Player player;
 
     public ArrayList<Entity> enemies = new ArrayList<>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
@@ -44,12 +42,11 @@ public class GameScreen extends Game implements Screen {
     // box2d
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;
-
-
-    public GameScreen(OrthographicCamera camera) {
+    ScuffedMario game;
+    public GameScreen(ScuffedMario game ,OrthographicCamera camera) {
         this.batch = new SpriteBatch();
         this.camera = camera;
-        //this.mario = new ScuffedMario();
+        this.game = game;
 
         this.world = new World(new Vector2(0, -25f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
@@ -60,6 +57,7 @@ public class GameScreen extends Game implements Screen {
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/widePutinEarrape.mp3"));
         backgroundMusic.setLooping(true);
     }
+
 
     public World getWorld(){
         return this.world;
@@ -115,8 +113,7 @@ public class GameScreen extends Game implements Screen {
         // Conditions
         if (player.playerDead() || !player.isAlive()) {
             //resetPlayer();
-            this.dispose();
-            setScreen(new GameOverScreen(camera));
+            game.setScreen(new GameOverScreen(game, camera));
 
         }
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {

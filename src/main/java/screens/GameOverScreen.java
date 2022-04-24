@@ -20,9 +20,10 @@ public class GameOverScreen implements Screen {
     Stage stage;
     OrthographicCamera camera;
     SpriteBatch batch;
+    ScuffedMario mario;
 
-    public GameOverScreen(OrthographicCamera camera) {
-        //this.mario = mario;
+    public GameOverScreen(ScuffedMario mario ,OrthographicCamera camera) {
+        this.mario = mario;
         this.camera = camera;
         this.batch = new SpriteBatch();
 
@@ -52,7 +53,8 @@ public class GameOverScreen implements Screen {
     @Override
     public void render(float v) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            setScreen(new GameScreen(camera));
+            this.dispose();
+            mario.setScreen(new GameScreen(mario, camera));
         }
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
