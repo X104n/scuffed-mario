@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -17,15 +18,16 @@ import desktop.DesktopLauncher;
 public class GameOverScreen implements Screen {
     Viewport viewport;
     Stage stage;
-    ScuffedMario mario;
     OrthographicCamera camera;
+    SpriteBatch batch;
 
-    public GameOverScreen(GameScreen mario, OrthographicCamera camera) {
+    public GameOverScreen(OrthographicCamera camera) {
         //this.mario = mario;
         this.camera = camera;
+        this.batch = new SpriteBatch();
 
         viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, new OrthographicCamera());
-        stage = new Stage(viewport, mario.batch);
+        stage = new Stage(viewport, batch);
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         Label gameOverLabel = new Label("GAME OVER", font);
@@ -50,7 +52,7 @@ public class GameOverScreen implements Screen {
     @Override
     public void render(float v) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            mario.setScreen(new GameScreen(camera));
+            setScreen(new GameScreen(camera));
         }
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -80,6 +82,6 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
     }
 }

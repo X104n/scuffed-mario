@@ -30,8 +30,7 @@ public class GameScreen extends Game implements Screen {
 
     SpriteBatch batch;
     OrthographicCamera camera;
-
-    ScuffedMario mario;
+    //ScuffedMario mario;
 
     Player player;
 
@@ -50,7 +49,7 @@ public class GameScreen extends Game implements Screen {
     public GameScreen(OrthographicCamera camera) {
         this.batch = new SpriteBatch();
         this.camera = camera;
-        this.mario = new ScuffedMario();
+        //this.mario = new ScuffedMario();
 
         this.world = new World(new Vector2(0, -25f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
@@ -87,7 +86,8 @@ public class GameScreen extends Game implements Screen {
         renderer.setView(camera);
         player.update();
 
-        // Make a method for this mess :))
+
+        // TODO: Make a method for this mess :))
         for(int i = 0 ; i < enemies.size() ; i++) { // Loop through all living enemies
             Entity enemy = enemies.get(i);
             enemy.update();
@@ -115,8 +115,9 @@ public class GameScreen extends Game implements Screen {
         // Conditions
         if (player.playerDead() || !player.isAlive()) {
             //resetPlayer();
-            mario.setScreen(new GameOverScreen(this, camera));
-            dispose();
+            this.dispose();
+            setScreen(new GameOverScreen(camera));
+
         }
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit();
