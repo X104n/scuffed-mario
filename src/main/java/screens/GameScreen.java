@@ -207,4 +207,5 @@ public class GameScreen extends Game implements Screen {
     public Player getPlayer(){
         return this.player;
     }
+
 }

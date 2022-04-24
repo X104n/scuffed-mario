@@ -2,6 +2,7 @@ package Objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -19,6 +20,7 @@ public class Player extends Entity {
     GameScreen gameScreen;
     Texture playerTexture;
     ShapeRenderer shapeRenderer;
+    SpriteBatch spriteBatch;
 
     public Player(float width, float height, Body body, GameScreen gameScreen) {
         super(width, height, body);
@@ -28,6 +30,7 @@ public class Player extends Entity {
         this.jumpCounter = 0;
         this.gameScreen = gameScreen;
         this.playerTexture = new Texture("assets/Images/Icon.png");
+        this.spriteBatch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
     }
 
@@ -47,13 +50,8 @@ public class Player extends Entity {
 
     @Override
     public void render(SpriteBatch batch) {
-        shapeRenderer.setProjectionMatrix(gameScreen.getCamera().combined);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.rect(x-height/2, y-width/2, width, height);
-        shapeRenderer.end();
-        //batch.draw(playerTexture, body.getPosition().x * PPM, body.getPosition().y * PPM, width, height);
-        //batch.draw(playerTexture, x - ((float)playerTexture.getWidth())/2, y - ((float)playerTexture.getHeight())/2, width, height);
-        //batch.draw(new Texture("assets/Images/Zelensky.png"), x, y, width, height);
+        batch.setProjectionMatrix(gameScreen.getCamera().combined);
+        batch.draw(playerTexture, x-width/2, y-height/2, width, height);
     }
 
     private void checkUserInput(){
