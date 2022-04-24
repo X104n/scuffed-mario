@@ -1,6 +1,7 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -17,9 +18,12 @@ public class GameOverScreen implements Screen {
     Viewport viewport;
     Stage stage;
     ScuffedMario mario;
+    OrthographicCamera camera;
 
-    public GameOverScreen(ScuffedMario mario) {
-        this.mario = mario;
+    public GameOverScreen(GameScreen mario, OrthographicCamera camera) {
+        //this.mario = mario;
+        this.camera = camera;
+
         viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, new OrthographicCamera());
         stage = new Stage(viewport, mario.batch);
 
@@ -45,6 +49,10 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void render(float v) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            mario.setScreen(new GameScreen(camera));
+        }
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.draw();
