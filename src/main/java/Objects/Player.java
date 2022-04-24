@@ -50,7 +50,6 @@ public class Player extends Entity {
 
     @Override
     public void render(SpriteBatch batch) {
-        batch.setProjectionMatrix(gameScreen.getCamera().combined);
         batch.draw(playerTexture, x-width/2, y-height/2, width, height);
     }
 

@@ -128,10 +128,6 @@ public class GameScreen extends Game implements Screen {
         camera.update();
     }
 
-    public OrthographicCamera getCamera(){
-        return camera;
-    }
-
     @Override
     public void render(float v) {
         this.update();
@@ -141,6 +137,7 @@ public class GameScreen extends Game implements Screen {
 
         batch.begin();
         // Render things here
+        batch.setProjectionMatrix(camera.combined);
         player.render(batch);
 
         batch.end();
