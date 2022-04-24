@@ -49,7 +49,7 @@ public class Player extends Entity {
     public void render(SpriteBatch batch) {
         shapeRenderer.setProjectionMatrix(gameScreen.getCamera().combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.rect(x, y, width, height);
+        shapeRenderer.rect(x-height/2, y-width/2, width, height);
         shapeRenderer.end();
         //batch.draw(playerTexture, body.getPosition().x * PPM, body.getPosition().y * PPM, width, height);
         //batch.draw(playerTexture, x - ((float)playerTexture.getWidth())/2, y - ((float)playerTexture.getHeight())/2, width, height);
