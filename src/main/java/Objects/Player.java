@@ -18,9 +18,7 @@ public class Player extends Entity {
 
     private int jumpCounter;
     GameScreen gameScreen;
-    Texture playerTexture;
-    ShapeRenderer shapeRenderer;
-    SpriteBatch spriteBatch;
+
 
     public Player(float width, float height, Body body, GameScreen gameScreen) {
         super(width, height, body);
@@ -29,9 +27,7 @@ public class Player extends Entity {
         this.speed = 10f;
         this.jumpCounter = 0;
         this.gameScreen = gameScreen;
-        this.playerTexture = new Texture("assets/Images/Icon.png");
-        this.spriteBatch = new SpriteBatch();
-        shapeRenderer = new ShapeRenderer();
+        this.entityTexture = new Texture("assets/Images/Icon.png");
     }
 
     @Override
@@ -48,10 +44,6 @@ public class Player extends Entity {
         return y <= 0f;
     }
 
-    @Override
-    public void render(SpriteBatch batch) {
-        batch.draw(playerTexture, x-width/2, y-height/2, width, height);
-    }
 
     private void checkUserInput(){
         velX = 0;

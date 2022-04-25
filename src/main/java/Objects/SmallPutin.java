@@ -1,5 +1,6 @@
 package Objects;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 
@@ -19,6 +20,7 @@ public class SmallPutin extends Entity{
         System.out.println(width);
         System.out.println(height);
 
+        //this.entityTexture = new Texture("assets/Images/wideputin.png");
         lastTurn = System.currentTimeMillis();
         super.type = ObjectType.SMALLPUTIN;
         velX = 1.5f;

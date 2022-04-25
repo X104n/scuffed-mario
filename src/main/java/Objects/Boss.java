@@ -1,5 +1,6 @@
 package Objects;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import screens.GameScreen;
@@ -17,6 +18,7 @@ public class Boss extends Entity{
         this.screen = screen;
         super.type = ObjectType.BOSS;
         lastjump = System.currentTimeMillis();
+        //this.entityTexture = new Texture("assets/Images/Icon.png");
     }
 
     @Override

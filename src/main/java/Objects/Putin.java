@@ -2,6 +2,7 @@ package Objects;
 
 import Tools.EntetyBuilder;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -25,7 +26,7 @@ public class Putin extends Entity{
     public Putin(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
         super.type = ObjectType.PUTIN;
-
+        this.entityTexture = new Texture("assets/Images/putin.png");
         lastTurn = System.currentTimeMillis();
         lastShot = System.currentTimeMillis();
         velX = 1.5f;

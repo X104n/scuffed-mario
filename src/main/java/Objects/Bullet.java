@@ -20,7 +20,7 @@ public class Bullet extends Entity{
         super(width, height, body);
         screen = gameScreen;
 
-        image = new Texture("assets/Images/bullet.png");
+        //this.entityTexture = new Texture("assets/Images/bullet.png");
         if(goesRight)
             velX = 3f;
         else
