@@ -35,8 +35,6 @@ public class MainMenu implements Screen {
         this.mario = mario;
         this.camera = camera;
         this.batch = new SpriteBatch();
-        //this.assetManager = assetManager;
-        //this.skin = assetManager.get(SKIN);
 
         textureAtlas = new TextureAtlas(Gdx.files.internal("assets/UI/uiskin.atlas"));
         skin = new Skin(Gdx.files.internal("assets/UI/uiskin.json"), textureAtlas);
@@ -77,27 +75,27 @@ public class MainMenu implements Screen {
         playButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("play was pressed");
+                System.out.println("play was pressed"); // just for testing
             }
         });
         optionButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("option was pressed");
+                System.out.println("option was pressed"); // just for testing
             }
         });
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("exit was pressed");
+                System.out.println("exit was pressed"); // just for testing
             }
         });
 
-        table.add(playButton);
+        table.add(playButton).expandX().pad(10).size(100, 50);
         table.row();
-        table.add(optionButton);
+        table.add(optionButton).expandX().pad(10).size(100, 50);
         table.row();
-        table.add(exitButton);
+        table.add(exitButton).expandX().pad(10).size(100, 50);
 
         stage.addActor(table);
     }
