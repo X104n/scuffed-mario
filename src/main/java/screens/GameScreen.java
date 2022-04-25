@@ -43,9 +43,10 @@ public class GameScreen extends Game implements Screen {
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;
     ScuffedMario game;
-    public GameScreen(OrthographicCamera camera) {
+    public GameScreen(ScuffedMario game, OrthographicCamera camera) {
         this.batch = new SpriteBatch();
         this.camera = camera;
+        this.game = game;
 
         this.world = new World(new Vector2(0, -25f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();

@@ -83,7 +83,7 @@ public class MainMenu implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 dispose();
-                mario.setScreen(new GameScreen(camera)); // sets the screen to the game screen
+                mario.setScreen(new GameScreen(mario, camera)); // sets the screen to the game screen
             }
         });
         optionButton.addListener(new ClickListener(){
