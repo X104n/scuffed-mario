@@ -143,6 +143,7 @@ public class GameScreen extends Game implements Screen {
 
         batch.begin();
         // Render things here
+        batch.setProjectionMatrix(camera.combined);
         player.render(batch);
 
         batch.end();
@@ -209,4 +210,5 @@ public class GameScreen extends Game implements Screen {
     public Player getPlayer(){
         return this.player;
     }
+
 }

@@ -2,8 +2,10 @@ package Objects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import screens.GameScreen;
@@ -16,6 +18,9 @@ public class Player extends Entity {
 
     private int jumpCounter;
     GameScreen gameScreen;
+    Texture playerTexture;
+    ShapeRenderer shapeRenderer;
+    SpriteBatch spriteBatch;
 
     public Player(float width, float height, Body body, GameScreen gameScreen) {
         super(width, height, body);
@@ -24,11 +29,14 @@ public class Player extends Entity {
         this.speed = 10f;
         this.jumpCounter = 0;
         this.gameScreen = gameScreen;
-        super.type = ObjectType.PLAYER;
+        this.playerTexture = new Texture("assets/Images/Icon.png");
+        this.spriteBatch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
     }
 
     @Override
     public void update() {
+        //setPosition(body.getPosition().x * PPM, body.getPosition().y * PPM);
 
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
@@ -42,7 +50,7 @@ public class Player extends Entity {
 
     @Override
     public void render(SpriteBatch batch) {
-        //batch.draw(new Texture("assets/Images/Zelensky.png"), x, y, width, height);
+        batch.draw(playerTexture, x-width/2, y-height/2, width, height);
     }
 
     private void checkUserInput(){
@@ -67,7 +75,10 @@ public class Player extends Entity {
         }
 
         body.setLinearVelocity(velX * speed, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
-
+        System.out.println(width);
+        if(x < width/2){
+            body.setTransform(1, body.getPosition().y, 0);
+        }
     }
 
 
