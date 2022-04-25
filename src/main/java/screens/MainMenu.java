@@ -24,6 +24,8 @@ public class MainMenu implements Screen {
     private static final int SETTINGS_BUTTON_WIDTH = 300;
     private static final int SETTINGS_BUTTON_HEIGHT = 150;
 
+    public GameScreen game;
+
     SpriteBatch batch;
     ScuffedMario mario;
     OrthographicCamera camera;
@@ -95,7 +97,8 @@ public class MainMenu implements Screen {
             batch.draw(activePlayButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
             if (Gdx.input.isButtonPressed(0)) {
                 this.dispose();
-                mario.setScreen(new GameScreen(camera)); // problem here
+                game = new GameScreen(camera);
+                mario.setScreen(game); // problem here
             }
         } else {
             batch.draw(playButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
@@ -141,5 +144,9 @@ public class MainMenu implements Screen {
         background.dispose();
         batch.dispose();
         backgroundMusic.dispose();
+    }
+
+    public GameScreen getGame() {
+        return game;
     }
 }
