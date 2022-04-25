@@ -145,7 +145,7 @@ public class GameScreen extends Game implements Screen {
         // Render things here
         batch.setProjectionMatrix(camera.combined);
         player.render(batch);
-        enemies.get(0).render(batch);
+        for(Entity enemy : enemies) enemy.render(batch);
         batch.end();
 
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));

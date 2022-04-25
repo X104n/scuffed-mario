@@ -20,7 +20,7 @@ public class SmallPutin extends Entity{
         System.out.println(width);
         System.out.println(height);
 
-        //this.entityTexture = new Texture("assets/Images/wideputin.png");
+        this.entityTexture = new Texture("assets/Images/wideputin.png");
         lastTurn = System.currentTimeMillis();
         super.type = ObjectType.SMALLPUTIN;
         velX = 1.5f;
@@ -38,11 +38,6 @@ public class SmallPutin extends Entity{
             lastTurn = time;
         }
         body.setLinearVelocity(velX, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
-    }
-
-    @Override
-    public void render(SpriteBatch batch) {
-
     }
 
     public Rectangle getBounds(){

@@ -22,8 +22,6 @@ public class Player extends Entity {
 
     public Player(float width, float height, Body body, GameScreen gameScreen) {
         super(width, height, body);
-        System.out.println(width);
-        System.out.println(height);
         this.speed = 10f;
         this.jumpCounter = 0;
         this.gameScreen = gameScreen;

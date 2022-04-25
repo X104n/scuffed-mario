@@ -26,11 +26,11 @@ public class Putin extends Entity{
     public Putin(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
         super.type = ObjectType.PUTIN;
-        this.entityTexture = new Texture("assets/Images/putin.png");
         lastTurn = System.currentTimeMillis();
         lastShot = System.currentTimeMillis();
         velX = 1.5f;
         this.screen = screen;
+        this.entityTexture = new Texture("assets/Images/putin.png");
     }
 
     @Override
@@ -49,11 +49,6 @@ public class Putin extends Entity{
             lastShot = time;
         }
         body.setLinearVelocity(velX, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
-    }
-
-    @Override
-    public void render(SpriteBatch batch) {
-
     }
 
     public Rectangle getBounds(){
