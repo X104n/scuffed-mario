@@ -47,6 +47,7 @@ public class MainMenu implements Screen {
         viewport.apply();
 
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
+        batch.setProjectionMatrix(camera.combined);
         camera.update();
 
         stage = new Stage(viewport, batch);
@@ -80,19 +81,22 @@ public class MainMenu implements Screen {
         playButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("play was pressed"); // just for testing
+                //System.out.println("play was pressed"); // just for testing
+                dispose();
+                mario.setScreen(new GameScreen(camera)); // sets the screen to the game screen
             }
         });
         optionButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("option was pressed"); // just for testing
+                //System.out.println("option was pressed"); // just for testing
             }
         });
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("exit was pressed"); // just for testing
+                //System.out.println("exit was pressed"); // just for testing
+                Gdx.app.exit();
             }
         });
 
@@ -120,7 +124,8 @@ public class MainMenu implements Screen {
 
     @Override
     public void resize(int i, int i1) {
-
+        camera.viewportWidth = DesktopLauncher.width;
+        camera.viewportHeight = DesktopLauncher.height;
     }
 
     @Override
