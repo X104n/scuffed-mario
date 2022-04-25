@@ -76,6 +76,7 @@ public class MainMenu implements Screen {
 
         TextButton playButton = new TextButton("Play", skin);
         TextButton optionButton = new TextButton("Option", skin);
+        TextButton controlsButton = new TextButton("Controls", skin);
         TextButton exitButton = new TextButton("Exit", skin);
 
         playButton.addListener(new ClickListener(){
@@ -92,6 +93,13 @@ public class MainMenu implements Screen {
                 mario.setScreen(new OptionScreen(camera)); // sets the screen to the option screen
             }
         });
+        controlsButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                dispose();
+                mario.setScreen(new OptionScreen(camera)); // sets the screen to the control screen
+            }
+        });
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -102,6 +110,8 @@ public class MainMenu implements Screen {
         table.add(playButton).expandX().pad(10).size(100, 50);
         table.row();
         table.add(optionButton).expandX().pad(10).size(100, 50);
+        table.row();
+        table.add(controlsButton).expandX().pad(10).size(100, 50);
         table.row();
         table.add(exitButton).expandX().pad(10).size(100, 50);
 
