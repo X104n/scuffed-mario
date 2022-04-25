@@ -44,7 +44,7 @@
 		<profile>
 			<id>inf112-macosx</id>
 			<properties>
-				<exec.args>-XstartOnMainThread</exec.args>
+				<exec.args>-XstartOnFirstThread</exec.args>
 			</properties>
 			<activation>
 				<os>
