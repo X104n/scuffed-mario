@@ -88,6 +88,8 @@ public class MainMenu implements Screen {
         optionButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                dispose();
+                mario.setScreen(new OptionScreen(camera)); // sets the screen to the option screen
             }
         });
         exitButton.addListener(new ClickListener(){
@@ -145,5 +147,8 @@ public class MainMenu implements Screen {
     public void dispose() {
         skin.dispose();
         textureAtlas.dispose();
+        stage.dispose();
+        batch.dispose();
+        backgroundMusic.dispose();
     }
 }

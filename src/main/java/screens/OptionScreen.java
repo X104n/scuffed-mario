@@ -15,12 +15,11 @@ public class OptionScreen implements Screen {
     SpriteBatch batch;
     ScuffedMario mario;
 
-    public OptionScreen(ScuffedMario mario, OrthographicCamera camera) {
-        this.mario = mario;
+    public OptionScreen(OrthographicCamera camera) {
         this.camera = camera;
         this.batch = new SpriteBatch();
 
-        viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, new OrthographicCamera());
+        viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, camera);
         viewport.apply();
 
         camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
