@@ -81,7 +81,6 @@ public class MainMenu implements Screen {
         playButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //System.out.println("play was pressed"); // just for testing
                 dispose();
                 mario.setScreen(new GameScreen(camera)); // sets the screen to the game screen
             }
@@ -89,13 +88,11 @@ public class MainMenu implements Screen {
         optionButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //System.out.println("option was pressed"); // just for testing
             }
         });
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //System.out.println("exit was pressed"); // just for testing
                 Gdx.app.exit();
             }
         });
