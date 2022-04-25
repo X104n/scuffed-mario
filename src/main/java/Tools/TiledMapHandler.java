@@ -1,5 +1,6 @@
 package Tools;
 
+import Objects.Boss;
 import Objects.Player;
 import Objects.Putin;
 import com.badlogic.gdx.maps.MapObject;
@@ -66,6 +67,18 @@ public class TiledMapHandler {
                             gameScreen.getWorld()
                     );
                     gameScreen.enemies.add(new Putin(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
+                }
+                if(rectangleName.equals("Boss"))
+                {
+                    Body body = EntetyBuilder.createBody(
+                            rectangle.getX() + rectangle.getWidth() /2,
+                            rectangle.getY() + rectangle.getHeight() / 2,
+                            rectangle.getWidth(),
+                            rectangle.getHeight(),
+                            false,
+                            gameScreen.getWorld()
+                    );
+                    gameScreen.enemies.add(new Boss(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
             }
         }

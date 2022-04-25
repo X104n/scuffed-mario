@@ -10,7 +10,7 @@ public class Boss extends Entity{
 
     GameScreen screen;
     long lastjump;
-    double JUMPCD = 5.0;
+    double JUMPCD = 5000;
     public Boss(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
         velY = 0;
@@ -24,10 +24,11 @@ public class Boss extends Entity{
         long currentTime = System.currentTimeMillis();
         if(currentTime - lastjump > JUMPCD) {
             lastjump = currentTime;
-            velY = 5;
+            velY = 7;
         }
-        velY -= 2;
-        body.setLinearVelocity(body.getLinearVelocity().x, velY < 25 ? body.getLinearVelocity().y : 25);
+        velY = velY - 0.1f;
+        body.setLinearVelocity(0, velY);
+        System.out.println(velY);
     }
 
     @Override
