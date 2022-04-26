@@ -1,9 +1,15 @@
 package screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import desktop.DesktopLauncher;
@@ -13,20 +19,29 @@ public class OptionScreen implements Screen {
     Stage stage;
     OrthographicCamera camera;
     SpriteBatch batch;
-    ScuffedMario mario;
+    ScuffedMario game;
 
-    public OptionScreen(OrthographicCamera camera) {
+    public OptionScreen(ScuffedMario game, OrthographicCamera camera) {
+        this.game = game;
         this.camera = camera;
         this.batch = new SpriteBatch();
 
-        viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, camera);
-        viewport.apply();
-
-        camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
-        batch.setProjectionMatrix(camera.combined);
-        camera.update();
-
+        viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, new OrthographicCamera());
         stage = new Stage(viewport, batch);
+
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
+        Label gameOverLabel = new Label("GAME OVER", font);
+        Label playAgainLabel = new Label("Press ENTER to play again", font);
+
+        Table table = new Table();
+        table.center();
+        table.setFillParent(true); // This table will take up the entire screen
+
+        table.add(gameOverLabel).expandX();
+        table.row();
+        table.add(playAgainLabel).expandX();
+
+        stage.addActor(table);
     }
     @Override
     public void show() {
@@ -35,7 +50,9 @@ public class OptionScreen implements Screen {
 
     @Override
     public void render(float v) {
-
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.draw();
     }
 
     @Override
@@ -60,6 +77,6 @@ public class OptionScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
     }
 }
