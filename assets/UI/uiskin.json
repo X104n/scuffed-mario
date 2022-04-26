@@ -42,8 +42,8 @@ ProgressBarStyle: {
 	default-vertical: { background: default-slider, knob: default-round-large }
 },
 SliderStyle: {
-	default-horizontal: { parent: default-horizontal },
-	default-vertical: { parent: default-vertical }
+	default-horizontal: { parent: default-horizontal, background: default-slider, knob: default-slider-knob },
+	default-vertical: { parent: default-vertical, background: default-slider, knob: default-round-large }
 },
 LabelStyle: {
 	default: { font: default-font, fontColor: white }

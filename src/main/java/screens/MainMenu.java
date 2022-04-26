@@ -3,6 +3,7 @@ package screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -133,8 +134,9 @@ public class MainMenu implements Screen {
 
     @Override
     public void resize(int i, int i1) {
-        camera.viewportWidth = DesktopLauncher.width;
-        camera.viewportHeight = DesktopLauncher.height;
+        stage.getViewport().update(DesktopLauncher.width,DesktopLauncher.height);
+        Camera camera=stage.getCamera();
+        camera.position.set(camera.viewportWidth/2.0f,camera.viewportHeight/2.0f,0);
     }
 
     @Override
