@@ -39,34 +39,29 @@ public class OptionScreen implements Screen {
     }
     @Override
     public void show() {
-        /*Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-        Label mainMenuMusic = new Label("Main menu music", skin);
-        Label gameMusic = new Label("Game music", skin);*/
-
         TextButton mainMenuMusicButton = new TextButton("Main menu music", skin);
         TextButton gameMusicButton = new TextButton("Game music", skin);
 
         Gdx.input.setInputProcessor(stage);
 
-        Slider slider = new Slider(0, 100, 0.1f, false, skin);
+        Slider slider = new Slider(1, 100, 0.1f, false, skin);
         slider.setValue(1);
         Container<Slider> sliderContainer = new Container<Slider>(slider);
         sliderContainer.setTransform(true);
 
         sliderContainer.setOrigin(slider.getWidth() / 2, slider.getHeight() / 2);
-        sliderContainer.setSize(slider.getWidth(), slider.getHeight());
+        sliderContainer.setPosition(1000, 300);
         sliderContainer.setScale(2);
+        sliderContainer.setSize(slider.getWidth() * 2, slider.getHeight() * 2);
 
         Table table = new Table();
-        table.center();
         table.setFillParent(true); // This table will take up the entire screen
+
         table.setWidth(400);
-        table.add(mainMenuMusicButton).center();
-        table.row();
-        table.add(sliderContainer).width(sliderContainer.getWidth()).center();
-        table.add(gameMusicButton).expandX();
-        table.row();
-        table.add(sliderContainer).width(sliderContainer.getWidth()).center();
+        table.add(mainMenuMusicButton).padRight(80);
+        table.add(sliderContainer).width(sliderContainer.getWidth());
+
+        table.pack();
 
         stage.addActor(table);
         stage.addActor(slider);
