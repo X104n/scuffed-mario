@@ -53,6 +53,11 @@ public class Player extends Entity {
         batch.draw(playerTexture, x-width/2, y-height/2, width, height);
     }
 
+    @Override
+    public boolean collide(Player player) {
+        return false;
+    }
+
     private void checkUserInput(){
         velX = 0;
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
