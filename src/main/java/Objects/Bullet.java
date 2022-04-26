@@ -48,6 +48,11 @@ public class Bullet extends Entity{
         lastX = body.getPosition().x;
     }
 
+    public boolean collide(Player player){
+        player.die();
+        return false;
+    }
+
     @Override
     public void render(SpriteBatch batch) {
         //batch.draw(new Texture("assets/Images/Bullet.png"), x, y, width, height);

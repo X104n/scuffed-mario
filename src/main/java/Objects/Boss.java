@@ -41,6 +41,11 @@ public class Boss extends Entity{
         return new Rectangle((int) this.x - (int) this.width / 2, (int) this.y - (int) this.height / 2, (int) this.width, (int) this.height);
     }
 
+    public boolean collide(Player player){
+        return false;
+    }
+
+
     @Override
     public boolean deathCriterium(Entity player) {
         return false;

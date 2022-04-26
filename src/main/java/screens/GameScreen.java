@@ -93,27 +93,11 @@ public class GameScreen extends Game implements Screen {
         for(int i = 0 ; i < enemies.size() ; i++) { // Loop through all living enemies
             Entity enemy = enemies.get(i);
             enemy.update();
-            if (checkPlayerCollision(player, enemy) && enemy.deathCriterium(player)) {
-                ObjectType objtype = enemy.getObjType();
-                switch(objtype) { //Determine how different collisions should affect the game
-                    case PUTIN:
-                        spawnSmallPutin((int) enemy.getBody().getPosition().x * (int) PPM,  (int) enemy.getBody().getPosition().y * (int) PPM + 1, (int) enemy.getWidth(), (int) enemy.getHeight());
-                        world.destroyBody(enemy.getBody());
-                        enemy.die();
-                        enemies.remove(enemy);
-                        break;
-                    case BULLET:
-                        player.die();
-                        break;
-                    case SMALLPUTIN:
-                        world.destroyBody(enemy.getBody());
-                        enemy.die();
-                        enemies.remove(enemy);
-                }
-                i -= 1;
+            if (checkPlayerCollision(player, enemy)) {
+                if(enemy.collide(player)) //Returns true if enemy dies
+                    i -= 1;
             }
         }
-
         // Conditions
         if (player.playerDead() || !player.isAlive())
             resetPlayer();
@@ -185,20 +169,6 @@ public class GameScreen extends Game implements Screen {
         box2DDebugRenderer.dispose();
         backgroundMusic.dispose();
         batch.dispose();
-    }
-
-    private void spawnSmallPutin(int x, int y, int w, int h){
-        Rectangle rectangle = new Rectangle(x,y,w,h/2);
-
-            Body body = EntetyBuilder.createBody(
-                    rectangle.getX() + rectangle.getWidth() / 2,
-                    rectangle.getY() - rectangle.getHeight() / 2,
-                    rectangle.getWidth(),
-                    rectangle.getHeight(),
-                    false,
-                    this.getWorld()
-            );
-            enemies.add(new SmallPutin(rectangle.getWidth(), rectangle.getHeight(), body));
     }
 
     private boolean checkPlayerCollision(Player player, Entity ent2){
