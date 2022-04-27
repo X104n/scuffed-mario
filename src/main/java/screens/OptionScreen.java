@@ -9,10 +9,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import desktop.DesktopLauncher;
@@ -53,13 +51,6 @@ public class OptionScreen implements Screen {
 
         Slider menuSlider = new Slider(1, 100, 0.1f, false, skin);
         gameSlider.setValue(1);
-        //Container<Slider> sliderContainer = new Container<Slider>(slider);
-        //sliderContainer.setTransform(true);
-
-        //sliderContainer.setOrigin(slider.getWidth() / 2, slider.getHeight() / 2);
-        //sliderContainer.setPosition(1000, 300);
-        //sliderContainer.setScale(2);
-        //sliderContainer.setSize(slider.getWidth() * 2, slider.getHeight() * 2);
 
         Table table = new Table();
         table.setFillParent(true); // This table will take up the entire screen
@@ -70,14 +61,10 @@ public class OptionScreen implements Screen {
         table.row().padTop(20);
         table.add(gameMusicButtonLabel).padRight(20);
         table.add(menuSlider).center();
-        /*table.add(gameMusicButton).padRight(20);
-        table.add(gameSlider).center();*/
-        //table.add(sliderContainer).width(sliderContainer.getWidth());
 
         table.pack();
 
         stage.addActor(table);
-        //stage.addActor(slider);
     }
 
     @Override
