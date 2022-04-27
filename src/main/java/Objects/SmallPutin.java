@@ -18,9 +18,7 @@ public class SmallPutin extends Entity{
 
     public SmallPutin(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
-        System.out.println(width);
-        System.out.println(height);
-
+        super.screen = screen;
         this.entityTexture = new Texture("assets/Images/wideputin.png");
         lastTurn = System.currentTimeMillis();
         super.type = ObjectType.SMALLPUTIN;
@@ -39,6 +37,16 @@ public class SmallPutin extends Entity{
             lastTurn = time;
         }
         body.setLinearVelocity(velX, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
+    }
+
+    @Override
+    public boolean collide(Player player) {
+        if(deathCriterium(player)) {
+            screen.getWorld().destroyBody(this.getBody());
+            screen.enemies.remove(this);
+            return true;
+        }
+        return false;
     }
 
     public Rectangle getBounds(){

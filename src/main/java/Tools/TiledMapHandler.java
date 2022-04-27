@@ -3,6 +3,7 @@ package Tools;
 import Objects.Boss;
 import Objects.Player;
 import Objects.Putin;
+import Objects.Vodka;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
@@ -79,6 +80,18 @@ public class TiledMapHandler {
                             gameScreen.getWorld()
                     );
                     gameScreen.enemies.add(new Boss(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
+                }
+                if(rectangleName.equals("Vodka"))
+                {
+                    Body body = EntetyBuilder.createBody(
+                            rectangle.getX() + rectangle.getWidth() /2,
+                            rectangle.getY() + rectangle.getHeight() / 2,
+                            rectangle.getWidth(),
+                            rectangle.getHeight(),
+                            false,
+                            gameScreen.getWorld()
+                    );
+                    gameScreen.enemies.add(new Vodka(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
             }
         }

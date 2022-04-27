@@ -22,9 +22,9 @@ public class Bullet extends Entity{
 
         this.entityTexture = new Texture("assets/Images/bullet.png");
         if(goesRight)
-            velX = 3f;
+            velX = 6f;
         else
-            velX = -3f;
+            velX = -6f;
         super.type = ObjectType.BULLET;
     }
 
