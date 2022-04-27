@@ -122,7 +122,8 @@ public class GameScreen extends Game implements Screen {
             Gdx.app.exit();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.R)) { // if the player should get stuck in the game
-            resetPlayer();
+            this.dispose();
+            game.setScreen(new GameScreen(game, camera));
         }
     }
 
