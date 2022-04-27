@@ -70,6 +70,7 @@ public class MainMenu implements Screen {
         backgroundMusic.play();
         System.out.println("menuVolume from main menu: " + OptionScreen.menuVolume);
         backgroundMusic.setVolume(OptionScreen.menuVolume); // set the menu volume to the volume from the options screen
+        backgroundMusic.setLooping(true);
 
         Gdx.input.setInputProcessor(stage);
 
@@ -100,7 +101,7 @@ public class MainMenu implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 dispose();
-                mario.setScreen(new OptionScreen(mario, camera)); // sets the screen to the control screen
+                mario.setScreen(new ControlScreen(mario, camera)); // sets the screen to the control screen
             }
         });
         exitButton.addListener(new ClickListener(){

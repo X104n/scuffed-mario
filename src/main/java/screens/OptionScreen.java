@@ -55,10 +55,10 @@ public class OptionScreen implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         Slider gameSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
-        gameSlider.setValue(1);
+        gameSlider.setValue((float) 0.1);
 
         Slider menuSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
-        menuSlider.setValue(1);
+        menuSlider.setValue((float) 0.1);
 
         Table table = new Table();
         table.setFillParent(true); // This table will take up the entire screen
@@ -79,6 +79,7 @@ public class OptionScreen implements Screen {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                dispose();
                 game.setScreen(new MainMenu(game, camera));
             }
         });
@@ -152,5 +153,9 @@ public class OptionScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+        stage.dispose();
+        skin.dispose();
+        textureAtlas.dispose();
+        backgroundMusic.dispose();
     }
 }
