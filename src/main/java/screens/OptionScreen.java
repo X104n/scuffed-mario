@@ -2,6 +2,7 @@ package screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,19 +10,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import desktop.DesktopLauncher;
-
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.addListener;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
 
 public class OptionScreen implements Screen {
     Viewport viewport;
@@ -31,6 +27,7 @@ public class OptionScreen implements Screen {
     ScuffedMario game;
     Skin skin;
     TextureAtlas textureAtlas;
+    Music backgroundMusic;
 
     public static float gameVolume = 1.0f;
     public static float menuVolume = 0.1f;
@@ -45,6 +42,7 @@ public class OptionScreen implements Screen {
         skin = new Skin(Gdx.files.internal("assets/UI/uiskin.json"));
         textureAtlas = new TextureAtlas(Gdx.files.internal("assets/UI/uiskin.atlas"));
         skin.addRegions(textureAtlas);
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/thomas.mp3"));
     }
     @Override
     public void show() {
@@ -56,7 +54,7 @@ public class OptionScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
-        Slider gameSlider = new Slider((float) 0.1, 10, 0.1f, false, skin);
+        Slider gameSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
         gameSlider.setValue(1);
 
         Slider menuSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
