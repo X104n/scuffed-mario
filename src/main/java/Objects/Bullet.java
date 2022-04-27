@@ -22,9 +22,9 @@ public class Bullet extends Entity{
 
         this.entityTexture = new Texture("assets/Images/bullet.png");
         if(goesRight)
-            velX = 6f;
+            velX = 12f;
         else
-            velX = -6f;
+            velX = -12f;
         super.type = ObjectType.BULLET;
     }
 
@@ -41,7 +41,7 @@ public class Bullet extends Entity{
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
         body.setLinearVelocity(velX, 0.45f);
-        if(Math.abs(body.getPosition().x - lastX) < 0.03){
+        if(Math.abs(body.getPosition().x - lastX) < 0.06){
             screen.getWorld().destroyBody(body);
             screen.enemies.remove(this);
         }
