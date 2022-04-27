@@ -134,18 +134,6 @@ public class OptionScreen implements Screen {
         });
     }
 
-    public float getGameVolume() {
-        return gameVolume;
-    }
-
-    public float getMenuVolume() {
-        return menuVolume;
-    }
-
-    public static float getControlVolume() {
-        return controlVolume;
-    }
-
     @Override
     public void render(float v) {
         Gdx.gl.glClearColor(0, 0, 0, 1);

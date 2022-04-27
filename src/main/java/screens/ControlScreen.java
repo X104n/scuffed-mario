@@ -56,9 +56,10 @@ public class ControlScreen implements Screen {
     @Override
     public void show() {
         backgroundMusic.play();
+        System.out.println("controlVolume from options: ");
         backgroundMusic.setLooping(true);
-        System.out.println(OptionScreen.getControlVolume());
-        backgroundMusic.setVolume(OptionScreen.getControlVolume());
+        System.out.println(OptionScreen.controlVolume);
+        backgroundMusic.setVolume(OptionScreen.controlVolume);
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         Label movementLabel = new Label("Move with WASD", font);

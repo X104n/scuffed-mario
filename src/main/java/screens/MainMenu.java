@@ -59,17 +59,10 @@ public class MainMenu implements Screen {
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/thomas.mp3"));
     }
 
-/*    private TextButton addButton(String text) {
-        TextButton button = new TextButton(text, skin);
-        table.add(button);
-        table.row();
-        return button;
-    }*/
-
     @Override
     public void show() {
         backgroundMusic.play();
-        System.out.println("menuVolume from main menu: " + OptionScreen.menuVolume);
+        System.out.println("menuVolume from options: " + OptionScreen.menuVolume);
         backgroundMusic.setVolume(OptionScreen.menuVolume); // set the menu volume to the volume from the options screen
         backgroundMusic.setLooping(true);
 
@@ -80,7 +73,7 @@ public class MainMenu implements Screen {
         stage.addActor(table);
 
         TextButton playButton = new TextButton("Play", skin);
-        TextButton optionButton = new TextButton("Option", skin);
+        TextButton optionButton = new TextButton("Options", skin);
         TextButton controlsButton = new TextButton("Controls", skin);
         TextButton exitButton = new TextButton("Exit", skin);
 
