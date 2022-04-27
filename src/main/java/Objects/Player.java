@@ -43,6 +43,11 @@ public class Player extends Entity {
     }
 
 
+    @Override
+    public boolean collide(Player player) {
+        return false;
+    }
+
     private void checkUserInput(){
         velX = 0;
         if(Gdx.input.isKeyPressed(Input.Keys.D)){

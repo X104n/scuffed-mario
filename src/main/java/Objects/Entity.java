@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.physics.box2d.Body;
+import screens.GameScreen;
 
 import java.awt.*;
 
@@ -15,7 +16,7 @@ public abstract class Entity {
     SpriteBatch spriteBatch;
     Texture entityTexture;
     protected boolean isAlive = true;
-
+    GameScreen screen;
     public ObjectType type;
 
     public Entity(float width, float height, Body body){
@@ -45,7 +46,10 @@ public abstract class Entity {
         return body;
     }
 
+    public abstract boolean collide(Player player);
+
     public ObjectType getObjType() { return type; }
+
     public boolean isAlive(){ return this.isAlive; }
 
     public void die(){ this.isAlive = false; }

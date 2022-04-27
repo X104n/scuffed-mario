@@ -3,6 +3,7 @@ package Objects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
+import screens.GameScreen;
 
 import java.awt.*;
 
@@ -15,7 +16,7 @@ public class SmallPutin extends Entity{
 
     int timeBeforeTurn = 2000;
 
-    public SmallPutin(float width, float height, Body body) {
+    public SmallPutin(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
         System.out.println(width);
         System.out.println(height);

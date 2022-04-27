@@ -21,7 +21,6 @@ public class Putin extends Entity{
     int timeBeforeTurn = 2000;
     int reloadSpeed = 1000;
 
-    GameScreen screen;
 
     public Putin(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
@@ -55,9 +54,30 @@ public class Putin extends Entity{
         return new Rectangle((int) this.x - (int) this.width / 2, (int) this.y - (int) this.height / 2, (int) this.width, (int) this.height);
     }
 
+    @Override
+    public boolean collide(Player player){
+        if(deathCriterium(player)) {
+            spawnSmallPutin((int) this.getBody().getPosition().x * (int) PPM, (int) this.getBody().getPosition().y * (int) PPM + 1, (int) this.getWidth(), (int) this.getHeight());
+            screen.getWorld().destroyBody(this.getBody());
+            this.die();
+            screen.enemies.remove(this);
+            return true;
+        }
+        return false;
+    }
 
-    public Putin getPutin(){
-        return this;
+    private void spawnSmallPutin(int x, int y, int w, int h){
+        com.badlogic.gdx.math.Rectangle rectangle = new com.badlogic.gdx.math.Rectangle(x,y,w,h/2);
+
+        Body body = EntetyBuilder.createBody(
+                rectangle.getX() + rectangle.getWidth() / 2,
+                rectangle.getY() - rectangle.getHeight() / 2,
+                rectangle.getWidth(),
+                rectangle.getHeight(),
+                false,
+                screen.getWorld()
+        );
+       screen.enemies.add(new SmallPutin(rectangle.getWidth(), rectangle.getHeight(), body, super.screen));
     }
 
     private void shoot(){
