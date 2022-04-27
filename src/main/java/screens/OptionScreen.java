@@ -9,8 +9,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import desktop.DesktopLauncher;
@@ -37,8 +39,7 @@ public class OptionScreen implements Screen {
     }
     @Override
     public void show() {
-        TextButton mainMenuMusicButton = new TextButton("Main menu music", skin);
-        TextButton gameMusicButton = new TextButton("Game music", skin);
+        TextButton backButton = new TextButton("Back", skin);
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         Label mainMenuMusicLabel = new Label("Main menu music", font);
@@ -61,10 +62,19 @@ public class OptionScreen implements Screen {
         table.row().padTop(20);
         table.add(gameMusicButtonLabel).padRight(20);
         table.add(menuSlider).center();
+        table.row().padTop(100);
+        table.add(backButton).center();
 
         table.pack();
 
         stage.addActor(table);
+
+        backButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new MainMenu(game, camera));
+            }
+        });
     }
 
     @Override
