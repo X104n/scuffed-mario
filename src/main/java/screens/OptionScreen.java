@@ -30,8 +30,9 @@ public class OptionScreen implements Screen {
     TextureAtlas textureAtlas;
     Music backgroundMusic;
 
-    public static float gameVolume = 1.0f;
+    public static float gameVolume = 0.1f;
     public static float menuVolume = 0.1f;
+    public static float controlVolume = 0.1f;
 
     public OptionScreen(ScuffedMario game, OrthographicCamera camera) {
         this.game = game;
@@ -52,6 +53,7 @@ public class OptionScreen implements Screen {
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         Label mainMenuMusicLabel = new Label("Main menu music", font);
         Label gameMusicButtonLabel = new Label("Game music", font);
+        Label controlMusicButtonLabel = new Label("Control menu music", font);
 
         Gdx.input.setInputProcessor(stage);
 
@@ -60,6 +62,9 @@ public class OptionScreen implements Screen {
 
         Slider menuSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
         menuSlider.setValue((float) 0.1);
+
+        Slider controlSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
+        controlSlider.setValue((float) 0.1);
 
         Table table = new Table();
         table.setFillParent(true); // This table will take up the entire screen
@@ -70,6 +75,9 @@ public class OptionScreen implements Screen {
         table.row().padTop(20);
         table.add(gameMusicButtonLabel).padRight(20);
         table.add(gameSlider).center();
+        table.row().padTop(20);
+        table.add(controlMusicButtonLabel).padRight(20);
+        table.add(controlSlider).center();
         table.row().padTop(100);
         table.add(backButton).center();
 
@@ -111,6 +119,19 @@ public class OptionScreen implements Screen {
                 return true;
             }
         });
+
+        controlSlider.addListener(new InputListener() {
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                controlVolume = controlSlider.getValue();
+                //System.out.println("slider changed to: " + gameSlider.getValue()); // Prints the slider value
+                System.out.println("control volume: " + controlVolume);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
     }
 
     public float getGameVolume() {
@@ -119,6 +140,10 @@ public class OptionScreen implements Screen {
 
     public float getMenuVolume() {
         return menuVolume;
+    }
+
+    public static float getControlVolume() {
+        return controlVolume;
     }
 
     @Override
