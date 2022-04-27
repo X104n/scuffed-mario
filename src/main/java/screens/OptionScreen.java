@@ -42,29 +42,42 @@ public class OptionScreen implements Screen {
         TextButton mainMenuMusicButton = new TextButton("Main menu music", skin);
         TextButton gameMusicButton = new TextButton("Game music", skin);
 
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
+        Label mainMenuMusicLabel = new Label("Main menu music", font);
+        Label gameMusicButtonLabel = new Label("Game music", font);
+
         Gdx.input.setInputProcessor(stage);
 
-        Slider slider = new Slider(1, 100, 0.1f, false, skin);
-        slider.setValue(1);
-        Container<Slider> sliderContainer = new Container<Slider>(slider);
-        sliderContainer.setTransform(true);
+        Slider gameSlider = new Slider(1, 100, 0.1f, false, skin);
+        gameSlider.setValue(1);
 
-        sliderContainer.setOrigin(slider.getWidth() / 2, slider.getHeight() / 2);
-        sliderContainer.setPosition(1000, 300);
-        sliderContainer.setScale(2);
-        sliderContainer.setSize(slider.getWidth() * 2, slider.getHeight() * 2);
+        Slider menuSlider = new Slider(1, 100, 0.1f, false, skin);
+        gameSlider.setValue(1);
+        //Container<Slider> sliderContainer = new Container<Slider>(slider);
+        //sliderContainer.setTransform(true);
+
+        //sliderContainer.setOrigin(slider.getWidth() / 2, slider.getHeight() / 2);
+        //sliderContainer.setPosition(1000, 300);
+        //sliderContainer.setScale(2);
+        //sliderContainer.setSize(slider.getWidth() * 2, slider.getHeight() * 2);
 
         Table table = new Table();
         table.setFillParent(true); // This table will take up the entire screen
 
         table.setWidth(400);
-        table.add(mainMenuMusicButton).padRight(80);
-        table.add(sliderContainer).width(sliderContainer.getWidth());
+        table.add(mainMenuMusicLabel).padRight(20);
+        table.add(gameSlider).center();
+        table.row().padTop(20);
+        table.add(gameMusicButtonLabel).padRight(20);
+        table.add(menuSlider).center();
+        /*table.add(gameMusicButton).padRight(20);
+        table.add(gameSlider).center();*/
+        //table.add(sliderContainer).width(sliderContainer.getWidth());
 
         table.pack();
 
         stage.addActor(table);
-        stage.addActor(slider);
+        //stage.addActor(slider);
     }
 
     @Override
