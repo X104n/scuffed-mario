@@ -20,7 +20,7 @@ public class Bullet extends Entity{
         super(width, height, body);
         screen = gameScreen;
 
-        image = new Texture("assets/Images/bullet.png");
+        this.entityTexture = new Texture("assets/Images/bullet.png");
         if(goesRight)
             velX = 3f;
         else
@@ -51,11 +51,6 @@ public class Bullet extends Entity{
     public boolean collide(Player player){
         player.die();
         return false;
-    }
-
-    @Override
-    public void render(SpriteBatch batch) {
-        //batch.draw(new Texture("assets/Images/Bullet.png"), x, y, width, height);
     }
 
     @Override

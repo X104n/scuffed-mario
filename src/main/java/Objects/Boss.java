@@ -1,5 +1,6 @@
 package Objects;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import screens.GameScreen;
@@ -17,6 +18,7 @@ public class Boss extends Entity{
         this.screen = screen;
         super.type = ObjectType.BOSS;
         lastjump = System.currentTimeMillis();
+        this.entityTexture = new Texture("assets/Images/black_box.png");
     }
 
     @Override
@@ -28,13 +30,8 @@ public class Boss extends Entity{
         }
         velY = velY - 0.1f;
         body.setLinearVelocity(0, velY);
-        System.out.println(velY);
     }
 
-    @Override
-    public void render(SpriteBatch batch) {
-
-    }
 
     @Override
     public Rectangle getBounds() {
