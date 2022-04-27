@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import desktop.DesktopLauncher;
+import screens.OptionScreen;
 
 import java.awt.*;
 
@@ -67,7 +68,8 @@ public class MainMenu implements Screen {
     @Override
     public void show() {
         backgroundMusic.play();
-        backgroundMusic.setVolume(0.01f); // sets volume to 0.1%
+        System.out.println("menuVolume from main menu: " + OptionScreen.menuVolume);
+        backgroundMusic.setVolume(OptionScreen.menuVolume); // set the menu volume to the volume from the options screen
 
         Gdx.input.setInputProcessor(stage);
 

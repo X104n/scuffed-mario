@@ -75,7 +75,8 @@ public class GameScreen extends Game implements Screen {
     @Override
     public void show() {
         backgroundMusic.play();
-        backgroundMusic.setVolume(0.11f);
+        System.out.println("gameVolume from main menu: " + OptionScreen.gameVolume);
+        backgroundMusic.setVolume(OptionScreen.gameVolume);
     }
 
     public void update() {

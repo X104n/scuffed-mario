@@ -32,6 +32,9 @@ public class OptionScreen implements Screen {
     Skin skin;
     TextureAtlas textureAtlas;
 
+    public static float gameVolume = 1.0f;
+    public static float menuVolume = 0.1f;
+
     public OptionScreen(ScuffedMario game, OrthographicCamera camera) {
         this.game = game;
         this.camera = camera;
@@ -45,8 +48,6 @@ public class OptionScreen implements Screen {
     }
     @Override
     public void show() {
-        float gameVolume = 0.0f;
-        float menuVolume = 0.0f;
         TextButton backButton = new TextButton("Back", skin);
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
@@ -55,7 +56,7 @@ public class OptionScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
-        Slider gameSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
+        Slider gameSlider = new Slider((float) 0.1, 10, 0.1f, false, skin);
         gameSlider.setValue(1);
 
         Slider menuSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
@@ -76,7 +77,6 @@ public class OptionScreen implements Screen {
         table.pack();
 
         stage.addActor(table);
-        table.addAction(fadeIn(2f));
 
         backButton.addListener(new ClickListener() {
             @Override
@@ -85,22 +85,11 @@ public class OptionScreen implements Screen {
             }
         });
 
-        /*gameSlider.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                gameSlider.setValue(actor.getX());
-                //gameSlider.getListeners().get(0).handle(event);
-                setVolume[0] = gameSlider.getValue();
-                float test = gameSlider.getValue();
-                System.out.println("gameSlider: " + test);
-            }
-        });*/
-
         // Slider listener
         gameSlider.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                float gameVolume = gameSlider.getValue();
+                gameVolume = gameSlider.getValue();
                 //System.out.println("slider changed to: " + gameSlider.getValue()); // Prints the slider value
                 System.out.println("game volume: " + gameVolume);
             }
@@ -113,7 +102,7 @@ public class OptionScreen implements Screen {
         menuSlider.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                float menuVolume = menuSlider.getValue();
+                menuVolume = menuSlider.getValue();
                 //System.out.println("slider changed to: " + gameSlider.getValue()); // Prints the slider value
                 System.out.println("menu volume: " + menuVolume);
             }
@@ -122,12 +111,15 @@ public class OptionScreen implements Screen {
                 return true;
             }
         });
-
-        //float test = gameSlider.getValue();
-
-        //System.out.println("gameSlider: " + test);
     }
 
+    public float getGameVolume() {
+        return gameVolume;
+    }
+
+    public float getMenuVolume() {
+        return menuVolume;
+    }
 
     @Override
     public void render(float v) {
