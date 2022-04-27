@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import desktop.DesktopLauncher;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.addListener;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
 
 public class OptionScreen implements Screen {
     Viewport viewport;
@@ -44,7 +45,8 @@ public class OptionScreen implements Screen {
     }
     @Override
     public void show() {
-        final float[] setVolume = {0.0f};
+        float gameVolume = 0.0f;
+        float menuVolume = 0.0f;
         TextButton backButton = new TextButton("Back", skin);
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
@@ -57,7 +59,7 @@ public class OptionScreen implements Screen {
         gameSlider.setValue(1);
 
         Slider menuSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
-        gameSlider.setValue(1);
+        menuSlider.setValue(1);
 
         Table table = new Table();
         table.setFillParent(true); // This table will take up the entire screen
@@ -74,6 +76,7 @@ public class OptionScreen implements Screen {
         table.pack();
 
         stage.addActor(table);
+        table.addAction(fadeIn(2f));
 
         backButton.addListener(new ClickListener() {
             @Override
@@ -97,8 +100,22 @@ public class OptionScreen implements Screen {
         gameSlider.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("slider changed to: " + gameSlider.getValue());
-                // Set volume to slider.getValue();
+                float gameVolume = gameSlider.getValue();
+                //System.out.println("slider changed to: " + gameSlider.getValue()); // Prints the slider value
+                System.out.println("game volume: " + gameVolume);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+
+        menuSlider.addListener(new InputListener() {
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                float menuVolume = menuSlider.getValue();
+                //System.out.println("slider changed to: " + gameSlider.getValue()); // Prints the slider value
+                System.out.println("menu volume: " + menuVolume);
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
