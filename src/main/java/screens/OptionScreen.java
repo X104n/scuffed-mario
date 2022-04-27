@@ -9,13 +9,18 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import desktop.DesktopLauncher;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.addListener;
 
 public class OptionScreen implements Screen {
     Viewport viewport;
@@ -39,6 +44,7 @@ public class OptionScreen implements Screen {
     }
     @Override
     public void show() {
+        final float[] setVolume = {0.0f};
         TextButton backButton = new TextButton("Back", skin);
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
@@ -47,10 +53,10 @@ public class OptionScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
-        Slider gameSlider = new Slider(1, 100, 0.1f, false, skin);
+        Slider gameSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
         gameSlider.setValue(1);
 
-        Slider menuSlider = new Slider(1, 100, 0.1f, false, skin);
+        Slider menuSlider = new Slider((float) 0.1, 1, 0.1f, false, skin);
         gameSlider.setValue(1);
 
         Table table = new Table();
@@ -58,10 +64,10 @@ public class OptionScreen implements Screen {
 
         table.setWidth(400);
         table.add(mainMenuMusicLabel).padRight(20);
-        table.add(gameSlider).center();
+        table.add(menuSlider).center();
         table.row().padTop(20);
         table.add(gameMusicButtonLabel).padRight(20);
-        table.add(menuSlider).center();
+        table.add(gameSlider).center();
         table.row().padTop(100);
         table.add(backButton).center();
 
@@ -75,11 +81,39 @@ public class OptionScreen implements Screen {
                 game.setScreen(new MainMenu(game, camera));
             }
         });
+
+        /*gameSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeListener.ChangeEvent event, Actor actor) {
+                gameSlider.setValue(actor.getX());
+                //gameSlider.getListeners().get(0).handle(event);
+                setVolume[0] = gameSlider.getValue();
+                float test = gameSlider.getValue();
+                System.out.println("gameSlider: " + test);
+            }
+        });*/
+
+        // Slider listener
+        gameSlider.addListener(new InputListener() {
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("slider changed to: " + gameSlider.getValue());
+                // Set volume to slider.getValue();
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+
+        //float test = gameSlider.getValue();
+
+        //System.out.println("gameSlider: " + test);
     }
+
 
     @Override
     public void render(float v) {
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.draw();
