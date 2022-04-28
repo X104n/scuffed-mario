@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 public class AppTest {
 
 	static GameScreen game;
-
+	static Player mockPlayer;
 
 	/**
 	 * Static method run before everything else
@@ -29,6 +29,7 @@ public class AppTest {
 	@BeforeAll
 	static void setUpBeforeAll() {
 		game = mock(GameScreen.class);
+		mockPlayer = mock(Player.class);
 
 	}
 
@@ -52,7 +53,6 @@ public class AppTest {
 	@Test
 	@DisplayName("Testing if the player is properly shown.")
 	void testPlayer() {
-		Player mockPlayer = mock(Player.class);
 		when(game.getPlayer()).thenReturn(mockPlayer);
 		assertEquals(mockPlayer, game.getPlayer());
 	}
@@ -60,9 +60,6 @@ public class AppTest {
 	@Test
 	@DisplayName("Testing if the player starts at the right position.")
 	void testStartPosition() {
-
-		Player mockPlayer = mock(Player.class);
-
 		when(mockPlayer.getPosition()).thenReturn(0f);
 
 		assertEquals(0f, mockPlayer.getPosition());
@@ -85,11 +82,8 @@ public class AppTest {
 	@Test
 	@DisplayName("Testing if the player can die.")
 	void testDeath() {
-		// Check if the player can move.
-		/*Player player1 = mockedMario.getGame().getPlayer();
-		mockedMario.getGame().resetPlayer();
-		Player player2 = mockedMario.getGame().getPlayer();
-		assertNotEquals(player1, player2);*/
+		when(mockPlayer.playerDead()).thenReturn(true);
+		assertTrue(mockPlayer.playerDead());
 	}
 	@Test
 	void testPoints(){
