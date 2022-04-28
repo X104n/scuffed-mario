@@ -122,8 +122,10 @@ public class Player extends Entity {
                 false,
                 screen.getWorld()
         );
-        screen.enemies.add(new Bullet(20, 10, body, screen, (boolean) turnRight));
+        new Bullet(20, 10, body, screen, (boolean) turnRight, true);
     }
+
+    public void die(){ this.isAlive = false; }
 
     public void getDrunk(){
         isDrunk = true;

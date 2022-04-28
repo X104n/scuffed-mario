@@ -30,10 +30,15 @@ public class Vodka extends Entity {
         y = body.getPosition().y * PPM;
     }
 
-    public boolean collide(Player player){
-        player.getDrunk();
+    @Override
+    public void die() {
         screen.getWorld().destroyBody(this.getBody());
         screen.enemies.remove(this);
+    }
+
+    public boolean collide(Player player){
+        player.getDrunk();
+        this.die();
         return false;
     }
 

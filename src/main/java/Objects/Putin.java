@@ -57,13 +57,16 @@ public class Putin extends Entity{
     @Override
     public boolean collide(Player player){
         if(deathCriterium(player)) {
-            spawnSmallPutin((int) this.getBody().getPosition().x * (int) PPM, (int) this.getBody().getPosition().y * (int) PPM + 1, (int) this.getWidth(), (int) this.getHeight());
-            screen.getWorld().destroyBody(this.getBody());
             this.die();
-            screen.enemies.remove(this);
             return true;
         }
         return false;
+    }
+
+    public void die(){
+        spawnSmallPutin((int) this.getBody().getPosition().x * (int) PPM, (int) this.getBody().getPosition().y * (int) PPM + 1, (int) this.getWidth(), (int) this.getHeight());
+        screen.getWorld().destroyBody(this.getBody());
+        screen.enemies.remove(this);
     }
 
     private void spawnSmallPutin(int x, int y, int w, int h){
@@ -81,7 +84,7 @@ public class Putin extends Entity{
     }
 
     private void shoot(){
-        float w = -width;
+        float w = -1.5f*width;
         if(turnRight)
             w = -w;
         com.badlogic.gdx.math.Rectangle rectangle = new com.badlogic.gdx.math.Rectangle(x+w/2,y,20,10);
@@ -94,7 +97,7 @@ public class Putin extends Entity{
                 false,
                 screen.getWorld()
         );
-        screen.enemies.add(new Bullet(20, 10, body, screen, (boolean) turnRight));
+        new Bullet(20, 10, body, screen, (boolean) turnRight, false);
     }
 
     public boolean deathCriterium(Entity player){

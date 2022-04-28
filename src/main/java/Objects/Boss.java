@@ -36,6 +36,12 @@ public class Boss extends Entity{
         body.setLinearVelocity(0, velY);
     }
 
+    @Override
+    public void die() {
+        screen.getWorld().destroyBody(this.getBody());
+        screen.enemies.remove(this);
+    }
+
 
     @Override
     public Rectangle getBounds() {
