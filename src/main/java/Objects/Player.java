@@ -24,10 +24,19 @@ public class Player extends Entity {
     private boolean turnRight;
     private boolean isDrunk = false;
 
-    private boolean hasGun = false;
+    private boolean hasPistol = false;
+    private boolean hasAR = false;
+
 
     private long reloadTime = 1000;
     private long lastShot = System.currentTimeMillis();;
+
+    private String IdleSmallPlayerRight = "assets/Images/SmallPlayer.png";
+    private String IdleSmallPlayerLeft = "assets/Images/SmallPlayer.png";
+    private String IdleBigPlayerRight = "assets/Images/BigPlayer.png";
+    private String IdleBigPlayerLeft = "assets/Images/BigPlayer.png";
+    private String RunningLeft = "assets/Images/RunningLeft.png";
+    private String RunningRight = "assets/Images/RunningRight.png";
 
 
     public Player(float width, float height, Body body, GameScreen gameScreen) {
@@ -35,7 +44,7 @@ public class Player extends Entity {
         this.speed = 10f;
         this.jumpCounter = 0;
         screen = gameScreen;
-        this.entityTexture = new Texture("assets/Images/SmallPlayer.png");
+        this.entityTexture = new Texture(IdleSmallPlayerRight);
     }
 
     @Override
@@ -62,18 +71,20 @@ public class Player extends Entity {
         velX = 0;
         long time = System.currentTimeMillis();
         if(time % 1000 > 500){
-            this.entityTexture = new Texture("assets/Images/SmallPlayer.png");
+            if(turnRight)this.entityTexture = new Texture(IdleSmallPlayerRight);
+            else this.entityTexture = new Texture(IdleSmallPlayerLeft);
         }else{
-            this.entityTexture = new Texture("assets/Images/BigPlayer.png");
+            if(turnRight) this.entityTexture = new Texture(IdleBigPlayerRight);
+            else this.entityTexture = new Texture(IdleBigPlayerLeft);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            this.entityTexture = new Texture("assets/Images/RunningRight.png");
+            this.entityTexture = new Texture(RunningRight);
             velX = SPEED;
             turnRight = true;
 
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            this.entityTexture = new Texture("assets/Images/RunningLeft.png");
+            this.entityTexture = new Texture(RunningLeft);
             velX = -SPEED;
             turnRight = false;
         }
@@ -84,7 +95,7 @@ public class Player extends Entity {
             body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
             jumpCounter++;
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.Q) && this.isDrunk && time - lastShot > reloadTime){
+        if(Gdx.input.isKeyPressed(Input.Keys.Q) && (hasAR || hasPistol) && time - lastShot > reloadTime){
             shoot();
             lastShot = time;
         }
@@ -133,9 +144,32 @@ public class Player extends Entity {
         //entityTexture = new Texture("assets/Images/drunkzelensky.png");
     }
 
+    public void pickupAR(){
+        hasAR = true;
+        reloadTime = (long) 300;
+        IdleSmallPlayerLeft = "assets/Images/SmallPlayerAKLeft.png";
+        IdleSmallPlayerRight = "assets/Images/SmallPlayerAKRight.png";
+        IdleBigPlayerLeft = "assets/Images/BigPlayerAKleft.png";
+        IdleBigPlayerRight = "assets/Images/BigPlayerAKRight.png";
+        RunningLeft = "assets/Images/RunningLeftAK.png";
+        RunningRight = "assets/Images/RunningRightAK.png";
+    }
+
     public boolean deathCriterium(Entity player){
         if(false)
             return true;
         return false;
+    }
+
+    public void pickupPistol() {
+        if(hasAR) return;
+        hasPistol = true;
+        reloadTime = (long) 1200;
+        IdleSmallPlayerLeft = "assets/Images/SmallPlayerPistolLeft.png";
+        IdleSmallPlayerRight = "assets/Images/SmallPlayerPistolRight.png";
+        IdleBigPlayerLeft = "assets/Images/BigPlayerPistolleft.png";
+        IdleBigPlayerRight = "assets/Images/BigPlayerPistolRight.png";
+        RunningLeft = "assets/Images/RunningLeftPistol.png";
+        RunningRight = "assets/Images/RunningRightPistol.png";
     }
 }
