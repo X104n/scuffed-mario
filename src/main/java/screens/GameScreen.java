@@ -1,9 +1,6 @@
 package screens;
 
-import Objects.Entity;
-import Objects.ObjectType;
-import Objects.Player;
-import Objects.SmallPutin;
+import Objects.*;
 import Tools.EntetyBuilder;
 import Tools.TiledMapHandler;
 import com.badlogic.gdx.Game;

@@ -70,7 +70,7 @@ public class Player extends Entity {
     private void checkUserInput(){
         velX = 0;
         long time = System.currentTimeMillis();
-        if(time % 1000 > 500){
+        if(time % 1500 > 750){
             if(turnRight)this.entityTexture = new Texture(IdleSmallPlayerRight);
             else this.entityTexture = new Texture(IdleSmallPlayerLeft);
         }else{
@@ -120,7 +120,7 @@ public class Player extends Entity {
     }
 
     private void shoot(){
-        float w = -2*width;
+        float w = -1.5f*width;
         if(turnRight)
             w = -w;
         com.badlogic.gdx.math.Rectangle rectangle = new com.badlogic.gdx.math.Rectangle(x+w/2,y,20,10);
@@ -140,13 +140,13 @@ public class Player extends Entity {
 
     public void getDrunk(){
         isDrunk = true;
-        SPEED = SPEED*2;
+        SPEED = SPEED += 0.5;
         //entityTexture = new Texture("assets/Images/drunkzelensky.png");
     }
 
     public void pickupAR(){
         hasAR = true;
-        reloadTime = (long) 300;
+        reloadTime = (long) 180;
         IdleSmallPlayerLeft = "assets/Images/SmallPlayerAKLeft.png";
         IdleSmallPlayerRight = "assets/Images/SmallPlayerAKRight.png";
         IdleBigPlayerLeft = "assets/Images/BigPlayerAKleft.png";
