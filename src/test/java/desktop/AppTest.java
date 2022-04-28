@@ -1,3 +1,4 @@
+/*
 package desktop;
 
 import Objects.Player;
@@ -23,9 +24,11 @@ public class AppTest {
 	public static ScuffedMario mario = new ScuffedMario();
 	float startPos;
 
-	/**
+	*/
+/**
 	 * Static method run before everything else
-	 */
+	 *//*
+
 	@BeforeAll
 	static void setUpBeforeAll() {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
@@ -36,9 +39,11 @@ public class AppTest {
 		new Lwjgl3Application(mario, config);
 	}
 
-	/**
+	*/
+/**
 	 * Setup method called before each of the test methods
-	 */
+	 *//*
+
 	@BeforeEach
 	void setUpBeforeEach() {
 		//In case a test requires booleans.
@@ -125,4 +130,4 @@ public class AppTest {
 		assertEquals(c, a + b);
 	}
 
-}
+}*/
