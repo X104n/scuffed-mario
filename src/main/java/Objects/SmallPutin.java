@@ -41,6 +41,11 @@ public class SmallPutin extends Entity{
         body.setLinearVelocity(velX, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
     }
 
+    @Override
+    public boolean collide(Player player) {
+        return false;
+    }
+
     public Rectangle getBounds(){
         return new Rectangle((int) this.x - (int) this.width / 2, (int) this.y - (int) this.height / 2, (int) this.width, (int) this.height);
     }
