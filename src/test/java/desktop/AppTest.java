@@ -1,5 +1,8 @@
 package desktop;
 
+import Objects.Player;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,9 +15,12 @@ import org.mockito.junit.MockitoJUnitRunner;
 import screens.GameScreen;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class AppTest {
+
+	static GameScreen game;
 
 
 	/**
@@ -22,6 +28,7 @@ public class AppTest {
 	 */
 	@BeforeAll
 	static void setUpBeforeAll() {
+		game = mock(GameScreen.class);
 
 	}
 
@@ -36,28 +43,29 @@ public class AppTest {
 	@Test
 	@DisplayName("Testing if the game board is properly shown.")
 	void testBoard() {
+		World randomWorld = new World(new Vector2(0, -25f), false);
 
+		when(game.getWorld()).thenReturn(randomWorld);
+		assertEquals(randomWorld, game.getWorld());
 	}
 
 	@Test
 	@DisplayName("Testing if the player is properly shown.")
 	void testPlayer() {
-
+		Player mockPlayer = mock(Player.class);
+		when(game.getPlayer()).thenReturn(mockPlayer);
+		assertEquals(mockPlayer, game.getPlayer());
 	}
 
 	@Test
 	@DisplayName("Testing if the player starts at the right position.")
 	void testStartPosition() {
 
-		GameScreen game = Mockito.mock(GameScreen.class);
+		Player mockPlayer = mock(Player.class);
 
-		when(game.getPlayer().getBody().getPosition().x).thenReturn(0f);
+		when(mockPlayer.getPosition()).thenReturn(0f);
 
-		assertEquals(game.getPlayer().getBody().getPosition().x, 0f);
-
-		/*Player testPlayer = mario.getGame().getPlayer();
-		float testX = testPlayer.getBody().getPosition().x;
-		assertEquals(startPos, testX);*/
+		assertEquals(0f, mockPlayer.getPosition());
 	}
 
 	@Test
@@ -70,7 +78,7 @@ public class AppTest {
 	@Test
 	@DisplayName("Testing if the player won't go through the blocks/terrain.")
 	void testInteractWithTerrain(){
-		// Check if the player can move.
+		// Check if the player can move
 		//assertTrue(mockedMario.getGame().getPlayer().getBody().getPosition().x > 0);
 	}
 
