@@ -18,9 +18,7 @@ public class SmallPutin extends Entity{
 
     public SmallPutin(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
-        System.out.println(width);
-        System.out.println(height);
-
+        super.screen = screen;
         this.entityTexture = new Texture("assets/Images/wideputin.png");
         lastTurn = System.currentTimeMillis();
         super.type = ObjectType.SMALLPUTIN;
@@ -42,7 +40,17 @@ public class SmallPutin extends Entity{
     }
 
     @Override
+    public void die() {
+        screen.getWorld().destroyBody(this.getBody());
+        screen.enemies.remove(this);
+    }
+
+    @Override
     public boolean collide(Player player) {
+        if(deathCriterium(player)) {
+            this.die();
+            return true;
+        }
         return false;
     }
 

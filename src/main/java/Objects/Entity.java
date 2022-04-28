@@ -46,13 +46,13 @@ public abstract class Entity {
         return body;
     }
 
+    public abstract void die();
+
     public abstract boolean collide(Player player);
 
     public ObjectType getObjType() { return type; }
 
     public boolean isAlive(){ return this.isAlive; }
-
-    public void die(){ this.isAlive = false; }
 
     public abstract Rectangle getBounds();
 

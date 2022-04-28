@@ -34,6 +34,8 @@ public class GameScreen extends Game implements Screen {
 
     public ArrayList<Entity> enemies = new ArrayList<>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
 
+    public ArrayList<Bullet> bullets = new ArrayList<>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
+
     Music backgroundMusic;
 
     private TiledMapHandler tiledMapHandler;
@@ -85,16 +87,9 @@ public class GameScreen extends Game implements Screen {
         renderer.setView(camera);
         player.update();
 
+        updateBullets();
 
-        // TODO: Make a method for this mess :))
-        for(int i = 0 ; i < enemies.size() ; i++) { // Loop through all living enemies
-            Entity enemy = enemies.get(i);
-            enemy.update();
-            if (checkPlayerCollision(player, enemy)) {
-                if(enemy.collide(player)) //Returns true if enemy dies
-                    i -= 1;
-            }
-        }
+        updateEnemies();
         // Conditions
         if (player.playerDead() || !player.isAlive()) {
             //resetPlayer();
@@ -124,6 +119,46 @@ public class GameScreen extends Game implements Screen {
         camera.update();
     }
 
+    public void updateEnemies(){
+        for(int i = 0 ; i < enemies.size() ; i++) { // Loop through all living enemies
+            Entity enemy = enemies.get(i);
+            enemy.update();
+            if (checkEntityCollision(player, enemy)) {
+                if(enemy.collide(player)) //Returns true if enemy dies
+                    i -= 1;
+            }
+        }
+    }
+
+    public void updateBullets(){
+        for(int i = 0 ; i < bullets.size() ; i++){
+            Bullet bullet = bullets.get(i);
+            bullet.update();
+            if(!bullets.contains(bullet)) i -= 1; //If bullet died in update, update i
+            else {
+                for(int j = 0 ; j < enemies.size() ; j++){
+                    Entity enemy = enemies.get(j);
+                    if(checkEntityCollision(bullet,enemy)) {
+                        if(bullet.isFriendly()){
+                            enemy.die();
+                            bullet.die();
+                            i -= 1;
+                            j -= 1;
+                        }else{
+                            bullet.die();
+                            i -= 1;
+                        }
+                    }
+                }
+                if(checkEntityCollision(player,bullet) && !bullet.isFriendly()){
+                    player.die();
+                    bullet.die();
+                    i -= 1;
+                }
+            }
+        }
+    }
+
     @Override
     public void render(float v) {
         this.update();
@@ -136,9 +171,10 @@ public class GameScreen extends Game implements Screen {
         batch.setProjectionMatrix(camera.combined);
         player.render(batch);
         for(Entity enemy : enemies) enemy.render(batch);
+        for(Bullet bullet : bullets) bullet.render(batch);
         batch.end();
 
-        box2DDebugRenderer.render(world, camera.combined.scl(PPM));
+        //box2DDebugRenderer.render(world, camera.combined.scl(PPM));
     }
 
 
@@ -178,8 +214,8 @@ public class GameScreen extends Game implements Screen {
         //batch.dispose();
     }
 
-    private boolean checkPlayerCollision(Player player, Entity ent2){
-        if(player.getBounds().intersects(ent2.getBounds()))
+    private boolean checkEntityCollision(Entity ent1, Entity ent2){
+        if(ent1.getBounds().intersects(ent2.getBounds()))
             return true;
         return false;
     }

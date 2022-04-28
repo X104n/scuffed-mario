@@ -5,5 +5,7 @@ public enum ObjectType {
     PUTIN,
     BULLET,
     SMALLPUTIN,
-    BOSS
+    BOSS,
+    VODKA,
+    COIN
 }
