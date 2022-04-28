@@ -104,3 +104,20 @@ check updates:
   script:
     - mvn versions:display-plugin-updates versions:display-property-updates versions:display-dependency-updates -D allowMajorUpdates=false
 
+sonarqube-check:
+  image: maven:3.6.3-jdk-11
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    SONAR_TOKEN: "ac054590684544bc347d3ba9155889019fce034b"
+    SONAR_HOST_URL: "http://localhost:9000"
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - mvn verify sonar:sonar -Dsonar.qualitygate.wait=true
+  allow_failure: true
+  only:
+    - merge_requests
+    - master # or the name of your main branch
