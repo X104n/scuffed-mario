@@ -17,7 +17,7 @@ public class Boss extends Entity{
     public Boss(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
         velY = 0;
-        HP = 200;
+        HP = 10;
         this.screen = screen;
         super.type = ObjectType.BOSS;
         lastjump = System.currentTimeMillis();

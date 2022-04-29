@@ -19,7 +19,7 @@ public class Player extends Entity {
 
     private int jumpCounter;
     GameScreen gameScreen;
-    private float SPEED = 0.5f;
+    private float SPEED = 0.8f;
 
     private boolean turnRight;
 
@@ -117,7 +117,7 @@ public class Player extends Entity {
 
     //Method returns a rectangle covering the players hitbox, but with +1 in every direction, such that the rectangle overlaps other rectangles within distance 1
     public Rectangle getBounds(){
-        return new Rectangle((int) this.x - (int) this.width / 2 - 1, (int) this.y - (int) this.height / 2 - 1, (int) (this.width) + 2,(int) (this.height) + 2);
+        return new Rectangle((int) this.x - (int) this.width / 2 - 2, (int) this.y - (int) this.height / 2 - 2, (int) (this.width) + 3,(int) (this.height) + 3);
     }
 
     private void shoot(){
@@ -140,7 +140,7 @@ public class Player extends Entity {
     public void die(){ this.isAlive = false; }
 
     public void getDrunk(){
-        SPEED = SPEED += 0.5;
+        SPEED += 0.2;
     }
 
     public void score(double points){
