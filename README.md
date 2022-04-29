@@ -1,4 +1,4 @@
-aaaa# Scuffed Mario
+# Scuffed Mario
 This is a student project in the class INF112 where we are set to make a digital version of the popular game "super mario bros", however, with a twist. I'd rather not spoil what the design twist is, so you'd have to look for yourself. Important to know; that the group is going for humor on the project. 
 
 We're using libgdx and Tilded for this project.
