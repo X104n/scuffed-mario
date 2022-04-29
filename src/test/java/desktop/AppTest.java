@@ -88,6 +88,7 @@ public class AppTest {
 	@DisplayName("Testing if the player can die.")
 	void testDeath() {
 		when(mockPlayer.playerDead()).thenReturn(true);
+
 		assertTrue(mockPlayer.playerDead());
 	}
 	@Test
