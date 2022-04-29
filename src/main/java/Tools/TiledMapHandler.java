@@ -42,7 +42,7 @@ public class TiledMapHandler {
             if (mapObject instanceof RectangleMapObject){
                 Rectangle rectangle = ((RectangleMapObject) mapObject).getRectangle();
                 String rectangleName = mapObject.getName();
-
+                if(rectangleName == null) continue;
                 if(rectangleName.equals("player")){
                     Body body = EntetyBuilder.createBody(
                             rectangle.getX() + rectangle.getWidth() /2,

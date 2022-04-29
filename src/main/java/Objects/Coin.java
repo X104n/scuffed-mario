@@ -15,8 +15,8 @@ public class Coin extends Entity{
     public Coin(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
         screen = gameScreen;
-        HP = 50;
-        this.entityTexture = new Texture("assets/Images/Coin");
+        HP = 1;
+        this.entityTexture = new Texture("assets/Images/Coin.png");
         super.type = ObjectType.VODKA;
     }
 
@@ -26,12 +26,13 @@ public class Coin extends Entity{
         y = body.getPosition().y * PPM;
         long time= System.currentTimeMillis();
         time %= 1200;
-        if(0<time && time < 200) this.entityTexture = new Texture("assets/Images/Coin");
-        else if(200 < time && time < 400) this.entityTexture = new Texture("assets/Images/Coin2");
-        else if(400 < time && time < 600) this.entityTexture = new Texture("assets/Images/Coin2");
-        else if(600 < time && time < 800) this.entityTexture = new Texture("assets/Images/Coin2");
-        else if(800 < time && time < 1000) this.entityTexture = new Texture("assets/Images/Coin2");
-        else this.entityTexture = new Texture("assets/Images/Coin2");
+        if(0<time && time < 200) this.entityTexture = new Texture("assets/Images/Coin.png");
+        else if(200 < time && time < 400) this.entityTexture = new Texture("assets/Images/Coin1.png");
+        else if(400 < time && time < 600) this.entityTexture = new Texture("assets/Images/Coin2.png");
+        else if(600 < time && time < 800) this.entityTexture = new Texture("assets/Images/Coin3.png");
+        else if(800 < time && time < 1000) this.entityTexture = new Texture("assets/Images/Coin2.png");
+        else this.entityTexture = new Texture("assets/Images/Coin1.png");
+        body.setLinearVelocity(0,0);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class Coin extends Entity{
     }
 
     public boolean collide(Player player){
-        player.getDrunk();
+        player.score(0.0001f);
         this.die();
         return false;
     }
