@@ -25,22 +25,11 @@ import screens.OptionScreen;
 import java.awt.*;
 
 public class MainMenu implements Screen {
-    private static final int EXIT_BUTTON_WIDTH = 300;
-    private static final int EXIT_BUTTON_HEIGHT = 150;
-    private static final int EXIT_BUTTON_Y = 50;
-
-    private static final int PLAY_BUTTON_WIDTH = 330;
-    private static final int PLAY_BUTTON_HEIGHT = 150;
-    private static final int PLAY_BUTTON_Y = 250;
-
-    private static final int SETTINGS_BUTTON_WIDTH = 300;
-    private static final int SETTINGS_BUTTON_HEIGHT = 150;
-
-    SpriteBatch batch;
-    ScuffedMario mario;
-    OrthographicCamera camera;
     Viewport viewport;
     Stage stage;
+    OrthographicCamera camera;
+    SpriteBatch batch;
+    ScuffedMario mario;
     Skin skin;
     TextureAtlas textureAtlas;
 
