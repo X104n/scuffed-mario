@@ -7,6 +7,7 @@ The game works on Windows 10 and 11 and MacOS. Linux is untested.
 
 ## Build and run:
 **Method 1**
+
 1. 
 ![Git clone](Deliverables/git_clone.png?raw=true "git clone)
 2. Clone the repository: ```git@git.app.uib.no:relish-earshot/scuffed-mario.git``` 
@@ -14,6 +15,7 @@ The game works on Windows 10 and 11 and MacOS. Linux is untested.
 4. Run the program from the DesktopLauncher.java method. You should use the play-button in the top right or to the left of the method.
 
 **Method 2**
+
 1. 
 ![Git download](Deliverables/git_download.png?raw=true "git download)
 2. Open the game in Intellij, eclipse or another Java supported IDE
