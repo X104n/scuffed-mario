@@ -43,5 +43,9 @@ public class ScuffedMario extends Game {
     public OrthographicCamera getOrthographicCamera() {
         return this.orthographicCamera;
     }
+
+    public MainMenu getMenu() {
+        return menu;
+    }
 }
 

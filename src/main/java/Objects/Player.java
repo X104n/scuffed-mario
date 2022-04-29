@@ -12,7 +12,6 @@ import com.badlogic.gdx.physics.box2d.*;
 import screens.GameScreen;
 
 import java.awt.*;
-import java.util.Objects;
 
 import static Tools.Constants.PPM;
 
@@ -63,10 +62,6 @@ public class Player extends Entity {
         return y <= 0f;
     }
 
-    @Override
-    public void render(SpriteBatch batch) {
-        //batch.draw(new Texture("assets/Images/Zelensky.png"), x, y, width, height);
-    }
 
     @Override
     public boolean collide(Player player) {
@@ -90,9 +85,6 @@ public class Player extends Entity {
 
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            velX = -1;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.A)){
             this.entityTexture = new Texture(RunningLeft);
             velX = -SPEED;
             turnRight = false;
@@ -104,11 +96,11 @@ public class Player extends Entity {
             body.applyLinearImpulse(new Vector2(0, force), body.getPosition(), true);
             jumpCounter++;
         }
-
         if(Gdx.input.isKeyPressed(Input.Keys.Q) && (hasAR || hasPistol) && time - lastShot > reloadTime){
             shoot();
             lastShot = time;
         }
+
 
         // reset jump counter
         if(body.getLinearVelocity().y == 0){
@@ -128,19 +120,7 @@ public class Player extends Entity {
 
     //Method returns a rectangle covering the players hitbox, but with +1 in every direction, such that the rectangle overlaps other rectangles within distance 1
     public Rectangle getBounds(){
-        return new Rectangle((int) this.x - (int) this.width / 2 - 1, (int) this.y - (int) this.height / 2 - 1, (int) (this.width) + 2,(int) (this.height) + 2);
-    }
-
-    public void pickupAR(){
-        hasAR = true;
-        gunDamage = 10;
-        reloadTime = (long) 180;
-        IdleSmallPlayerLeft = "assets/Images/SmallPlayerAKLeft.png";
-        IdleSmallPlayerRight = "assets/Images/SmallPlayerAKRight.png";
-        IdleBigPlayerLeft = "assets/Images/BigPlayerAKleft.png";
-        IdleBigPlayerRight = "assets/Images/BigPlayerAKRight.png";
-        RunningLeft = "assets/Images/RunningLeftAK.png";
-        RunningRight = "assets/Images/RunningRightAK.png";
+        return new Rectangle((int) this.x - (int) this.width / 2 - 2, (int) this.y - (int) this.height / 2 - 2, (int) (this.width) + 4,(int) (this.height) + 4);
     }
 
     private void shoot(){
@@ -159,6 +139,7 @@ public class Player extends Entity {
         );
         new Bullet(20, 10, body, screen, (boolean) turnRight, true, gunDamage);
     }
+
     @Override
     public void die(){ this.isAlive = false; }
 
@@ -170,24 +151,24 @@ public class Player extends Entity {
         this.score += points;
     }
 
+    public void pickupAR(){
+        hasAR = true;
+        gunDamage = 10;
+        reloadTime = (long) 180;
+        IdleSmallPlayerLeft = "assets/Images/SmallPlayerAKLeft.png";
+        IdleSmallPlayerRight = "assets/Images/SmallPlayerAKRight.png";
+        IdleBigPlayerLeft = "assets/Images/BigPlayerAKleft.png";
+        IdleBigPlayerRight = "assets/Images/BigPlayerAKRight.png";
+        RunningLeft = "assets/Images/RunningLeftAK.png";
+        RunningRight = "assets/Images/RunningRightAK.png";
+    }
+
     public boolean deathCriterium(Entity player){
         if(false)
             return true;
         return false;
     }
 
-    public double getPosition(){
-        return this.getBody().getPosition().x;
-    }
-
-    public double movePosition(String input, double position){
-        if(Objects.equals(input, "D")){
-            position -= 0.1;
-        } else if (Objects.equals(input, "A")){
-            position += 0.1;
-        }
-        return position;
-    }
     public void pickupPistol() {
         if(hasAR) return;
         gunDamage = 20;

@@ -41,9 +41,6 @@ public class MainMenu implements Screen {
     OrthographicCamera camera;
     Viewport viewport;
     Stage stage;
-    OrthographicCamera camera;
-    SpriteBatch batch;
-    ScuffedMario mario;
     Skin skin;
     TextureAtlas textureAtlas;
 
@@ -145,19 +142,6 @@ public class MainMenu implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit();
         }
-
-        int i = (int) (camera.viewportWidth / 2 - PLAY_BUTTON_WIDTH / 2);
-        if (checkMouseHover(i, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT, PLAY_BUTTON_Y)) {
-            batch.draw(activePlayButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
-            if (Gdx.input.isButtonPressed(0)) {
-                this.dispose();
-                mario.setScreen(new GameScreen(camera)); // problem here
-            }
-        } else {
-            batch.draw(playButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
-        }
-
-        batch.end();
     }
 
     @Override
@@ -191,9 +175,4 @@ public class MainMenu implements Screen {
         batch.dispose();
         backgroundMusic.dispose();
     }
-
-    public GameScreen getGame() {
-        return game;
-    }
-
 }

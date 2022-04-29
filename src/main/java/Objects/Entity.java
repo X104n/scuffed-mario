@@ -68,4 +68,18 @@ public abstract class Entity {
     public abstract Rectangle getBounds();
 
     public abstract boolean deathCriterium(Entity player);
+
+    public double getPosition() {
+        return body.getPosition().x;
+    }
+
+    public double movePosition(String d, double position) {
+        if(d.equals("left")){
+            position -= 0.1;
+        }
+        else if(d.equals("right")){
+            position += 0.1;
+        }
+        return position;
+    }
 }
