@@ -60,39 +60,8 @@ Vi legger alltid møtene inn i wikien på git. Her er møtene vi har hatt etter 
 [Møtereferat 5](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/M%C3%B8tereferat-28.april-2022)
 
 [Møtereferat 6](https://git.app.uib.no/relish-earshot/scuffed-mario/-/wikis/M%C3%B8tereferat-29.april-2022)
-
-**Bli enige om maks tre forbedringspunkter fra retrospektivet, som skal følges opp under neste sprint.**
-
-3 eksempler: 
-**Prøve med par programming** - 
-
-**Issue Board** - 
-
-**Fordele commits** - 
-
 # **Deloppgave 2: Krav**
-
-# **Deloppgave 3: Krav**
-**«Stretch goal»**
-
-**Bestem dere for én litt mer avansert ting som dere vil prøve å få til utover et vanlig single-player platform spill. Dette kan være f.eks.: multiplayer (på samme maskin eller over nett), å porte til en annen platform (Android eller Web, f.eks.), å bytte ut grafikk-frontenden, e.l.**
-Vi prioritere ikke mulitplayer for denne innleveringen, men dette er noe vi kunne implementert hvis vi hadde mer tid. Vi ser for oss en lokal multiplayer løsning i første omgang.
-
-**Prioritér MVP og å få de enklere delene av spillet til å fungere – det er mye viktigere å ha et bra enspiller-spill for desktop med høy kodekvalitet, enn å ha noe som funker dårlig i med både én og flere spillere og på flere platformer.**
-
-Som nevnt tidligere ønsker vi å få single-player til å fungere. 
-
-**Det er likevel et poeng i å tenke på dette tidlig i prosessen, så man ikke låser seg i dårlige løsninger. (Forøvrig, godt design, bra skille mellom model / view / controller, og klare abstraksjoner gjør det mye enklere å oppnå «stretch»-forslagene over.)**
-
-For tida fokuserer vi på å utvide spillets funksjonalitet, legge til flere objekter, flere fiender og menyer til spillet for at det skal se bedre ut.
-
-
-**MVP og annet**
-
 ### Brukerhistorie for hva som har blitt jobbet på denne gang
-Format: "som rolle trenger/ønsker" jeg funksjonlitet som ønsker, hvem som ønsker den og hvordan den er ønsket
-Akseptansekriterier: gitt x så y 
-
 1. Som en spiller ønsker jeg evnen til å skade fiender på flere måter. 
 - Akseptansekriterier: Gitt at spilleren kan plukke opp våpen, kan han beseire motstandere på flere måter.
     - Arbeidsoppgave: Implementere klasser for våpen og tilsvarende logikk for spilleren.
@@ -108,6 +77,20 @@ Akseptansekriterier: gitt x så y
     - Arbeidsoppgave: At spillet skal kunne avsluttes på forskjellig grunnlag
         - Å implementere logikk for å avslutte spillet ved at spiller enten dør eller vinner, og hvordan applikasjonen skal navigere mellom de ulike nivåene [Issue #50](https://git.app.uib.no/relish-earshot/scuffed-mario/-/issues/50)
 
+**«Stretch goal»**
+
+**Bestem dere for én litt mer avansert ting som dere vil prøve å få til utover et vanlig single-player platform spill. Dette kan være f.eks.: multiplayer (på samme maskin eller over nett), å porte til en annen platform (Android eller Web, f.eks.), å bytte ut grafikk-frontenden, e.l.**
+Vi prioritere ikke mulitplayer for denne innleveringen, men dette er noe vi kunne implementert hvis vi hadde mer tid. Vi ser for oss en lokal multiplayer løsning i første omgang.
+
+**Prioritér MVP og å få de enklere delene av spillet til å fungere – det er mye viktigere å ha et bra enspiller-spill for desktop med høy kodekvalitet, enn å ha noe som funker dårlig i med både én og flere spillere og på flere platformer.**
+
+Som nevnt tidligere ønsker vi å få single-player til å fungere. 
+
+**Det er likevel et poeng i å tenke på dette tidlig i prosessen, så man ikke låser seg i dårlige løsninger. (Forøvrig, godt design, bra skille mellom model / view / controller, og klare abstraksjoner gjør det mye enklere å oppnå «stretch»-forslagene over.)**
+
+For tida fokuserer vi på å utvide spillets funksjonalitet, legge til flere objekter, flere fiender og menyer til spillet for at det skal se bedre ut.
+
+# **Deloppgave 3: Krav**
 ![Class Diagram](klasseDiagram2.png?raw=true "Class Diagram")
 
 SonarQube:
