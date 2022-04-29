@@ -17,7 +17,7 @@ public class Boss extends Entity{
     long lastShot;
     boolean turnRight = false;
 
-    int timeBeforeTurn = 2000;
+    int timeBeforeTurn = 1000;
     int reloadSpeed = 80;
     int gunDamage = 50;
 

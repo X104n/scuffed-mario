@@ -66,7 +66,7 @@ public class YouWonScreen implements Screen {
     public void render(float v) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             this.dispose();
-            mario.setScreen(new GameScreen(mario, camera, 0));
+            mario.setScreen(new GameScreen(mario, camera, 0, true));
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit();

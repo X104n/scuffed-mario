@@ -42,7 +42,7 @@ public class GameScreen extends Game implements Screen {
     public int mapPixelWidth;
     public int mapPixelHeight;
     public int mapNr;
-    public GameScreen(ScuffedMario game, OrthographicCamera camera, int nr) {
+    public GameScreen(ScuffedMario game, OrthographicCamera camera, int nr, Boolean newPlayer) {
         this.batch = new SpriteBatch();
         this.camera = camera;
         this.game = game;
@@ -51,7 +51,7 @@ public class GameScreen extends Game implements Screen {
         this.world = new World(new Vector2(0, -25f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
 
-        this.tiledMapHandler = new TiledMapHandler(this);
+        this.tiledMapHandler = new TiledMapHandler(this, newPlayer);
         this.renderer = tiledMapHandler.setupMap(game.levels.get(mapNr));
         setMapBoundaries();
 
@@ -118,7 +118,13 @@ public class GameScreen extends Game implements Screen {
 
     public void reloadMap(int nr){
         this.dispose();
-        game.setScreen(new GameScreen(game, camera, mapNr+nr));
+        if(nr > 0){
+            game.setScreen(new GameScreen(game, camera, mapNr+nr, false));
+        }
+        else{
+            game.setScreen(new GameScreen(game, camera, mapNr+nr, true));
+        }
+
     }
 
     public void victory(){

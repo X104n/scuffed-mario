@@ -29,8 +29,10 @@ public class TiledMapHandler {
     int mapPixelHeight;
     public TiledMap tiledMap;
     private GameScreen gameScreen;
-    public TiledMapHandler(GameScreen gameScreen){
+    private Boolean newPlayer;
+    public TiledMapHandler(GameScreen gameScreen, Boolean newPlayer){
         this.gameScreen = gameScreen;
+        this.newPlayer = newPlayer;
     }
 
     public OrthoCachedTiledMapRenderer setupMap(String mapName){
@@ -74,6 +76,9 @@ public class TiledMapHandler {
                 String rectangleName = mapObject.getName();
                 if(rectangleName == null || rectangleName == "") continue;
                 if(rectangleName.equals("Player")){
+                    if (!newPlayer) {
+                        gameScreen.setPlayer(gameScreen.getPlayer());
+                    }
                     Body body = createBody(rectangle);
                     gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
