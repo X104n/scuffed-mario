@@ -60,14 +60,19 @@ public class AppTest {
 	@Test
 	@DisplayName("Testing if the player starts at the right position.")
 	void testStartPosition() {
-		when(mockPlayer.getPosition()).thenReturn(0f);
+		when(mockPlayer.getPosition()).thenReturn(0.0);
+		double position = mockPlayer.getPosition();
+		when(mockPlayer.movePosition("D", position)).thenReturn(-0.1);
 
-		assertEquals(0f, mockPlayer.getPosition());
+		assertEquals(-0.1, mockPlayer.movePosition("D", position));
 	}
 
 	@Test
 	@DisplayName("Testing if the player can move.")
 	void testMovePlayer() {
+		when(mockPlayer.getPosition()).thenReturn(0.0);
+
+
 		// Check if the player can move.
 		//assertTrue(mockedMario.getGame().getPlayer().getBody().getPosition().x > 0);
 	}

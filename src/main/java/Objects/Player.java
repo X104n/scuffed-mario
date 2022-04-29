@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import screens.GameScreen;
 
 import java.awt.*;
+import java.util.Objects;
 
 import static Tools.Constants.PPM;
 
@@ -82,7 +83,16 @@ public class Player extends Entity {
         return false;
     }
 
-    public float getPosition(){
+    public double getPosition(){
         return this.getBody().getPosition().x;
+    }
+
+    public double movePosition(String input, double position){
+        if(Objects.equals(input, "D")){
+            position -= 0.1;
+        } else if (Objects.equals(input, "A")){
+            position += 0.1;
+        }
+        return position;
     }
 }
