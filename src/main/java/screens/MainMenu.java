@@ -25,6 +25,20 @@ import screens.OptionScreen;
 import java.awt.*;
 
 public class MainMenu implements Screen {
+    private static final int EXIT_BUTTON_WIDTH = 300;
+    private static final int EXIT_BUTTON_HEIGHT = 150;
+    private static final int EXIT_BUTTON_Y = 50;
+
+    private static final int PLAY_BUTTON_WIDTH = 330;
+    private static final int PLAY_BUTTON_HEIGHT = 150;
+    private static final int PLAY_BUTTON_Y = 250;
+
+    private static final int SETTINGS_BUTTON_WIDTH = 300;
+    private static final int SETTINGS_BUTTON_HEIGHT = 150;
+
+    SpriteBatch batch;
+    ScuffedMario mario;
+    OrthographicCamera camera;
     Viewport viewport;
     Stage stage;
     OrthographicCamera camera;
@@ -131,6 +145,19 @@ public class MainMenu implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit();
         }
+
+        int i = (int) (camera.viewportWidth / 2 - PLAY_BUTTON_WIDTH / 2);
+        if (checkMouseHover(i, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT, PLAY_BUTTON_Y)) {
+            batch.draw(activePlayButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
+            if (Gdx.input.isButtonPressed(0)) {
+                this.dispose();
+                mario.setScreen(new GameScreen(camera)); // problem here
+            }
+        } else {
+            batch.draw(playButton, (float) DesktopLauncher.width / 2 - (float) DesktopLauncher.height / 2, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
+        }
+
+        batch.end();
     }
 
     @Override
@@ -164,4 +191,9 @@ public class MainMenu implements Screen {
         batch.dispose();
         backgroundMusic.dispose();
     }
+
+    public GameScreen getGame() {
+        return game;
+    }
+
 }

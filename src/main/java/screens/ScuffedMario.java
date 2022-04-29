@@ -12,6 +12,7 @@ public class ScuffedMario extends Game {
     public static ScuffedMario INSTANCE;
     private int widthScreen, heightScreen;
     private OrthographicCamera orthographicCamera;
+    public MainMenu menu;
     public SpriteBatch batch;
     public GameScreen game;
 
