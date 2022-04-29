@@ -2,11 +2,9 @@ package desktop;
 
 import Objects.Entity;
 import Objects.Player;
-import Objects.SmallPutin;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,7 +15,8 @@ import screens.ScuffedMario;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -32,11 +31,6 @@ public class AppTest {
 		game = mock(GameScreen.class);
 		mockPlayer = mock(Player.class);
 		mario = mock(ScuffedMario.class);
-	}
-
-	@BeforeEach
-	void setUpBeforeEach() {
-
 	}
 
 	@Test
@@ -69,13 +63,6 @@ public class AppTest {
 	@DisplayName("Testing if the player can move.")
 	void testMovePlayer() {
 		when(mockPlayer.getPosition()).thenReturn(0.0);
-	}
-
-	@Test
-	@DisplayName("Testing if the player won't go through the blocks/terrain.")
-	void testInteractWithTerrain(){
-		// Check if the player can move
-		//assertTrue(mockedMario.getGame().getPlayer().getBody().getPosition().x > 0);
 	}
 
 	@Test
