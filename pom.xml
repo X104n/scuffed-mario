@@ -23,6 +23,7 @@
 		<main.class>desktop.DesktopLauncher</main.class>
 		<maven.compiler.source>18</maven.compiler.source>
 		<maven.compiler.target>18</maven.compiler.target>
+		<sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 	</properties>
 
 	<repositories>
@@ -108,12 +109,16 @@
 			<artifactId>gdx-openal</artifactId>
 			<version>0.9.9</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<version>5.5.2</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.9.1.2184</version>
 		</dependency>
 
 	</dependencies>
@@ -159,6 +164,11 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.9.1.2184</version>
 			</plugin>
 		</plugins>
 		<pluginManagement>
