@@ -15,17 +15,22 @@ public class Bullet extends Entity{
     GameScreen screen;
     boolean right;
     float lastX;
+    public boolean friendly;
+    public int gunDamage;
 
-    public Bullet(float width, float height, Body body, GameScreen gameScreen, boolean goesRight){
+    public Bullet(float width, float height, Body body, GameScreen gameScreen, boolean goesRight, boolean friendly, int gunDamage){
         super(width, height, body);
         screen = gameScreen;
-
-        image = new Texture("assets/Images/bullet.png");
+        HP = 1;
+        this.gunDamage = gunDamage;
+        this.entityTexture = new Texture("assets/Images/bullet.png");
         if(goesRight)
-            velX = 3f;
+            velX = 12f;
         else
-            velX = -3f;
+            velX = -12f;
         super.type = ObjectType.BULLET;
+        this.friendly = friendly;
+        gameScreen.bullets.add(this);
     }
 
     public void setDirectionRight(){
@@ -35,27 +40,30 @@ public class Bullet extends Entity{
         right = false;
     }
 
+    public boolean isFriendly(){
+        return this.friendly;
+    }
 
     @Override
     public void update() {
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
         body.setLinearVelocity(velX, 0.45f);
-        if(Math.abs(body.getPosition().x - lastX) < 0.03){
-            screen.getWorld().destroyBody(body);
-            screen.enemies.remove(this);
+        if(Math.abs(body.getPosition().x - lastX) < 0.06){
+            this.die();
         }
         lastX = body.getPosition().x;
+    }
+
+    @Override
+    public void die() {
+        screen.getWorld().destroyBody(body);
+        screen.bullets.remove(this);
     }
 
     public boolean collide(Player player){
         player.die();
         return false;
-    }
-
-    @Override
-    public void render(SpriteBatch batch) {
-        //batch.draw(new Texture("assets/Images/Bullet.png"), x, y, width, height);
     }
 
     @Override

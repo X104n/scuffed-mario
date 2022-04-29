@@ -3,11 +3,14 @@ package screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ScuffedMario extends Game {
 
     public static ScuffedMario INSTANCE;
+    private int widthScreen, heightScreen;
     private OrthographicCamera orthographicCamera;
+    public SpriteBatch batch;
     public GameScreen game;
 
     public ScuffedMario(){
@@ -16,14 +19,18 @@ public class ScuffedMario extends Game {
 
     @Override
     public void create() {
-        int widthScreen = Gdx.graphics.getWidth();
-        int heightScreen = Gdx.graphics.getHeight();
+        batch = new SpriteBatch();
+        this.widthScreen = Gdx.graphics.getWidth();
+        this.heightScreen = Gdx.graphics.getHeight();
         this.orthographicCamera = new OrthographicCamera();
         this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
-        game = new GameScreen(orthographicCamera);
-        setScreen(game);
+        setScreen(new MainMenu(INSTANCE, orthographicCamera));
     }
 
+    @Override
+    public void dispose() {
+        batch.dispose();
+    }
     public GameScreen getGame() {
         return game;
     }

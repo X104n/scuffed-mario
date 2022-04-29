@@ -1,7 +1,6 @@
 package Objects;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import screens.GameScreen;
 
@@ -9,32 +8,21 @@ import java.awt.*;
 
 import static Tools.Constants.PPM;
 
-public class Boss extends Entity{
-
+public class Pistol extends Entity{
     GameScreen screen;
-    long lastjump;
-    double JUMPCD = 5000;
-    public Boss(float width, float height, Body body, GameScreen screen) {
+
+    public Pistol(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
-        velY = 0;
-        HP = 200;
-        this.screen = screen;
-        super.type = ObjectType.BOSS;
-        lastjump = System.currentTimeMillis();
-        this.entityTexture = new Texture("assets/Images/black_box.png");
+        screen = gameScreen;
+        HP = 50;
+        this.entityTexture = new Texture("assets/Images/Pistol.png");
+        super.type = ObjectType.VODKA;
     }
 
     @Override
     public void update() {
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
-        long currentTime = System.currentTimeMillis();
-        if(currentTime - lastjump > JUMPCD) {
-            lastjump = currentTime;
-            velY = 7;
-        }
-        velY = velY - 0.1f;
-        body.setLinearVelocity(0, velY);
     }
 
     @Override
@@ -43,19 +31,19 @@ public class Boss extends Entity{
         screen.enemies.remove(this);
     }
 
+    public boolean collide(Player player){
+        player.pickupPistol();
+        this.die();
+        return false;
+    }
 
     @Override
     public Rectangle getBounds() {
         return new Rectangle((int) this.x - (int) this.width / 2, (int) this.y - (int) this.height / 2, (int) this.width, (int) this.height);
     }
 
-    public boolean collide(Player player){
-        return false;
-    }
-
-
     @Override
     public boolean deathCriterium(Entity player) {
-        return false;
+        return true;
     }
 }
