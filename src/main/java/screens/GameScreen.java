@@ -209,4 +209,8 @@ public class GameScreen extends Game implements Screen {
     public Player getPlayer(){
         return this.player;
     }
+
+    public ArrayList<Entity> getEnemies() {
+        return enemies;
+    }
 }

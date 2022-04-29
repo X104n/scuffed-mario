@@ -1,6 +1,8 @@
 package desktop;
 
+import Objects.Entity;
 import Objects.Player;
+import Objects.SmallPutin;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,6 +15,8 @@ import screens.GameScreen;
 import screens.MainMenu;
 import screens.ScuffedMario;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -23,9 +27,6 @@ public class AppTest {
 	static Player mockPlayer;
 	static ScuffedMario mario;
 
-	/**
-	 * Static method run before everything else
-	 */
 	@BeforeAll
 	static void setUpBeforeAll() {
 		game = mock(GameScreen.class);
@@ -33,9 +34,6 @@ public class AppTest {
 		mario = mock(ScuffedMario.class);
 	}
 
-	/**
-	 * Setup method called before each of the test methods
-	 */
 	@BeforeEach
 	void setUpBeforeEach() {
 
@@ -71,10 +69,6 @@ public class AppTest {
 	@DisplayName("Testing if the player can move.")
 	void testMovePlayer() {
 		when(mockPlayer.getPosition()).thenReturn(0.0);
-
-
-		// Check if the player can move.
-		//assertTrue(mockedMario.getGame().getPlayer().getBody().getPosition().x > 0);
 	}
 
 	@Test
@@ -98,7 +92,10 @@ public class AppTest {
 
 	@Test
 	void testEnemies(){
+		ArrayList<Entity> mockEnemies = mock(ArrayList.class);
 
+		when(game.getEnemies()).thenReturn(mockEnemies);
+		assertEquals(mockEnemies, game.getEnemies());
 	}
 
 	@Test
@@ -117,11 +114,6 @@ public class AppTest {
 
 		when(mario.getMenu()).thenReturn(randomMenu);
 		assertEquals(randomMenu, mario.getMenu());
-	}
-
-	@Test
-	void testMultiplePlayers(){
-
 	}
 
 	@CsvSource(value = { "1,1,2", "1,2,3", "2,3,5", "3,5,8", "5,8,13", "8,13,21" })
