@@ -102,11 +102,4 @@ public class AppTest {
 		when(mario.getMenu()).thenReturn(randomMenu);
 		assertEquals(randomMenu, mario.getMenu());
 	}
-
-	@CsvSource(value = { "1,1,2", "1,2,3", "2,3,5", "3,5,8", "5,8,13", "8,13,21" })
-	@ParameterizedTest(name = "{0}+{1} == {2}")
-	void addTest(int a, int b, int c) {
-		assertEquals(c, a + b);
-	}
-
 }
