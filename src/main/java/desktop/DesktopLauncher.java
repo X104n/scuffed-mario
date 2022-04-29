@@ -13,6 +13,7 @@ public class DesktopLauncher {
         config.setTitle("Glory to Ukraine");
         config.setWindowIcon("assets/Images/Icon.png");
         config.setWindowedMode(width, height);
+        config.setResizable(false);
         //config.setWindowSizeLimits(width, height, 9999, 9999);
         new Lwjgl3Application(new ScuffedMario(), config);
     }

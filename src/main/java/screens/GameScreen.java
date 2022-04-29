@@ -10,6 +10,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -17,6 +18,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.sun.tools.javac.Main;
 import org.lwjgl.opengl.GL20;
 
 import java.util.ArrayList;
@@ -42,6 +44,9 @@ public class GameScreen extends Game implements Screen {
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;
     ScuffedMario game;
+
+    public int mapPixelWidth;
+    public int mapPixelHeight;
     public GameScreen(ScuffedMario game, OrthographicCamera camera) {
         this.batch = new SpriteBatch();
         this.camera = camera;
@@ -52,9 +57,20 @@ public class GameScreen extends Game implements Screen {
 
         this.tiledMapHandler = new TiledMapHandler(this);
         this.renderer = tiledMapHandler.setupMap();
+        setMapBoundaries();
 
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/widePutinEarrape.mp3"));
         backgroundMusic.setLooping(true);
+    }
+
+    private void setMapBoundaries(){
+        TiledMapTileLayer layer = (TiledMapTileLayer) tiledMapHandler.tiledMap.getLayers().get(0);
+        int tilePixelWidth = layer.getTileWidth();
+        int tilePixelHeight = layer.getTileHeight();
+        int mapWidth = layer.getWidth();
+        int mapHeight = layer.getHeight();
+        this.mapPixelWidth = mapWidth * tilePixelWidth;
+        this.mapPixelHeight = mapHeight * tilePixelHeight;
     }
 
 
@@ -69,6 +85,10 @@ public class GameScreen extends Game implements Screen {
     public void resetPlayer(){
         world.destroyBody(player.getBody());
         this.renderer = tiledMapHandler.setupMap();
+    }
+
+    public TiledMapHandler getTiledMapHandler() {
+        return tiledMapHandler;
     }
 
     @Override
@@ -101,6 +121,10 @@ public class GameScreen extends Game implements Screen {
             this.dispose();
             game.setScreen(new GameScreen(game, camera));
         }
+        if (Gdx.input.isKeyPressed(Input.Keys.M)) { // if the player should get stuck in the game
+            this.dispose();
+            game.setScreen(new MainMenu(game, camera));
+        }
     }
 
     private void cameraUpdate(){
@@ -111,6 +135,15 @@ public class GameScreen extends Game implements Screen {
         position.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
         if(position.y < Gdx.graphics.getHeight()/2){
             position.y = Gdx.graphics.getHeight()/2;
+        }
+        if(position.x < Gdx.graphics.getWidth()/2){
+            position.x = Gdx.graphics.getWidth()/2;
+        }
+        if(position.x > mapPixelWidth - Gdx.graphics.getWidth()/2){
+            position.x = mapPixelWidth - Gdx.graphics.getWidth()/2;
+        }
+        if(position.y > mapPixelHeight - Gdx.graphics.getHeight()/2){
+            position.y = mapPixelHeight - Gdx.graphics.getHeight()/2;
         }
         camera.position.set(position);
         camera.update();
