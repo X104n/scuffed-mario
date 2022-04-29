@@ -31,7 +31,7 @@ public class GameScreen extends Game implements Screen {
 
     public ArrayList<Entity> enemies = new ArrayList<>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
 
-    public ArrayList<Bullet> bullets = new ArrayList<>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
+    public ArrayList<Bullet> bullets = new ArrayList<>(); // When spawning a Bullet, add it to this list. When a Bullet "dies", remove it.
 
     Music backgroundMusic;
 

@@ -114,6 +114,18 @@ public class TiledMapHandler {
                     );
                     gameScreen.enemies.add(new Pistol(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
+                if(rectangleName.equals("Coin"))
+                {
+                    Body body = EntetyBuilder.createBody(
+                            rectangle.getX() + rectangle.getWidth() /2,
+                            rectangle.getY() + rectangle.getHeight() / 2,
+                            rectangle.getWidth(),
+                            rectangle.getHeight(),
+                            false,
+                            gameScreen.getWorld()
+                    );
+                    gameScreen.enemies.add(new Coin(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
+                }
             }
         }
     }
