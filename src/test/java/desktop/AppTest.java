@@ -72,10 +72,6 @@ public class AppTest {
 
 		assertTrue(mockPlayer.playerDead());
 	}
-	@Test
-	void testPoints(){
-
-	}
 
 	@Test
 	void testEnemies(){
@@ -83,16 +79,6 @@ public class AppTest {
 
 		when(game.getEnemies()).thenReturn(mockEnemies);
 		assertEquals(mockEnemies, game.getEnemies());
-	}
-
-	@Test
-	void testGoal(){
-
-	}
-
-	@Test
-	void testNewBoard(){
-
 	}
 
 	@Test
