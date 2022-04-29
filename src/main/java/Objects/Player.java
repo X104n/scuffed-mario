@@ -22,13 +22,12 @@ public class Player extends Entity {
     private float SPEED = 0.5f;
 
     private boolean turnRight;
-    private boolean isDrunk = false;
 
     private boolean hasPistol = false;
     private boolean hasAR = false;
     private int gunDamage = 0;
 
-    public float score = 0f;
+    public static double score = 0;
 
 
     private long reloadTime = 1000;
@@ -53,7 +52,6 @@ public class Player extends Entity {
 
     @Override
     public void update() {
-        //setPosition(body.getPosition().x * PPM, body.getPosition().y * PPM);
 
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
@@ -142,11 +140,10 @@ public class Player extends Entity {
     public void die(){ this.isAlive = false; }
 
     public void getDrunk(){
-        isDrunk = true;
         SPEED = SPEED += 0.5;
     }
 
-    public void score(float points){
+    public void score(double points){
         this.score += points;
     }
 

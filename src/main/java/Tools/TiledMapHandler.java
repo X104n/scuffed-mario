@@ -17,12 +17,13 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import screens.GameScreen;
 
+import java.util.ArrayList;
+
 import static Tools.Constants.PPM;
 
 public class TiledMapHandler {
     private TiledMap tiledMap;
     private GameScreen gameScreen;
-
     public TiledMapHandler(GameScreen gameScreen){
         this.gameScreen = gameScreen;
     }
@@ -44,90 +45,59 @@ public class TiledMapHandler {
                 String rectangleName = mapObject.getName();
                 if(rectangleName == null) continue;
                 if(rectangleName.equals("player")){
-                    Body body = EntetyBuilder.createBody(
-                            rectangle.getX() + rectangle.getWidth() /2,
-                            rectangle.getY() + rectangle.getHeight() / 2,
-                            rectangle.getWidth(),
-                            rectangle.getHeight(),
-                            false,
-                            gameScreen.getWorld()
-                    );
+                    Body body = createBody(rectangle);
                     gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
                 if(rectangleName.equals("Putin"))
                 {
-                    Body body = EntetyBuilder.createBody(
-                            rectangle.getX() + rectangle.getWidth() /2,
-                            rectangle.getY() + rectangle.getHeight() / 2,
-                            rectangle.getWidth(),
-                            rectangle.getHeight(),
-                            false,
-                            gameScreen.getWorld()
-                    );
+                    Body body = createBody(rectangle);
                     gameScreen.enemies.add(new Putin(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
                 if(rectangleName.equals("Boss"))
                 {
-                    Body body = EntetyBuilder.createBody(
-                            rectangle.getX() + rectangle.getWidth() /2,
-                            rectangle.getY() + rectangle.getHeight() / 2,
-                            rectangle.getWidth(),
-                            rectangle.getHeight(),
-                            false,
-                            gameScreen.getWorld()
-                    );
+                    Body body =createBody(rectangle);
                     gameScreen.enemies.add(new Boss(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
                 if(rectangleName.equals("Vodka"))
                 {
-                    Body body = EntetyBuilder.createBody(
-                            rectangle.getX() + rectangle.getWidth() /2,
-                            rectangle.getY() + rectangle.getHeight() / 2,
-                            rectangle.getWidth(),
-                            rectangle.getHeight(),
-                            false,
-                            gameScreen.getWorld()
-                    );
+                    Body body = createBody(rectangle);
                     gameScreen.enemies.add(new Vodka(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
                 if(rectangleName.equals("AR"))
                 {
-                    Body body = EntetyBuilder.createBody(
-                            rectangle.getX() + rectangle.getWidth() /2,
-                            rectangle.getY() + rectangle.getHeight() / 2,
-                            rectangle.getWidth(),
-                            rectangle.getHeight(),
-                            false,
-                            gameScreen.getWorld()
-                    );
+                    Body body = createBody(rectangle);
                     gameScreen.enemies.add(new AR(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
                 if(rectangleName.equals("Pistol"))
                 {
-                    Body body = EntetyBuilder.createBody(
-                            rectangle.getX() + rectangle.getWidth() /2,
-                            rectangle.getY() + rectangle.getHeight() / 2,
-                            rectangle.getWidth(),
-                            rectangle.getHeight(),
-                            false,
-                            gameScreen.getWorld()
-                    );
+                    Body body = createBody(rectangle);
                     gameScreen.enemies.add(new Pistol(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
                 if(rectangleName.equals("Coin"))
                 {
-                    Body body = EntetyBuilder.createBody(
-                            rectangle.getX() + rectangle.getWidth() /2,
-                            rectangle.getY() + rectangle.getHeight() / 2,
-                            rectangle.getWidth(),
-                            rectangle.getHeight(),
-                            false,
-                            gameScreen.getWorld()
-                    );
+                    Body body = createBody(rectangle);
                     gameScreen.enemies.add(new Coin(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
+                if(rectangleName.equals("Goal"))
+                {
+                    Body body = createBody(rectangle);
+                    gameScreen.enemies.add(new Goal(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
+                }
+
             }
         }
+    }
+
+    private Body createBody(Rectangle rectangle){
+        Body body = EntetyBuilder.createBody(
+                rectangle.getX() + rectangle.getWidth() /2,
+                rectangle.getY() + rectangle.getHeight() / 2,
+                rectangle.getWidth(),
+                rectangle.getHeight(),
+                false,
+                gameScreen.getWorld()
+        );
+        return body;
     }
 
     private void createStaticBody(PolygonMapObject polygonMapObject) {

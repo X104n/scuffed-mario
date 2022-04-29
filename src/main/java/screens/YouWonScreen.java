@@ -1,5 +1,6 @@
 package screens;
 
+import Objects.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -21,32 +22,37 @@ public class YouWonScreen implements Screen {
     OrthographicCamera camera;
     SpriteBatch batch;
     ScuffedMario mario;
+    Player player;
 
-    public YouWonScreen(ScuffedMario mario) {
+    public YouWonScreen(ScuffedMario mario, OrthographicCamera camera, Player player) {
         this.mario = mario;
         this.camera = camera;
         this.batch = new SpriteBatch();
+        this.player = player;
 
         viewport = new FitViewport(DesktopLauncher.width, DesktopLauncher.height, new OrthographicCamera());
         stage = new Stage(viewport, batch);
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         Label youWonLabel = new Label("You Won!", font);
-        Label scoreLabel = new Label("You got: " + "" + " rubles!", font);
+        Label scoreLabel = new Label("You got: " + player.score + " rubles!", font);
+        Label scoreLabel2 = new Label("( 0.00000" + (int)Math.round(player.score) + " dollars)", font);
         Label playAgainLabel = new Label("Press ENTER to play again", font);
-        Label quiGameLabel = new Label("Press esc to quick the game", font);
+        Label quiGameLabel = new Label("Press esc to quit the game", font);
 
         Table table = new Table();
         table.center();
         table.setFillParent(true); // This table will take up the entire screen
 
-        table.add(youWonLabel).expandX();
+        table.add(youWonLabel).expandX().pad(10);
         table.row();
-        table.add(scoreLabel).expandX();
+        table.add(scoreLabel).expandX().pad(10);
         table.row();
-        table.add(playAgainLabel).expandX();
+        table.add(scoreLabel2).expandX().pad(10);
         table.row();
-        table.add(quiGameLabel).expandX();
+        table.add(playAgainLabel).expandX().pad(10);
+        table.row();
+        table.add(quiGameLabel).expandX().pad(10);
 
         stage.addActor(table);
     }

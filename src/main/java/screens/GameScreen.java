@@ -90,7 +90,8 @@ public class GameScreen extends Game implements Screen {
         // Conditions
         if (player.playerDead() || !player.isAlive()) {
             //resetPlayer();
-            game.setScreen(new GameOverScreen(game, camera));
+            //game.setScreen(new GameOverScreen(game, camera));
+            game.setScreen(new YouWonScreen(game, camera, player));
             this.dispose();
 
         }

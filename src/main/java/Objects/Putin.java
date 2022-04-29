@@ -65,7 +65,7 @@ public class Putin extends Entity{
     }
 
     public void die(){
-        spawnSmallPutin((int) this.getBody().getPosition().x * (int) PPM, (int) this.getBody().getPosition().y * (int) PPM + 1, (int) this.getWidth(), (int) this.getHeight());
+        spawnSmallPutin((int) this.getBody().getPosition().x * (int) PPM, (int) this.getBody().getPosition().y * (int) PPM + 1, (int) this.getWidth()*3, (int) this.getHeight());
         screen.getWorld().destroyBody(this.getBody());
         screen.enemies.remove(this);
     }
@@ -85,14 +85,14 @@ public class Putin extends Entity{
     }
 
     private void shoot(){
-        float w = -1.5f*width;
+        float w = -2f*width;
         if(turnRight)
             w = -w;
         com.badlogic.gdx.math.Rectangle rectangle = new com.badlogic.gdx.math.Rectangle(x+w/2,y,20,10);
 
         Body body = EntetyBuilder.createBody(
                 rectangle.getX() + rectangle.getWidth() / 2,
-                rectangle.getY() - rectangle.getHeight() / 2,
+                rectangle.getY() - rectangle.getHeight() * 0.8f,
                 rectangle.getWidth(),
                 rectangle.getHeight(),
                 false,

@@ -5,21 +5,19 @@ import com.badlogic.gdx.physics.box2d.Body;
 import screens.GameScreen;
 
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static Tools.Constants.PPM;
 
-public class Coin extends Entity{
+public class Goal extends Entity{
     GameScreen screen;
 
-    public Coin(float width, float height, Body body, GameScreen gameScreen){
+    public Goal(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
         body.setGravityScale(0);
         screen = gameScreen;
         HP = 1;
-        this.entityTexture = new Texture("assets/Images/Coin.png");
-        super.type = ObjectType.COIN;
+        this.entityTexture = new Texture("assets/Images/Door.png");
     }
 
     @Override
