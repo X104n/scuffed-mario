@@ -15,14 +15,14 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import desktop.DesktopLauncher;
 
-public class GameOverScreen implements Screen {
+public class YouWonScreen implements Screen {
     Viewport viewport;
     Stage stage;
     OrthographicCamera camera;
     SpriteBatch batch;
     ScuffedMario mario;
 
-    public GameOverScreen(ScuffedMario mario ,OrthographicCamera camera) {
+    public YouWonScreen(ScuffedMario mario) {
         this.mario = mario;
         this.camera = camera;
         this.batch = new SpriteBatch();
@@ -31,16 +31,22 @@ public class GameOverScreen implements Screen {
         stage = new Stage(viewport, batch);
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
-        Label gameOverLabel = new Label("GAME OVER", font);
+        Label youWonLabel = new Label("You Won!", font);
+        Label scoreLabel = new Label("You got: " + "" + " rubles!", font);
         Label playAgainLabel = new Label("Press ENTER to play again", font);
+        Label quiGameLabel = new Label("Press esc to quick the game", font);
 
         Table table = new Table();
         table.center();
         table.setFillParent(true); // This table will take up the entire screen
 
-        table.add(gameOverLabel).expandX();
+        table.add(youWonLabel).expandX();
+        table.row();
+        table.add(scoreLabel).expandX();
         table.row();
         table.add(playAgainLabel).expandX();
+        table.row();
+        table.add(quiGameLabel).expandX();
 
         stage.addActor(table);
     }
@@ -56,14 +62,13 @@ public class GameOverScreen implements Screen {
             this.dispose();
             mario.setScreen(new GameScreen(mario, camera));
         }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            Gdx.app.exit();
+        }
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.draw();
-
-        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-            Gdx.app.exit();
-        }
     }
 
     @Override

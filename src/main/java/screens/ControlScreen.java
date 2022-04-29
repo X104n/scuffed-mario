@@ -64,6 +64,8 @@ public class ControlScreen implements Screen {
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         Label movementLabel = new Label("Move with WASD", font);
         Label resetGameLabel = new Label("Press 'R' to reset the game", font);
+        Label mainMenuLabel = new Label("Press 'M' to go back to main menu after pressing 'play'", font);
+        Label shootLabel = new Label("Press 'Q' to shoot", font);
         Label quitGameLabel = new Label("Press 'esc' to quit the game", font);
 
         TextButton backButton = new TextButton("Back", skin);
@@ -74,6 +76,10 @@ public class ControlScreen implements Screen {
         table.add(movementLabel).expandX().padTop(10);
         table.row();
         table.add(resetGameLabel).expandX().padTop(10);
+        table.row();
+        table.add(mainMenuLabel).expandX().padTop(10);
+        table.row();
+        table.add(shootLabel).expandX().padTop(10);
         table.row();
         table.add(quitGameLabel).expandX().padTop(10);
         table.row();
