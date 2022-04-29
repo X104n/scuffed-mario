@@ -250,4 +250,8 @@ public class GameScreen extends Game implements Screen {
         return this.player;
     }
 
+
+    public ArrayList<Entity> getEnemies() {
+        return enemies;
+    }
 }

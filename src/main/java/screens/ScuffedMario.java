@@ -16,6 +16,7 @@ public class ScuffedMario extends Game {
     public GameScreen game;
 
     public List<String> levels = List.of("assets/Map/level1.tmx", "assets/Map/level2.tmx","assets/Map/level3.tmx");
+    public MainMenu menu;
 
     public ScuffedMario(){
         INSTANCE = this;
@@ -41,6 +42,10 @@ public class ScuffedMario extends Game {
 
     public OrthographicCamera getOrthographicCamera() {
         return this.orthographicCamera;
+    }
+
+    public MainMenu getMenu() {
+        return menu;
     }
 }
 

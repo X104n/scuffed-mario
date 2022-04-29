@@ -109,10 +109,28 @@
 			<artifactId>gdx-openal</artifactId>
 			<version>0.9.9</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>5.5.2</version>
+			<version>5.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>4.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<version>1.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-engine</artifactId>
+			<version>1.8.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -164,6 +182,14 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>17</source>
+					<target>17</target>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
