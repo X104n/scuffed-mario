@@ -28,6 +28,8 @@ public class Player extends Entity {
     private boolean hasAR = false;
     private int gunDamage = 0;
 
+    public float score = 0f;
+
 
     private long reloadTime = 1000;
     private long lastShot = System.currentTimeMillis();;
@@ -146,6 +148,10 @@ public class Player extends Entity {
     public void getDrunk(){
         isDrunk = true;
         SPEED = SPEED += 0.5;
+    }
+
+    public void score(float points){
+        this.score += points;
     }
 
     public void pickupAR(){
