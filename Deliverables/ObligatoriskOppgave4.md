@@ -91,7 +91,7 @@ Som nevnt tidligere ønsker vi å få single-player til å fungere.
 For tida fokuserer vi på å utvide spillets funksjonalitet, legge til flere objekter, flere fiender og menyer til spillet for at det skal se bedre ut.
 
 # **Deloppgave 3: Krav**
-![Class Diagram](klasseDiagram2.png?raw=true "Class Diagram")
+![Class Diagram](klasseDiagram3.png?raw=true "Class Diagram")
 
 SonarQube:
 ![Class Diagram](sonarqube_dashboard.png?raw=true "Class Diagram")
