@@ -29,5 +29,9 @@ public class ScuffedMario extends Game {
     public GameScreen getGame (){
         return menu.getGame();
     }
+
+    public MainMenu getMenu() {
+        return menu;
+    }
 }
 

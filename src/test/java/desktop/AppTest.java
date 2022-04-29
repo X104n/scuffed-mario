@@ -9,10 +9,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
 import screens.GameScreen;
+import screens.MainMenu;
+import screens.ScuffedMario;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -22,6 +21,7 @@ public class AppTest {
 
 	static GameScreen game;
 	static Player mockPlayer;
+	static ScuffedMario mario;
 
 	/**
 	 * Static method run before everything else
@@ -30,7 +30,7 @@ public class AppTest {
 	static void setUpBeforeAll() {
 		game = mock(GameScreen.class);
 		mockPlayer = mock(Player.class);
-
+		mario = mock(ScuffedMario.class);
 	}
 
 	/**
@@ -107,7 +107,10 @@ public class AppTest {
 
 	@Test
 	void testStartScreen(){
+		MainMenu randomMenu = mock(MainMenu.class);
 
+		when(mario.getMenu()).thenReturn(randomMenu);
+		assertEquals(randomMenu, mario.getMenu());
 	}
 
 	@Test
