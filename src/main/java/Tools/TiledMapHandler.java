@@ -112,6 +112,11 @@ public class TiledMapHandler {
                     Body body = createBody(rectangle);
                     gameScreen.enemies.add(new Goal(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
+                if(rectangleName.equals("Boss"))
+                {
+                    Body body = createBody(rectangle);
+                    gameScreen.enemies.add(new Boss(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
+                }
 
             }
         }

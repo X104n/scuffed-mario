@@ -15,7 +15,7 @@ public class ScuffedMario extends Game {
     public SpriteBatch batch;
     public GameScreen game;
 
-    public List<String> levels = List.of("assets/Map/level1.tmx", "assets/Map/level2.tmx","assets/Map/level3.tmx");
+    public List<String> levels = List.of("assets/Map/level3.tmx", "assets/Map/level2.tmx","assets/Map/level3.tmx");
 
     public ScuffedMario(){
         INSTANCE = this;

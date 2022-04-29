@@ -121,6 +121,11 @@ public class GameScreen extends Game implements Screen {
         game.setScreen(new GameScreen(game, camera, mapNr+nr));
     }
 
+    public void victory(){
+        this.dispose();
+        game.setScreen(new YouWonScreen(game, camera, player));
+    }
+
     private void cameraUpdate(){
         Vector3 position = camera.position;
 
