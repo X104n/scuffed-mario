@@ -27,7 +27,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="objects">
-  <object id="2" name="player" x="2302.94" y="985.727" width="72" height="73.6667"/>
+  <object id="2" name="player" x="184.939" y="1125.73" width="72" height="73.6667"/>
   <object id="32" name="Coin" x="376.667" y="1120.67" width="46.6667" height="46.6667"/>
   <object id="33" name="Coin" x="474" y="1122" width="46.6667" height="46.6667"/>
   <object id="65" name="Putin" x="1982.67" y="981.333" width="58.6667" height="154.667"/>
