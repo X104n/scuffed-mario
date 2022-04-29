@@ -1,7 +1,9 @@
 package Objects;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
+import screens.GameScreen;
 
 import java.awt.*;
 
@@ -14,14 +16,14 @@ public class SmallPutin extends Entity{
 
     int timeBeforeTurn = 2000;
 
-    public SmallPutin(float width, float height, Body body) {
+    public SmallPutin(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
-        System.out.println(width);
-        System.out.println(height);
-
+        super.screen = screen;
+        this.entityTexture = new Texture("assets/Images/wideputin.png");
         lastTurn = System.currentTimeMillis();
-
+        super.type = ObjectType.SMALLPUTIN;
         velX = 1.5f;
+        HP = 30;
     }
 
     @Override
@@ -31,7 +33,6 @@ public class SmallPutin extends Entity{
         long time = System.currentTimeMillis();
         if(time - lastTurn > timeBeforeTurn){
             velX -= 2*velX;
-            System.out.println(velX);
             turnRight -= turnRight;
             lastTurn = time;
         }
@@ -39,8 +40,12 @@ public class SmallPutin extends Entity{
     }
 
     @Override
-    public void render(SpriteBatch batch) {
-
+    public boolean collide(Player player) {
+        if(deathCriterium(player)) {
+            this.die();
+            return true;
+        }
+        return false;
     }
 
     public Rectangle getBounds(){

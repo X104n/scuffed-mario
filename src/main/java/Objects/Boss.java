@@ -1,32 +1,31 @@
 package Objects;
 
 import Tools.EntetyBuilder;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.World;
 import screens.GameScreen;
+import screens.YouWonScreen;
 
 import java.awt.*;
 
 import static Tools.Constants.PPM;
+import static org.apache.commons.lang.math.RandomUtils.nextFloat;
 
-public class Putin extends Entity{
+public class Boss extends Entity{
 
     long lastTurn;
     long lastShot;
     boolean turnRight = false;
 
-    int timeBeforeTurn = 2000;
-    int reloadSpeed = 1000;
+    int timeBeforeTurn = 1000;
+    int reloadSpeed = 80;
     int gunDamage = 50;
 
 
-    public Putin(float width, float height, Body body, GameScreen screen) {
+    public Boss(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
         super.type = ObjectType.PUTIN;
-        HP = 1;
+        HP = 2000;
         lastTurn = System.currentTimeMillis();
         lastShot = System.currentTimeMillis();
         velX = 1.5f;
@@ -45,10 +44,11 @@ public class Putin extends Entity{
             lastTurn = time;
         }
         if(time-lastShot > reloadSpeed){
-            shoot();
+            shoot(true);
+            shoot(false);
             lastShot = time;
         }
-        body.setLinearVelocity(velX, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
+        body.setLinearVelocity(0, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
     }
 
     public Rectangle getBounds(){
@@ -66,30 +66,17 @@ public class Putin extends Entity{
 
     @Override
     public void die(){
-        spawnSmallPutin((int) this.getBody().getPosition().x * (int) PPM, (int) this.getBody().getPosition().y * (int) PPM + 1, (int) this.getWidth()*3, (int) this.getHeight());
         screen.getWorld().destroyBody(this.getBody());
         screen.enemies.remove(this);
+        screen.victory();
     }
 
-    private void spawnSmallPutin(int x, int y, int w, int h){
-        com.badlogic.gdx.math.Rectangle rectangle = new com.badlogic.gdx.math.Rectangle(x,y,w,h/2);
 
-        Body body = EntetyBuilder.createBody(
-                rectangle.getX() + rectangle.getWidth() / 2,
-                rectangle.getY() - rectangle.getHeight() / 2,
-                rectangle.getWidth(),
-                rectangle.getHeight(),
-                false,
-                screen.getWorld()
-        );
-       screen.enemies.add(new SmallPutin(rectangle.getWidth(), rectangle.getHeight(), body, super.screen));
-    }
-
-    private void shoot(){
+    private void shoot(boolean Right){
         float w = -2f*width;
         if(turnRight)
             w = -w;
-        com.badlogic.gdx.math.Rectangle rectangle = new com.badlogic.gdx.math.Rectangle(x+w/2,y,20,10);
+        com.badlogic.gdx.math.Rectangle rectangle = new com.badlogic.gdx.math.Rectangle(x+w/2,y  + ((nextFloat() - 0.5f)*1.5f*this.getHeight()),20,10);
 
         Body body = EntetyBuilder.createBody(
                 rectangle.getX() + rectangle.getWidth() / 2,
@@ -99,7 +86,7 @@ public class Putin extends Entity{
                 false,
                 screen.getWorld()
         );
-        new Bullet(20, 10, body, screen, (boolean) turnRight, false, gunDamage);
+        new Bullet(20, 10, body, screen, (boolean) Right, false, gunDamage);
     }
 
     public boolean deathCriterium(Entity player){

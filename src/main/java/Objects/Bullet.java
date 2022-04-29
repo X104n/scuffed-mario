@@ -12,20 +12,26 @@ import static Tools.Constants.PPM;
 public class Bullet extends Entity{
 
     Texture image;
-    GameScreen screen;
     boolean right;
     float lastX;
+    public boolean friendly;
+    public int gunDamage;
+    public long spawnTime;
 
-    public Bullet(float width, float height, Body body, GameScreen gameScreen, boolean goesRight){
+    public Bullet(float width, float height, Body body, GameScreen gameScreen, boolean goesRight, boolean friendly, int gunDamage){
         super(width, height, body);
-        screen = gameScreen;
-
-        image = new Texture("assets/Images/bullet.png");
+        super.screen = gameScreen;
+        HP = 1;
+        spawnTime = System.currentTimeMillis();
+        this.gunDamage = gunDamage;
+        this.entityTexture = new Texture("assets/Images/bullet.png");
         if(goesRight)
-            velX = 3f;
+            velX = 12f;
         else
-            velX = -3f;
-        this.isBullet = true;
+            velX = -12f;
+        super.type = ObjectType.BULLET;
+        this.friendly = friendly;
+        gameScreen.bullets.add(this);
     }
 
     public void setDirectionRight(){
@@ -35,22 +41,35 @@ public class Bullet extends Entity{
         right = false;
     }
 
+    public boolean isFriendly(){
+        return this.friendly;
+    }
 
     @Override
     public void update() {
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
         body.setLinearVelocity(velX, 0.45f);
-        if(Math.abs(body.getPosition().x - lastX) < 0.03){
-            screen.getWorld().destroyBody(body);
-            screen.enemies.remove(this);
+        if(System.currentTimeMillis() - spawnTime > 5000){
+            this.die();
+            return;
+        }
+        if(Math.abs(body.getPosition().x - lastX) < 0.06){
+            this.die();
+            return;
         }
         lastX = body.getPosition().x;
     }
 
     @Override
-    public void render(SpriteBatch batch) {
-        //batch.draw(new Texture("assets/Images/Bullet.png"), x, y, width, height);
+    public void die() {
+        screen.getWorld().destroyBody(body);
+        screen.bullets.remove(this);
+    }
+
+    public boolean collide(Player player){
+        player.die();
+        return false;
     }
 
     @Override
