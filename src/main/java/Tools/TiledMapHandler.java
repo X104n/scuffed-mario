@@ -1,11 +1,15 @@
 package Tools;
 
 import Objects.*;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -22,16 +26,48 @@ import java.util.ArrayList;
 import static Tools.Constants.PPM;
 
 public class TiledMapHandler {
-    private TiledMap tiledMap;
+
+    int mapWidth;
+    int mapHeight;
+    int tilePixelWidth;
+    int tilePixelHeight;
+
+    public int mapPixelWidth;
+    int mapPixelHeight;
+    public TiledMap tiledMap;
     private GameScreen gameScreen;
     public TiledMapHandler(GameScreen gameScreen){
         this.gameScreen = gameScreen;
     }
 
-    public OrthoCachedTiledMapRenderer setupMap() {
-        tiledMap = new TmxMapLoader().load("assets/Map/level1.tmx");
+    public OrthoCachedTiledMapRenderer setupMap(String mapName){
+        tiledMap = new TmxMapLoader().load(mapName);
+
+
+/*
+        MapProperties prop = tiledMap.getProperties();
+        int mapWidth = prop.get("width", Integer.class);
+        int mapHeight = prop.get("height", Integer.class);
+        int tilePixelWidth = prop.get("tilewidth", Integer.class);
+        int tilePixelHeight = prop.get("tileheight", Integer.class);
+
+        int mapPixelWidth = mapWidth * tilePixelWidth;
+        int mapPixelHeight = mapHeight * tilePixelHeight;
+*/
+
         parseMapObjects(tiledMap.getLayers().get("objects").getObjects());
         return new OrthoCachedTiledMapRenderer(tiledMap);
+
+
+
+    }
+
+    public int getMapPixelWidth(){
+        return mapPixelWidth;
+    }
+
+    public int getMapPixelHeight(){
+        return mapPixelHeight;
     }
 
     private void parseMapObjects(MapObjects mapObjects) {

@@ -112,6 +112,10 @@ public class Player extends Entity {
         if(x < width/2){
             body.setTransform(1, body.getPosition().y, 0);
         }
+        if(x > screen.mapPixelWidth - width/2){
+            body.setTransform((screen.mapPixelWidth - width)/PPM, body.getPosition().y, 0);
+        }
+
     }
 
 
