@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.List;
+
 public class ScuffedMario extends Game {
 
     public static ScuffedMario INSTANCE;
@@ -12,6 +14,8 @@ public class ScuffedMario extends Game {
     private OrthographicCamera orthographicCamera;
     public SpriteBatch batch;
     public GameScreen game;
+
+    public List<String> levels = List.of("assets/Map/level1.tmx", "assets/Map/level0.tmx");
 
     public ScuffedMario(){
         INSTANCE = this;

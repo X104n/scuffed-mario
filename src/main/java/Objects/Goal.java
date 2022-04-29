@@ -29,8 +29,7 @@ public class Goal extends Entity{
 
     @Override
     public void die() {
-        screen.getWorld().destroyBody(this.getBody());
-        screen.enemies.remove(this);
+        screen.reloadMap(1);
     }
 
     public boolean collide(Player player){

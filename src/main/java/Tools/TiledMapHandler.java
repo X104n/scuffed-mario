@@ -40,8 +40,8 @@ public class TiledMapHandler {
         this.gameScreen = gameScreen;
     }
 
-    public OrthoCachedTiledMapRenderer setupMap() {
-        tiledMap = new TmxMapLoader().load("assets/Map/level1.tmx");
+    public OrthoCachedTiledMapRenderer setupMap(String mapName){
+        tiledMap = new TmxMapLoader().load(mapName);
 
 
 /*

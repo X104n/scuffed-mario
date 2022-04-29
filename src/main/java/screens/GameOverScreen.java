@@ -54,7 +54,7 @@ public class GameOverScreen implements Screen {
     public void render(float v) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             this.dispose();
-            mario.setScreen(new GameScreen(mario, camera));
+            mario.setScreen(new GameScreen(mario, camera, 0));
         }
 
         Gdx.gl.glClearColor(0, 0, 0, 1);

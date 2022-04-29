@@ -47,16 +47,18 @@ public class GameScreen extends Game implements Screen {
 
     public int mapPixelWidth;
     public int mapPixelHeight;
-    public GameScreen(ScuffedMario game, OrthographicCamera camera) {
+    public int mapNr;
+    public GameScreen(ScuffedMario game, OrthographicCamera camera, int nr) {
         this.batch = new SpriteBatch();
         this.camera = camera;
         this.game = game;
+        this.mapNr = nr;
 
         this.world = new World(new Vector2(0, -25f), false);
         this.box2DDebugRenderer = new Box2DDebugRenderer();
 
         this.tiledMapHandler = new TiledMapHandler(this);
-        this.renderer = tiledMapHandler.setupMap();
+        this.renderer = tiledMapHandler.setupMap(game.levels.get(mapNr));
         setMapBoundaries();
 
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("assets/Sound/widePutinEarrape.mp3"));
@@ -74,17 +76,16 @@ public class GameScreen extends Game implements Screen {
     }
 
 
+    public OrthographicCamera getCamera() {
+        return camera;
+    }
+
     public World getWorld(){
         return this.world;
     }
 
     public void setPlayer(Player player){
         this.player = player;
-    }
-
-    public void resetPlayer(){
-        world.destroyBody(player.getBody());
-        this.renderer = tiledMapHandler.setupMap();
     }
 
     public TiledMapHandler getTiledMapHandler() {
@@ -119,13 +120,17 @@ public class GameScreen extends Game implements Screen {
             Gdx.app.exit();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.R)) { // if the player should get stuck in the game
-            this.dispose();
-            game.setScreen(new GameScreen(game, camera));
+            reloadMap(0);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.M)) { // if the player should get stuck in the game
             this.dispose();
             game.setScreen(new MainMenu(game, camera));
         }
+    }
+
+    public void reloadMap(int nr){
+        this.dispose();
+        game.setScreen(new GameScreen(game, camera, mapNr+nr));
     }
 
     private void cameraUpdate(){
