@@ -19,7 +19,7 @@ public class Vodka extends Entity {
     public Vodka(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
         screen = gameScreen;
-
+        HP = 50;
         this.entityTexture = new Texture("assets/Images/vodka.png.crdownload");
         super.type = ObjectType.VODKA;
     }

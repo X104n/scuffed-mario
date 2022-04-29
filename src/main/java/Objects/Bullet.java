@@ -16,10 +16,13 @@ public class Bullet extends Entity{
     boolean right;
     float lastX;
     public boolean friendly;
+    public int gunDamage;
 
-    public Bullet(float width, float height, Body body, GameScreen gameScreen, boolean goesRight, boolean friendly){
+    public Bullet(float width, float height, Body body, GameScreen gameScreen, boolean goesRight, boolean friendly, int gunDamage){
         super(width, height, body);
         screen = gameScreen;
+        HP = 1;
+        this.gunDamage = gunDamage;
         this.entityTexture = new Texture("assets/Images/bullet.png");
         if(goesRight)
             velX = 12f;

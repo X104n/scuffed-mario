@@ -18,6 +18,7 @@ public abstract class Entity {
     protected boolean isAlive = true;
     GameScreen screen;
     public ObjectType type;
+    public int HP;
 
     public Entity(float width, float height, Body body){
         this.x = body.getPosition().x;
@@ -33,6 +34,13 @@ public abstract class Entity {
     }
 
     public abstract void update();
+
+    public void takeDamage(int damage){
+        HP -= damage;
+        if(HP <= 0){
+            this.die();
+        }
+    }
 
     public void render(SpriteBatch batch) {
         batch.draw(entityTexture, x-width/2, y-height/2, width, height);

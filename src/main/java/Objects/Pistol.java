@@ -14,7 +14,7 @@ public class Pistol extends Entity{
     public Pistol(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
         screen = gameScreen;
-
+        HP = 50;
         this.entityTexture = new Texture("assets/Images/Pistol.png");
         super.type = ObjectType.VODKA;
     }

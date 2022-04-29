@@ -14,8 +14,8 @@ public class AR extends Entity{
     public AR(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
         screen = gameScreen;
-
-        this.entityTexture = new Texture("assets/Images/AR.png.crdownload");
+        this.HP = 100;
+        this.entityTexture = new Texture("assets/Images/AR.png");
         super.type = ObjectType.VODKA;
     }
 

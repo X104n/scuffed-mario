@@ -20,11 +20,13 @@ public class Putin extends Entity{
 
     int timeBeforeTurn = 2000;
     int reloadSpeed = 1000;
+    int gunDamage = 50;
 
 
     public Putin(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
         super.type = ObjectType.PUTIN;
+        HP = 1;
         lastTurn = System.currentTimeMillis();
         lastShot = System.currentTimeMillis();
         velX = 1.5f;
@@ -97,7 +99,7 @@ public class Putin extends Entity{
                 false,
                 screen.getWorld()
         );
-        new Bullet(20, 10, body, screen, (boolean) turnRight, false);
+        new Bullet(20, 10, body, screen, (boolean) turnRight, false, gunDamage);
     }
 
     public boolean deathCriterium(Entity player){

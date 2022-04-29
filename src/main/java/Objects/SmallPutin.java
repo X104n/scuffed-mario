@@ -23,6 +23,7 @@ public class SmallPutin extends Entity{
         lastTurn = System.currentTimeMillis();
         super.type = ObjectType.SMALLPUTIN;
         velX = 1.5f;
+        HP = 30;
     }
 
     @Override

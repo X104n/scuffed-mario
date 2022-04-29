@@ -137,10 +137,10 @@ public class GameScreen extends Game implements Screen {
                     Entity enemy = enemies.get(j);
                     if(checkEntityCollision(bullet,enemy)) {
                         if(bullet.isFriendly()){
-                            enemy.die();
+                            enemy.takeDamage(bullet.gunDamage);
                             bullet.die();
+                            System.out.println(bullet);
                             i -= 1;
-                            j -= 1;
                         }else{
                             bullet.die();
                             i -= 1;
@@ -148,7 +148,7 @@ public class GameScreen extends Game implements Screen {
                     }
                 }
                 if(checkEntityCollision(player,bullet) && !bullet.isFriendly()){
-                    player.die();
+                    player.takeDamage(bullet.gunDamage);
                     bullet.die();
                     i -= 1;
                 }

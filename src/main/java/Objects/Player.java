@@ -26,6 +26,7 @@ public class Player extends Entity {
 
     private boolean hasPistol = false;
     private boolean hasAR = false;
+    private int gunDamage = 0;
 
 
     private long reloadTime = 1000;
@@ -44,6 +45,7 @@ public class Player extends Entity {
         this.speed = 10f;
         this.jumpCounter = 0;
         screen = gameScreen;
+        HP = 100;
         this.entityTexture = new Texture(IdleSmallPlayerRight);
     }
 
@@ -133,7 +135,7 @@ public class Player extends Entity {
                 false,
                 screen.getWorld()
         );
-        new Bullet(20, 10, body, screen, (boolean) turnRight, true);
+        new Bullet(20, 10, body, screen, (boolean) turnRight, true, gunDamage);
     }
 
     public void die(){ this.isAlive = false; }
@@ -146,6 +148,7 @@ public class Player extends Entity {
 
     public void pickupAR(){
         hasAR = true;
+        gunDamage = 10;
         reloadTime = (long) 180;
         IdleSmallPlayerLeft = "assets/Images/SmallPlayerAKLeft.png";
         IdleSmallPlayerRight = "assets/Images/SmallPlayerAKRight.png";
@@ -163,6 +166,7 @@ public class Player extends Entity {
 
     public void pickupPistol() {
         if(hasAR) return;
+        gunDamage = 20;
         hasPistol = true;
         reloadTime = (long) 1200;
         IdleSmallPlayerLeft = "assets/Images/SmallPlayerPistolLeft.png";
