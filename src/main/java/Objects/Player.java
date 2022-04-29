@@ -109,7 +109,6 @@ public class Player extends Entity {
         }
 
         body.setLinearVelocity(velX * speed, body.getLinearVelocity().y < 25 ? body.getLinearVelocity().y : 25);
-        System.out.println(width);
         if(x < width/2){
             body.setTransform(1, body.getPosition().y, 0);
         }
@@ -143,7 +142,6 @@ public class Player extends Entity {
     public void getDrunk(){
         isDrunk = true;
         SPEED = SPEED += 0.5;
-        //entityTexture = new Texture("assets/Images/drunkzelensky.png");
     }
 
     public void pickupAR(){

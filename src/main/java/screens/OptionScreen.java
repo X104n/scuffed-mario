@@ -98,7 +98,6 @@ public class OptionScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 gameVolume = gameSlider.getValue();
-                //System.out.println("slider changed to: " + gameSlider.getValue()); // Prints the slider value
                 System.out.println("game volume: " + gameVolume);
             }
             @Override
@@ -111,7 +110,6 @@ public class OptionScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 menuVolume = menuSlider.getValue();
-                //System.out.println("slider changed to: " + gameSlider.getValue()); // Prints the slider value
                 System.out.println("menu volume: " + menuVolume);
             }
             @Override
@@ -124,7 +122,6 @@ public class OptionScreen implements Screen {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 controlVolume = controlSlider.getValue();
-                //System.out.println("slider changed to: " + gameSlider.getValue()); // Prints the slider value
                 System.out.println("control volume: " + controlVolume);
             }
             @Override

@@ -33,7 +33,6 @@ public class SmallPutin extends Entity{
         long time = System.currentTimeMillis();
         if(time - lastTurn > timeBeforeTurn){
             velX -= 2*velX;
-            System.out.println(velX);
             turnRight -= turnRight;
             lastTurn = time;
         }

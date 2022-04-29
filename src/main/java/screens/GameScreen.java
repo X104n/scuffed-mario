@@ -139,7 +139,6 @@ public class GameScreen extends Game implements Screen {
                         if(bullet.isFriendly()){
                             enemy.takeDamage(bullet.gunDamage);
                             bullet.die();
-                            System.out.println(bullet);
                             i -= 1;
                         }else{
                             bullet.die();
@@ -171,6 +170,7 @@ public class GameScreen extends Game implements Screen {
         for(Bullet bullet : bullets) bullet.render(batch);
         batch.end();
 
+        //This line will show hitboxed for debug purposes
         //box2DDebugRenderer.render(world, camera.combined.scl(PPM));
     }
 
@@ -203,12 +203,7 @@ public class GameScreen extends Game implements Screen {
 
     @Override
     public void dispose() {
-        // Temporary dispose of only background music
-        //renderer.dispose();
-        //world.dispose();
-        //box2DDebugRenderer.dispose();
         backgroundMusic.dispose();
-        //batch.dispose();
     }
 
     private boolean checkEntityCollision(Entity ent1, Entity ent2){
