@@ -11,12 +11,11 @@ import java.util.ArrayList;
 import static Tools.Constants.PPM;
 
 public class Coin extends Entity{
-    GameScreen screen;
 
     public Coin(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
         body.setGravityScale(0);
-        screen = gameScreen;
+        super.screen = gameScreen;
         HP = 1;
         this.entityTexture = new Texture("assets/Images/Coin.png");
         super.type = ObjectType.COIN;
@@ -27,12 +26,6 @@ public class Coin extends Entity{
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
         body.setLinearVelocity(0,0);
-    }
-
-    @Override
-    public void die() {
-        screen.getWorld().destroyBody(this.getBody());
-        screen.enemies.remove(this);
     }
 
     public boolean collide(Player player){

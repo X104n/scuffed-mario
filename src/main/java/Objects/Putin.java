@@ -30,7 +30,7 @@ public class Putin extends Entity{
         lastTurn = System.currentTimeMillis();
         lastShot = System.currentTimeMillis();
         velX = 1.5f;
-        this.screen = screen;
+        super.screen = screen;
         this.entityTexture = new Texture("assets/Images/putin.png");
     }
 
@@ -64,6 +64,7 @@ public class Putin extends Entity{
         return false;
     }
 
+    @Override
     public void die(){
         spawnSmallPutin((int) this.getBody().getPosition().x * (int) PPM, (int) this.getBody().getPosition().y * (int) PPM + 1, (int) this.getWidth()*3, (int) this.getHeight());
         screen.getWorld().destroyBody(this.getBody());

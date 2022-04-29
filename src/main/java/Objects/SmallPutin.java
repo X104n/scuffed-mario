@@ -40,12 +40,6 @@ public class SmallPutin extends Entity{
     }
 
     @Override
-    public void die() {
-        screen.getWorld().destroyBody(this.getBody());
-        screen.enemies.remove(this);
-    }
-
-    @Override
     public boolean collide(Player player) {
         if(deathCriterium(player)) {
             this.die();

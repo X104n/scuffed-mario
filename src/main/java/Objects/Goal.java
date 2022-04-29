@@ -10,12 +10,11 @@ import java.util.ArrayList;
 import static Tools.Constants.PPM;
 
 public class Goal extends Entity{
-    GameScreen screen;
 
     public Goal(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
         body.setGravityScale(0);
-        screen = gameScreen;
+        super.screen = gameScreen;
         HP = 1;
         this.entityTexture = new Texture("assets/Images/Door.png");
     }

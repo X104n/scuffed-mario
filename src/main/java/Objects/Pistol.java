@@ -9,11 +9,10 @@ import java.awt.*;
 import static Tools.Constants.PPM;
 
 public class Pistol extends Entity{
-    GameScreen screen;
 
     public Pistol(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
-        screen = gameScreen;
+        super.screen = gameScreen;
         HP = 50;
         this.entityTexture = new Texture("assets/Images/Pistol.png");
         super.type = ObjectType.VODKA;
@@ -23,12 +22,6 @@ public class Pistol extends Entity{
     public void update() {
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
-    }
-
-    @Override
-    public void die() {
-        screen.getWorld().destroyBody(this.getBody());
-        screen.enemies.remove(this);
     }
 
     public boolean collide(Player player){

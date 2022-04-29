@@ -11,14 +11,13 @@ import static Tools.Constants.PPM;
 
 public class Boss extends Entity{
 
-    GameScreen screen;
     long lastjump;
     double JUMPCD = 5000;
     public Boss(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
         velY = 0;
         HP = 10;
-        this.screen = screen;
+        super.screen = screen;
         super.type = ObjectType.BOSS;
         lastjump = System.currentTimeMillis();
         this.entityTexture = new Texture("assets/Images/black_box.png");
@@ -36,13 +35,6 @@ public class Boss extends Entity{
         velY = velY - 0.1f;
         body.setLinearVelocity(0, velY);
     }
-
-    @Override
-    public void die() {
-        screen.getWorld().destroyBody(this.getBody());
-        screen.enemies.remove(this);
-    }
-
 
     @Override
     public Rectangle getBounds() {

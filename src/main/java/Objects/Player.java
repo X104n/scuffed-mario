@@ -18,7 +18,6 @@ import static Tools.Constants.PPM;
 public class Player extends Entity {
 
     private int jumpCounter;
-    GameScreen gameScreen;
     private float SPEED = 0.8f;
 
     private boolean turnRight;
@@ -45,7 +44,7 @@ public class Player extends Entity {
         super(width, height, body);
         this.speed = 10f;
         this.jumpCounter = 0;
-        screen = gameScreen;
+        super.screen = gameScreen;
         HP = 100;
         this.entityTexture = new Texture(IdleSmallPlayerRight);
     }
@@ -141,6 +140,7 @@ public class Player extends Entity {
         new Bullet(20, 10, body, screen, (boolean) turnRight, true, gunDamage);
     }
 
+    @Override
     public void die(){ this.isAlive = false; }
 
     public void getDrunk(){

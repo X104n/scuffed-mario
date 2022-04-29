@@ -9,11 +9,10 @@ import java.awt.*;
 import static Tools.Constants.PPM;
 
 public class AR extends Entity{
-    GameScreen screen;
 
     public AR(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
-        screen = gameScreen;
+        super.screen = gameScreen;
         this.HP = 100;
         this.entityTexture = new Texture("assets/Images/AR.png");
         super.type = ObjectType.VODKA;
@@ -23,12 +22,6 @@ public class AR extends Entity{
     public void update() {
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
-    }
-
-    @Override
-    public void die() {
-        screen.getWorld().destroyBody(this.getBody());
-        screen.enemies.remove(this);
     }
 
     public boolean collide(Player player){

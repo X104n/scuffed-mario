@@ -54,7 +54,10 @@ public abstract class Entity {
         return body;
     }
 
-    public abstract void die();
+    public void die(){
+        screen.getWorld().destroyBody(this.getBody());
+        screen.enemies.remove(this);
+    }
 
     public abstract boolean collide(Player player);
 

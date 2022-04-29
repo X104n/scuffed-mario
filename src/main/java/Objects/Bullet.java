@@ -12,7 +12,6 @@ import static Tools.Constants.PPM;
 public class Bullet extends Entity{
 
     Texture image;
-    GameScreen screen;
     boolean right;
     float lastX;
     public boolean friendly;
@@ -20,7 +19,7 @@ public class Bullet extends Entity{
 
     public Bullet(float width, float height, Body body, GameScreen gameScreen, boolean goesRight, boolean friendly, int gunDamage){
         super(width, height, body);
-        screen = gameScreen;
+        super.screen = gameScreen;
         HP = 1;
         this.gunDamage = gunDamage;
         this.entityTexture = new Texture("assets/Images/bullet.png");

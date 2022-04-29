@@ -14,11 +14,9 @@ import static Tools.Constants.PPM;
 
 public class Vodka extends Entity {
 
-    GameScreen screen;
-
     public Vodka(float width, float height, Body body, GameScreen gameScreen){
         super(width, height, body);
-        screen = gameScreen;
+        super.screen = gameScreen;
         HP = 50;
         this.entityTexture = new Texture("assets/Images/vodka.png.crdownload");
         super.type = ObjectType.VODKA;
@@ -28,12 +26,6 @@ public class Vodka extends Entity {
     public void update() {
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
-    }
-
-    @Override
-    public void die() {
-        screen.getWorld().destroyBody(this.getBody());
-        screen.enemies.remove(this);
     }
 
     public boolean collide(Player player){
