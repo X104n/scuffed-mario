@@ -27,7 +27,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="objects">
-  <object id="2" name="player" x="184.939" y="1125.73" width="72" height="73.6667"/>
+  <object id="2" name="Player" x="184.939" y="1125.73" width="72" height="73.6667"/>
   <object id="32" name="Coin" x="376.667" y="1120.67" width="46.6667" height="46.6667"/>
   <object id="33" name="Coin" x="474" y="1122" width="46.6667" height="46.6667"/>
   <object id="65" name="Putin" x="1982.67" y="981.333" width="58.6667" height="154.667"/>
@@ -85,7 +85,7 @@
    <polygon points="0,0 384,0 384,64 0,64 0,0"/>
   </object>
   <object id="110" name="Coin" x="328.667" y="790" width="46.6667" height="46.6667"/>
-  <object id="111" name="Boss" x="4985.33" y="641.333" width="62.6667" height="377.333"/>
+  <object id="111" name="Obstacle" x="4985.33" y="641.333" width="62.6667" height="377.333"/>
   <object id="115" x="5048.94" y="647.313">
    <polygon points="0,0 0,15.5 2,15.5 1.75,0.25"/>
   </object>
@@ -98,7 +98,7 @@
    <polygon points="0,0 53.3333,0 53.3333,30.6667 4,32"/>
   </object>
   <object id="122" name="Pistol" x="5558.97" y="792.242" width="86.6667" height="48"/>
-  <object id="123" name="Boss" x="5826" y="18.4925" width="62.6667" height="1197.27"/>
+  <object id="123" name="Obstacle" x="5826" y="18.4925" width="62.6667" height="1197.27"/>
   <object id="125" x="5890.77" y="21.7576">
    <polygon points="0,0 -0.5,16.5 3,13.5"/>
   </object>

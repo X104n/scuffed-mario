@@ -1,7 +1,6 @@
 package Objects;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import screens.GameScreen;
 
@@ -9,12 +8,12 @@ import java.awt.*;
 
 import static Tools.Constants.PPM;
 
-public class Boss extends Entity{
+public class Obstacle extends Entity{
 
     GameScreen screen;
     long lastjump;
     double JUMPCD = 5000;
-    public Boss(float width, float height, Body body, GameScreen screen) {
+    public Obstacle(float width, float height, Body body, GameScreen screen) {
         super(width, height, body);
         velY = 0;
         HP = 10;

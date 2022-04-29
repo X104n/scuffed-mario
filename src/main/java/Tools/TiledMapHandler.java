@@ -1,18 +1,13 @@
 package Tools;
 
 import Objects.*;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -20,8 +15,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import screens.GameScreen;
-
-import java.util.ArrayList;
 
 import static Tools.Constants.PPM;
 
@@ -80,7 +73,7 @@ public class TiledMapHandler {
                 Rectangle rectangle = ((RectangleMapObject) mapObject).getRectangle();
                 String rectangleName = mapObject.getName();
                 if(rectangleName == null || rectangleName == "") continue;
-                if(rectangleName.equals("player")){
+                if(rectangleName.equals("Player")){
                     Body body = createBody(rectangle);
                     gameScreen.setPlayer(new Player(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
@@ -89,10 +82,10 @@ public class TiledMapHandler {
                     Body body = createBody(rectangle);
                     gameScreen.enemies.add(new Putin(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
-                if(rectangleName.equals("Boss"))
+                if(rectangleName.equals("Obstacle"))
                 {
                     Body body =createBody(rectangle);
-                    gameScreen.enemies.add(new Boss(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
+                    gameScreen.enemies.add(new Obstacle(rectangle.getWidth(), rectangle.getHeight(), body, gameScreen));
                 }
                 if(rectangleName.equals("Vodka"))
                 {

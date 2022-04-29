@@ -30,17 +30,11 @@ public class GameScreen extends Game implements Screen {
     SpriteBatch batch;
     OrthographicCamera camera;
     Player player;
-
     public ArrayList<Entity> enemies = new ArrayList<>(); // When spawning an enemy, add them to this list. When an enemy dies, remove them.
-
     public ArrayList<Bullet> bullets = new ArrayList<>(); // When spawning a Bullet, add it to this list. When a Bullet "dies", remove it.
-
     Music backgroundMusic;
-
     private TiledMapHandler tiledMapHandler;
     private OrthoCachedTiledMapRenderer renderer;
-
-    // box2d
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;
     ScuffedMario game;
@@ -95,7 +89,6 @@ public class GameScreen extends Game implements Screen {
     @Override
     public void show() {
         backgroundMusic.play();
-        System.out.println("gameVolume from options: " + OptionScreen.gameVolume);
         backgroundMusic.setVolume(OptionScreen.gameVolume);
     }
 
@@ -104,17 +97,12 @@ public class GameScreen extends Game implements Screen {
         cameraUpdate();
         renderer.setView(camera);
         player.update();
-
         updateBullets();
-
         updateEnemies();
         // Conditions
         if (player.playerDead() || !player.isAlive()) {
-            //resetPlayer();
-            //game.setScreen(new GameOverScreen(game, camera));
-            game.setScreen(new YouWonScreen(game, camera, player));
+            game.setScreen(new GameOverScreen(game, camera));
             this.dispose();
-
         }
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             Gdx.app.exit();
@@ -200,7 +188,6 @@ public class GameScreen extends Game implements Screen {
         Gdx.gl.glClearColor(0,0,0,0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         renderer.render();
-
         batch.begin();
         // Render things here
         batch.setProjectionMatrix(camera.combined);
@@ -208,9 +195,6 @@ public class GameScreen extends Game implements Screen {
         for(Entity enemy : enemies) enemy.render(batch);
         for(Bullet bullet : bullets) bullet.render(batch);
         batch.end();
-
-        //This line will show hitboxed for debug purposes
-        //box2DDebugRenderer.render(world, camera.combined.scl(PPM));
     }
 
 
