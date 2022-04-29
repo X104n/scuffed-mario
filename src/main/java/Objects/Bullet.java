@@ -16,11 +16,13 @@ public class Bullet extends Entity{
     float lastX;
     public boolean friendly;
     public int gunDamage;
+    public long spawnTime;
 
     public Bullet(float width, float height, Body body, GameScreen gameScreen, boolean goesRight, boolean friendly, int gunDamage){
         super(width, height, body);
         super.screen = gameScreen;
         HP = 1;
+        spawnTime = System.currentTimeMillis();
         this.gunDamage = gunDamage;
         this.entityTexture = new Texture("assets/Images/bullet.png");
         if(goesRight)
@@ -48,8 +50,13 @@ public class Bullet extends Entity{
         x = body.getPosition().x * PPM;
         y = body.getPosition().y * PPM;
         body.setLinearVelocity(velX, 0.45f);
+        if(System.currentTimeMillis() - spawnTime > 5000){
+            this.die();
+            return;
+        }
         if(Math.abs(body.getPosition().x - lastX) < 0.06){
             this.die();
+            return;
         }
         lastX = body.getPosition().x;
     }

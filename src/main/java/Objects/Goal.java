@@ -15,7 +15,7 @@ public class Goal extends Entity{
         super(width, height, body);
         body.setGravityScale(0);
         super.screen = gameScreen;
-        HP = 1;
+        HP = 10000;
         this.entityTexture = new Texture("assets/Images/Door.png");
     }
 
@@ -27,12 +27,15 @@ public class Goal extends Entity{
     }
 
     @Override
+    public void takeDamage(int damage){
+        return;
+    }
+    @Override
     public void die() {
         screen.reloadMap(1);
     }
 
     public boolean collide(Player player){
-        player.score(1);
         this.die();
         return false;
     }
